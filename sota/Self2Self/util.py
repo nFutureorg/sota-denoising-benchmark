@@ -2,7 +2,8 @@ import numpy as np
 import cv2
 import scipy.io as sio
 import random
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def add_gaussian_noise(img, model_path, sigma):
     index = model_path.rfind("/")

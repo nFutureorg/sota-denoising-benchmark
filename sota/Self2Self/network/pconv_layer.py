@@ -1,8 +1,9 @@
 from keras.utils import conv_utils
 from keras import backend as K
-from keras.engine import InputSpec
+from tensorflow.keras.layers import InputSpec
 from keras.layers import Conv2D
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 class PConv2D(Conv2D):
     def __init__(self, *args, n_channels=3, mono=False, **kwargs):

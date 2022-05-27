@@ -2,6 +2,8 @@ import tensorflow as tf
 import numpy as np
 from network.pconv_layer import PConv2D
 
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def get_weight(shape, gain=np.sqrt(2)):
     fan_in = np.prod(shape[:-1])

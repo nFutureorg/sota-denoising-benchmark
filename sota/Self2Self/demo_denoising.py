@@ -1,7 +1,8 @@
 import tensorflow as tf
 import network.Punet
 import numpy as np
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import util
 import cv2
 import os

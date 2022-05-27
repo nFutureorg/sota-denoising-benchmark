@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 import numpy as np
-from skimage.measure import compare_psnr
+#from skimage.measure import compare_psnr
 import os
 import torch
 from tifffile import imread, imwrite
@@ -157,7 +157,7 @@ if __name__ == "__main__":
             optimizer.step()
             
             if i % 100 == 0:
-                print(i)
+                #print(i)
                 
                 losses.append(loss.item())
                 model.eval()

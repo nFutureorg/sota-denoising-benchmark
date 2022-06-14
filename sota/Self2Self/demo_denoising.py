@@ -65,28 +65,28 @@ def train(file_path, dropout_rate, sigma=25, is_realnoisy=False):
 
 
 if __name__ == '__main__':
-    path = './testsets/Set9/'
-    file_list = os.listdir(path)
-    for sigma in [25, 50, 75, 100]:
-        for file_name in file_list:
-            if not os.path.isdir(path + file_name):
-                train(path + file_name, 0.3, sigma)
+    #path = './testsets/Set9/'
+    #file_list = os.listdir(path)
+    #for sigma in [25, 50, 75, 100]:
+    #    for file_name in file_list:
+    #        if not os.path.isdir(path + file_name):
+    #            train(path + file_name, 0.3, sigma)
 
-    path = './testsets/BSD68/'
-    file_list = os.listdir(path)
-    sigma = 25
-    for file_name in file_list:
-        if not os.path.isdir(path + file_name):
-            train(path + file_name, 0.2, sigma)
+    #path = './testsets/BSD68/'
+    #file_list = os.listdir(path)
+    #sigma = 25
+    #for file_name in file_list:
+    #    if not os.path.isdir(path + file_name):
+    #        train(path + file_name, 0.2, sigma)
 
-    path = './testsets/BSD68/'
-    file_list = os.listdir(path)
-    sigma = 50
-    for file_name in file_list:
-        if not os.path.isdir(path + file_name):
-            train(path + file_name, 0.3, sigma)
+    #path = './testsets/BSD68/'
+    #file_list = os.listdir(path)
+    #sigma = 50
+    #for file_name in file_list:
+    #    if not os.path.isdir(path + file_name):
+    #        train(path + file_name, 0.3, sigma)
 
-    path = './testsets/PolyU/'
+    path = './testsets/SEM/'
     file_list = os.listdir(path)
     sigma = -1
     for file_name in file_list:

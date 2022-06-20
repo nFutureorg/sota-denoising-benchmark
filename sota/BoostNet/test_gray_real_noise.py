@@ -83,8 +83,7 @@ for i, item in enumerate(files):
     logger.info("### Grayscale denoising ###")
     logger.info("\tFile: " + item)
 
-    noise = torch.FloatTensor(imorig.size()).normal_(mean=0, std=args.noise_sigma)
-    imnoisy = imorig #+ noise
+
     with torch.no_grad():
         if 'SEM' in item:
             if 'pollen.spd1.0098' in img_name:
@@ -97,7 +96,8 @@ for i, item in enumerate(files):
                 noise_sigma = 14 / 255.
             elif 'pollen.spd8.0098' in img_name:
                 noise_sigma = 5 / 255.
-
+    noise = torch.FloatTensor(imorig.size()).normal_(mean=0, std=args.noise_sigma)
+    imnoisy = imorig #+ noise
     imorig = imorig.type(dtype).to(device)
     imnoisy = imnoisy.type(dtype).to(device)
     noise_sigma = torch.Tensor([args.noise_sigma]).type(dtype).to(device)

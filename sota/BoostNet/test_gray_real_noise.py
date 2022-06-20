@@ -85,6 +85,18 @@ for i, item in enumerate(files):
 
     noise = torch.FloatTensor(imorig.size()).normal_(mean=0, std=args.noise_sigma)
     imnoisy = imorig #+ noise
+    with torch.no_grad():
+        if 'SEM' in item:
+            if 'pollen.spd1.0098' in img_name:
+                noise_sigma = 42 / 255.
+            elif 'pollen.spd2.0098' in img_name:
+                noise_sigma = 35 / 255.
+            elif 'pollen.spd3.0098' in img_name:
+                noise_sigma = 28 / 255.
+            elif 'pollen.spd5.0098' in img_name:
+                noise_sigma = 14 / 255.
+            elif 'pollen.spd8.0098' in img_name:
+                noise_sigma = 5 / 255.
 
     imorig = imorig.type(dtype).to(device)
     imnoisy = imnoisy.type(dtype).to(device)

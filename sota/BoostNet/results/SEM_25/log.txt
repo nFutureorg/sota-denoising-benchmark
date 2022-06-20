@@ -16,3 +16,39 @@
 2022-06-20 12:19:15,968 - 
 	#test set: testsets/SEM, : Sigma: 25   #total samples: 5,
 2022-06-20 12:19:15,968 - 		#mean psnr (noi/denoi):  20.18/23.93dB
+2022-06-20 13:19:57,323 - ### Grayscale denoising ###
+2022-06-20 13:19:57,324 - 	File: testsets/SEM/pollen.spd1.0098.png
+2022-06-20 13:19:57,454 - 	PSNR denoised (noi/denoi):  inf/24.43dB
+2022-06-20 13:19:57,514 - ### Grayscale denoising ###
+2022-06-20 13:19:57,515 - 	File: testsets/SEM/pollen.spd2.0098.png
+2022-06-20 13:19:57,589 - 	PSNR denoised (noi/denoi):  inf/23.44dB
+2022-06-20 13:19:57,678 - ### Grayscale denoising ###
+2022-06-20 13:19:57,679 - 	File: testsets/SEM/pollen.spd3.0098.png
+2022-06-20 13:19:57,751 - 	PSNR denoised (noi/denoi):  inf/22.72dB
+2022-06-20 13:19:57,849 - ### Grayscale denoising ###
+2022-06-20 13:19:57,850 - 	File: testsets/SEM/pollen.spd5.0098.png
+2022-06-20 13:19:57,922 - 	PSNR denoised (noi/denoi):  inf/24.00dB
+2022-06-20 13:19:57,975 - ### Grayscale denoising ###
+2022-06-20 13:19:57,976 - 	File: testsets/SEM/pollen.spd8.0098.png
+2022-06-20 13:19:58,050 - 	PSNR denoised (noi/denoi):  inf/24.82dB
+2022-06-20 13:19:58,082 - 
+	#test set: testsets/SEM, : Sigma: 25   #total samples: 5,
+2022-06-20 13:19:58,083 - 		#mean psnr (noi/denoi):  inf/23.88dB
+2022-06-20 13:22:32,763 - ### Grayscale denoising ###
+2022-06-20 13:22:32,764 - 	File: testsets/SEM/pollen.spd1.0098.png
+2022-06-20 13:22:32,890 - 	PSNR denoised (noi/denoi):  inf/24.43dB
+2022-06-20 13:22:32,952 - ### Grayscale denoising ###
+2022-06-20 13:22:32,952 - 	File: testsets/SEM/pollen.spd2.0098.png
+2022-06-20 13:22:33,025 - 	PSNR denoised (noi/denoi):  inf/23.44dB
+2022-06-20 13:22:33,078 - ### Grayscale denoising ###
+2022-06-20 13:22:33,078 - 	File: testsets/SEM/pollen.spd3.0098.png
+2022-06-20 13:22:33,149 - 	PSNR denoised (noi/denoi):  inf/22.72dB
+2022-06-20 13:22:33,203 - ### Grayscale denoising ###
+2022-06-20 13:22:33,203 - 	File: testsets/SEM/pollen.spd5.0098.png
+2022-06-20 13:22:33,272 - 	PSNR denoised (noi/denoi):  inf/24.00dB
+2022-06-20 13:22:33,325 - ### Grayscale denoising ###
+2022-06-20 13:22:33,326 - 	File: testsets/SEM/pollen.spd8.0098.png
+2022-06-20 13:22:33,395 - 	PSNR denoised (noi/denoi):  inf/24.82dB
+2022-06-20 13:22:33,427 - 
+	#test set: testsets/SEM, : Sigma: 25   #total samples: 5,
+2022-06-20 13:22:33,427 - 		#mean psnr (noi/denoi):  inf/23.88dB

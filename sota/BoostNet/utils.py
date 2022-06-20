@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import torch
-from skimage.measure.simple_metrics import compare_psnr
+from skimage.metrics import peak_signal_noise_ratio as compare_psnr
 
 def batch_psnr(img, imclean, data_range):
     img_cpu = img.data.cpu().numpy().astype(np.float32)

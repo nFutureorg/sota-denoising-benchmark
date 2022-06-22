@@ -1,6 +1,7 @@
 import tensorflow as tf
 
 
+
 def cycle_consistency_loss(real_images, generated_images):
     
     return tf.reduce_mean(tf.abs(real_images - generated_images))

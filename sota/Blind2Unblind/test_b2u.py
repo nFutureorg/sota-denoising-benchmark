@@ -490,16 +490,14 @@ for valid_name, valid_images in valid_dict.items():
     avg_psnr_mid = []
     avg_ssim_mid = []
     repeat_times = valid_repeat_times[valid_name]
-    print(valid_images)
     for i in range(repeat_times):
         for idx, im in enumerate(valid_images):
-            #print(im)
             #origin255 = im.copy()
-            #print(validation_kodak(os.path.join(opt.test_dirs,'clean'))[0])
             origin255 = validation_kodak(os.path.join(opt.test_dirs,'clean'))[0].copy()
-            origin255 = origin255.reshape((1,768, 1024))
             origin255 = origin255.astype(np.uint8)
-            print(origin255.shape)
+            origin255 = np.array(origin255, dtype=np.float32) / 255.0
+            origin255 = noise_adder.add_valid_noise(origin255)
+            #print(origin255)
             im = np.array(im, dtype=np.float32) / 255.0
             #print(im)
             #noisy_im = validation_kodak(os.path.join(opt.test_dirs,'Kodak24'))[0].copy()
@@ -507,12 +505,10 @@ for valid_name, valid_images in valid_dict.items():
             #noisy_im = noise_adder.add_valid_noise(im)
             #print(noisy_im)
             noisy_im = noise_adder.add_valid_noise(im)
-            #print(origin255.shape)
-            
+            #print(noisy_im)
             noisy255 = noisy_im.copy()
             noisy255 = np.clip(noisy255 * 255.0 + 0.5, 0,
                                 255).astype(np.uint8)
-            print(noisy_im.shape)
             # padding to square
             H = noisy_im.shape[0]
             W = noisy_im.shape[1]

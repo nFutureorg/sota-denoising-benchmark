@@ -478,7 +478,7 @@ clean_path = os.path.join(save_test_path, "clean")
 os.makedirs(validation_path, exist_ok=True)
 np.random.seed(101)
 # valid_repeat_times = {"Kodak24": 1, "BSD300": 1, "Set14": 1}
-valid_repeat_times = {"Kodak24": 10, "BSD300": 3, "Set14": 20}
+valid_repeat_times = {"Kodak24": 5, "BSD300": 3, "Set14": 20}
 
 for valid_name, valid_images in valid_dict.items():
     save_dir = os.path.join(validation_path, valid_name)

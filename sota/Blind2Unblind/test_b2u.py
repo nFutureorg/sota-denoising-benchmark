@@ -474,6 +474,7 @@ network.eval()
 # validation
 save_test_path = os.path.join(opt.save_test_path, opt.log_name)
 validation_path = os.path.join(save_test_path, "validation")
+clean_path = os.path.join(save_test_path, "clean")
 os.makedirs(validation_path, exist_ok=True)
 np.random.seed(101)
 # valid_repeat_times = {"Kodak24": 1, "BSD300": 1, "Set14": 1}
@@ -493,9 +494,10 @@ for valid_name, valid_images in valid_dict.items():
     for i in range(repeat_times):
         for idx, im in enumerate(valid_images):
             #origin255 = im.copy()
-            origin255 = validation_kodak(os.path.join(opt.test_dirs,'clean'))[0].copy()
+            for image in validation_kodak(os.path.join(opt.test_dirs,'clean')):
+                origin255 = image.copy()
             origin255 = origin255.astype(np.uint8)
-            origin255 = np.array(origin255, dtype=np.float32) / 255.0
+            #origin255 = np.array(origin255, dtype=np.float32) / 255.0
             origin255 = noise_adder.add_valid_noise(origin255)
             #print(origin255)
             im = np.array(im, dtype=np.float32) / 255.0

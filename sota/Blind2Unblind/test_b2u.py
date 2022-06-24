@@ -21,6 +21,7 @@ from torch.utils.data import Dataset
 from arch_unet import UNet
 import utils as util
 from collections import OrderedDict
+from koila import lazy
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--noisetype", type=str, default="gauss25", choices=['gauss25', 'gauss5_50', 'poisson30', 'poisson5_50'])
@@ -281,7 +282,7 @@ class Masker(object):
 
     def train(self, img):
         n, c, h, w = img.shape
-        tensors = torch.zeros((n,self.width**2,c,h,w), device=img.device)
+        tensors = torch.zeros(lazy((n,self.width**2,c,h,w),batch=0), device=img.device)
         masks = torch.zeros((n,self.width**2,1,h,w), device=img.device)
         for i in range(self.width**2):
             x, mask = self.mask(img, mask_type='fix_{}'.format(i))

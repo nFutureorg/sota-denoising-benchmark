@@ -282,7 +282,7 @@ class Masker(object):
 
     def train(self, img):
         n, c, h, w = img.shape
-        tensors = torch.zeros(lazy((n,self.width**2,c,h,w),batch=0), device=img.device)
+        tensors = lazy(torch.zeros((n,self.width**2,c,h,w), device=img.device),batch=0)
         masks = torch.zeros((n,self.width**2,1,h,w), device=img.device)
         for i in range(self.width**2):
             x, mask = self.mask(img, mask_type='fix_{}'.format(i))

@@ -152,8 +152,8 @@ class AugmentNoise(object):
                             dtype=np.float32)
         elif self.style == "gauss_range":
             min_std, max_std = self.params
-            std = np.random.uniform(low=min_std, high=max_std, size=(1, 1, 1))
-            #std = np.random.uniform(low=0, high=0, size=(1, 1, 1))
+            #std = np.random.uniform(low=min_std, high=max_std, size=(1, 1, 1))
+            std = np.random.uniform(low=0, high=0, size=(1, 1, 1))
             print(std)
             return np.array(x + np.random.normal(size=shape) * std,
                             dtype=np.float32)

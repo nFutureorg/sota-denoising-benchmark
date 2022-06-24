@@ -10,7 +10,7 @@ import os, sys
 #from PIL import Image, ImageOps
 
 image = Image.open(sys.argv[1])
-box = (256, 256, 511.5, 511.5)
+box = (256, 256, 600, 600)
 img2 = image.crop(box)
 img2.save(sys.argv[2])
 

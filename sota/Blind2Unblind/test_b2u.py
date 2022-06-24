@@ -149,21 +149,21 @@ class AugmentNoise(object):
         if self.style == "gauss_fix":
             std = self.params[0]
             return np.array(x + np.random.normal(size=shape) * std,
-                            dtype=np.float32)
+                            dtype=np.float16)
         elif self.style == "gauss_range":
             min_std, max_std = self.params
-            #std = np.random.uniform(low=min_std, high=max_std, size=(1, 1, 1))
-            std = np.random.uniform(low=0, high=0, size=(1, 1, 1))
+            std = np.random.uniform(low=min_std, high=max_std, size=(1, 1, 1))
+            #std = np.random.uniform(low=0, high=0, size=(1, 1, 1))
             print(std)
             return np.array(x + np.random.normal(size=shape) * std,
-                            dtype=np.float32)
+                            dtype=np.float16)
         elif self.style == "poisson_fix":
             lam = self.params[0]
-            return np.array(np.random.poisson(lam * x) / lam, dtype=np.float32)
+            return np.array(np.random.poisson(lam * x) / lam, dtype=np.float16)
         elif self.style == "poisson_range":
             min_lam, max_lam = self.params
             lam = np.random.uniform(low=min_lam, high=max_lam, size=(1, 1, 1))
-            return np.array(np.random.poisson(lam * x) / lam, dtype=np.float32)
+            return np.array(np.random.poisson(lam * x) / lam, dtype=np.float16)
 
 
 def space_to_depth(x, block_size):
@@ -307,7 +307,7 @@ class DataLoader_Imagenet_val(Dataset):
         # fetch image
         fn = self.train_fns[index]
         im = Image.open(fn)
-        im = np.array(im, dtype=np.float32)
+        im = np.array(im, dtype=np.float16)
         # random crop
         H = im.shape[0]
         W = im.shape[1]
@@ -364,7 +364,7 @@ def validation_kodak(dataset_dir):
     images = []
     for fn in fns:
         im = Image.open(fn)
-        im = np.array(im, dtype=np.float32)
+        im = np.array(im, dtype=np.float16)
         images.append(im)
     return images
 
@@ -376,7 +376,7 @@ def validation_bsd300(dataset_dir):
     images = []
     for fn in fns:
         im = Image.open(fn)
-        im = np.array(im, dtype=np.float32)
+        im = np.array(im, dtype=np.float16)
         images.append(im)
     return images
 
@@ -387,7 +387,7 @@ def validation_Set14(dataset_dir):
     images = []
     for fn in fns:
         im = Image.open(fn)
-        im = np.array(im, dtype=np.float32)
+        im = np.array(im, dtype=np.float16)
         images.append(im)
     return images
 
@@ -438,8 +438,8 @@ def calculate_ssim(target, ref):
 
 
 def calculate_psnr(target, ref, data_range=255.0):
-    img1 = np.array(target, dtype=np.float32)
-    img2 = np.array(ref, dtype=np.float32)
+    img1 = np.array(target, dtype=np.float16)
+    img2 = np.array(ref, dtype=np.float16)
     diff = img1 - img2
     psnr = 10.0 * np.log10(data_range**2 / np.mean(np.square(diff)))
     return psnr
@@ -494,7 +494,7 @@ for valid_name, valid_images in valid_dict.items():
         for idx, im in enumerate(valid_images):
             origin255 = im.copy()
             origin255 = origin255.astype(np.uint8)
-            im = np.array(im, dtype=np.float32) / 255.0
+            im = np.array(im, dtype=np.float16) / 255.0
             noisy_im = noise_adder.add_valid_noise(im)
             noisy255 = noisy_im.copy()
             noisy255 = np.clip(noisy255 * 255.0 + 0.5, 0,
@@ -536,25 +536,25 @@ for valid_name, valid_images in valid_dict.items():
                                 255).astype(np.uint8)                   
 
             # calculate psnr
-            psnr_dn = calculate_psnr(origin255.astype(np.float32),
-                                        pred255_dn.astype(np.float32))
+            psnr_dn = calculate_psnr(origin255.astype(np.float16),
+                                        pred255_dn.astype(np.float16))
             avg_psnr_dn.append(psnr_dn)
-            ssim_dn = calculate_ssim(origin255.astype(np.float32),
-                                        pred255_dn.astype(np.float32))
+            ssim_dn = calculate_ssim(origin255.astype(np.float16),
+                                        pred255_dn.astype(np.float16))
             avg_ssim_dn.append(ssim_dn)
 
-            psnr_exp = calculate_psnr(origin255.astype(np.float32),
-                                        pred255_exp.astype(np.float32))
+            psnr_exp = calculate_psnr(origin255.astype(np.float16),
+                                        pred255_exp.astype(np.float16))
             avg_psnr_exp.append(psnr_exp)
-            ssim_exp = calculate_ssim(origin255.astype(np.float32),
-                                        pred255_exp.astype(np.float32))
+            ssim_exp = calculate_ssim(origin255.astype(np.float16),
+                                        pred255_exp.astype(np.float16))
             avg_ssim_exp.append(ssim_exp)
 
-            psnr_mid = calculate_psnr(origin255.astype(np.float32),
-                                        pred255_mid.astype(np.float32))
+            psnr_mid = calculate_psnr(origin255.astype(np.float16),
+                                        pred255_mid.astype(np.float16))
             avg_psnr_mid.append(psnr_mid)
-            ssim_mid = calculate_ssim(origin255.astype(np.float32),
-                                        pred255_mid.astype(np.float32))
+            ssim_mid = calculate_ssim(origin255.astype(np.float16),
+                                        pred255_mid.astype(np.float16))
             avg_ssim_mid.append(ssim_mid)
 
             logger.info(

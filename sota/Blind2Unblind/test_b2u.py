@@ -492,7 +492,7 @@ for valid_name, valid_images in valid_dict.items():
     repeat_times = valid_repeat_times[valid_name]
     for i in range(repeat_times):
         for idx, im in enumerate(valid_images):
-            origin255 = im.copy()
+            origin255 = validation_kodak(os.path.join(opt.test_dirs, "clean"))
             origin255 = origin255.astype(np.uint8)
             im = np.array(im, dtype=np.float32) / 255.0
             noisy_im = noise_adder.add_valid_noise(im)

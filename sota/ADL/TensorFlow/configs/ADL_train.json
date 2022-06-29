@@ -1,13 +1,13 @@
 {
     "model": "ADL",
     "data":{
-        "H": 512,
-        "W": 512,
+        "H": 768,
+        "W": 1024,
         "batch_size_per_gpu": 5,
-        "adding_noise": true,
+        "adding_noise": false,
         "adding_blur": false,
         "compression": false,
-        "gt_noisy": false,
+        "gt_noisy": true,
 
         "train_std_interval": [0.0, 55.0],
         "validation_std_interval": [49.0, 51.0],

@@ -200,6 +200,7 @@ def main_dist(gpu, ngpus_per_node,
                                     config=config_data,
                                     distributed=True)
     ds_train_loader, ds_valid_loader, ds_test_loader = dataLoader_obj()
+    print(dataLoader_obj)
     if ddp.rank == 0:
         print('Train size: {} batches\nVal size: {} batches\nTest size: {} batches'.format(len(ds_train_loader), 
                     len(ds_valid_loader), len(ds_test_loader)))

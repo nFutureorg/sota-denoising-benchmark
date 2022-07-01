@@ -62,7 +62,7 @@ class DataLoader_cls(Dataset):
                     }
 
         # x: ground-truth, y: noisy sample (if False, we will add synthesized noise to x)
-        self.data_mode = {'y':False, 'x':True, 'mask':False, 'filename':False}
+        self.data_mode = {'y':True, 'x':True, 'mask':False, 'filename':False}
         self.DS_params = {'data_mode': self.data_mode, 
                         'task_mode': config['task_mode'] ,
                         'WHC': [config['W'],config['H'],channels_num], 

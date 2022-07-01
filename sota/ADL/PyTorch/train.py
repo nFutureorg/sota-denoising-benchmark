@@ -47,7 +47,7 @@ parser.add_argument('--CHANNELS-NUM', type=int, action="store", default=0, requi
 args=parser.parse_args()
 
 
-Debug = False
+Debug = True
 
 class Train(object):
     def __init__(self,
@@ -138,6 +138,7 @@ def main(args, config_data, params, PHASE):
                                     test_ds_dir=args.test_dirs,
                                     config=config_data,
                                     distributed=False)
+    print(dataLoader_obj)
     ds_train_loader, ds_valid_loader, ds_test_loader = dataLoader_obj()
     print('Train size: {} batches\nVal size: {} batches \nTest size: {} batches'.format(len(ds_train_loader), 
         len(ds_valid_loader), len(ds_test_loader)))

@@ -200,6 +200,7 @@ def _get_files(dirs_:Union[list,Iterable[str]], img_format, data_mode):
                         for path, subdirs, files_ in os.walk(dir_i)  
                             for name in files_ 
                                 if name.lower().endswith(tuple(img_format))]
+    print(img_dirs['x'])
     if data_mode['y']:
         img_dirs['y'] =  [files.replace('/HR/', '/LR/') for files in x_files]
 

@@ -73,6 +73,7 @@ class DataLoader_cls(Dataset):
         
         # get train & validation datasets
         img_files = _get_files(self.train_dir, self.config['img_types'], self.data_mode)
+        print(img_files)
 
         # divide the datasets into train and validation
         train_idx, valid_idx = self._train_valid_sampler(len(img_files['x']))
@@ -110,6 +111,7 @@ class DataLoader_cls(Dataset):
                                     Training=True, 
                                     noise_level=self.config['train_std_interval'], 
                                     **self.DS_params)
+            print(Dataset_Train)
             train_sampler = SubsetRandomSampler(train_idx)
             valid_sampler = SubsetRandomSampler(valid_idx)
 

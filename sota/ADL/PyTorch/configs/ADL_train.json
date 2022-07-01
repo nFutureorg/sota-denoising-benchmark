@@ -1,9 +1,9 @@
 {
     "model": "ADL",
     "data":{
-        "H": 512,
-        "W": 512,
-        "batch_size": 4,
+        "H": 768,
+        "W": 1024,
+        "batch_size": 3,
         "task_mode": "DEN",
         "train_std_interval": [0.0, 55.0],
         "test_stdVec": [50.0],

@@ -192,7 +192,8 @@ def _get_files(dirs_:Union[list,Iterable[str]], img_format, data_mode):
     img_dirs = _initilize_data_mode(data_mode)
 
     if data_mode['y']:
-        dirs_ = [os.path.join(dir_,'HR') for dir_ in dirs_] 
+        dirs_ = [os.path.join(dir_,'HR') for dir_ in dirs_]
+        print(dirs_)
 
     img_dirs['x'] = [os.path.join(path, name) 
                     for dir_i in dirs_ 

@@ -60,7 +60,7 @@ class Train(object):
         self.args = args
         self.config_data = config['data']
         self.gpus = gpus
-        mp.set_start_method("spawn")
+        #mp.set_start_method("spawn")
         # Configure DistributedDataParallel (DDP) 
         ddp = util.struct_cls()
         ddp.rank = 0

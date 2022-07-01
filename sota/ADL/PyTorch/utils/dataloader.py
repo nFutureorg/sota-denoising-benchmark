@@ -62,7 +62,7 @@ class DataLoader_cls(Dataset):
                     }
 
         # x: ground-truth, y: noisy sample (if False, we will add synthesized noise to x)
-        self.data_mode = {'y':True, 'x':True, 'mask':False, 'filename':False}
+        self.data_mode = {'y':False, 'x':True, 'mask':False, 'filename':False}
         self.DS_params = {'data_mode': self.data_mode, 
                         'task_mode': config['task_mode'] ,
                         'WHC': [config['W'],config['H'],channels_num], 
@@ -73,7 +73,6 @@ class DataLoader_cls(Dataset):
         
         # get train & validation datasets
         img_files = _get_files(self.train_dir, self.config['img_types'], self.data_mode)
-        print(img_files)
 
         # divide the datasets into train and validation
         train_idx, valid_idx = self._train_valid_sampler(len(img_files['x']))
@@ -111,7 +110,6 @@ class DataLoader_cls(Dataset):
                                     Training=True, 
                                     noise_level=self.config['train_std_interval'], 
                                     **self.DS_params)
-            print(Dataset_Train)
             train_sampler = SubsetRandomSampler(train_idx)
             valid_sampler = SubsetRandomSampler(valid_idx)
 
@@ -192,15 +190,13 @@ def _get_files(dirs_:Union[list,Iterable[str]], img_format, data_mode):
     img_dirs = _initilize_data_mode(data_mode)
 
     if data_mode['y']:
-        dirs_ = [os.path.join(dir_,'HR') for dir_ in dirs_]
-        print(dirs_)
+        dirs_ = [os.path.join(dir_,'HR') for dir_ in dirs_] 
 
     img_dirs['x'] = [os.path.join(path, name) 
                     for dir_i in dirs_ 
                         for path, subdirs, files_ in os.walk(dir_i)  
                             for name in files_ 
                                 if name.lower().endswith(tuple(img_format))]
-    x_files = img_dirs['x']
     if data_mode['y']:
         img_dirs['y'] =  [files.replace('/HR/', '/LR/') for files in x_files]
 

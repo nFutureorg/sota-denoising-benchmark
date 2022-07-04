@@ -1,9 +1,9 @@
 {
     "model": "ADL",
     "data":{
-        "H": 768,
-        "W": 1024,
-        "batch_size_per_gpu": 5,
+        "H": 512,
+        "W": 512,
+        "batch_size_per_gpu": 1,
         "adding_noise": false,
         "adding_blur": false,
         "compression": false,

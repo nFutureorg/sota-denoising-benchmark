@@ -1,7 +1,7 @@
 gpu: '0'
 verbose: true
 # training and model
-num_train: 6000
+num_train: 1000
 num_test: 100
 num_slice: 2
 prob_mask: 0.3

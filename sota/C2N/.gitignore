@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# checkpoint results
+ckpt/
+!ckpt/.gitkeep
+
+# data
+data/
+!data/.gitkeep
+!data/clean_ex1.png
+!data/clean_ex2.png
+!data/SIDD_clean_examples
+!data/noisy_ex1_SIDD.png
+!data/noisy_ex2_DND.png
+results/
+
+# for macOS
+**/.DS_Store

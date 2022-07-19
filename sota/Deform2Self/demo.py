@@ -21,7 +21,7 @@ if __name__ == '__main__':
     imgs /= imgs.max()
     imgs = torch.from_numpy(imgs).unsqueeze(1) # Tx1xHxW
 
-    noisy = add_gaussian_noise(imgs, 15)
+    noisy = imgs
     
     denoised = deform2self_sequence(noisy, config) # Tx1xHxW
 

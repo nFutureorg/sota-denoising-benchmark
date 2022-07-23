@@ -31,5 +31,5 @@ def save_response_content(response, destination):
 
 if __name__ == "__main__":
     file_id = '13kfr3qny7S2xwG9h7v95F5mkWs0OmU0D'
-    destination = 'model_zoo'
+    destination = 'model_zoo.zip'
     download_file_from_google_drive(file_id, destination)

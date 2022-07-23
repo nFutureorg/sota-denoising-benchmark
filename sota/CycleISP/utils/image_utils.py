@@ -1,9 +1,10 @@
 import torch
 import numpy as np
-from skimage.measure.simple_metrics import compare_psnr
+#from skimage.measure.simple_metrics import compare_psnr
+from skimage.metrics import peak_signal_noise_ratio as compare_psnr
 import pickle
 import lycon
-from skimage.measure import compare_ssim
+from skimage.metrics import structural_similarity as compare_ssim
 
 
 def is_numpy_file(filename):

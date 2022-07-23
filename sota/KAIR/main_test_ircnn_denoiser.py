@@ -58,8 +58,8 @@ def main():
     # Preparation
     # ----------------------------------------
     noise_level_img = 50             # noise level for noisy image
-    model_name = 'ircnn_gray'        # 'ircnn_gray' | 'ircnn_color'
-    testset_name = 'set12'          # test set, 'bsd68' | 'set12'
+    model_name = 'ircnn_color'        # 'ircnn_gray' | 'ircnn_color'
+    testset_name = 'SEM'          # test set, 'bsd68' | 'set12'
     need_degradation = True          # default: True
     x8 = False                       # default: False, x8 to boost performance
     show_img = False                 # default: False

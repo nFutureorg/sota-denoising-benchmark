@@ -149,8 +149,8 @@ if __name__ == '__main__':
     if 'gray' in args.ntype:
         test_data_path_set = [args.root + 'BSD68']
     else:
-        test_data_path_set = [args.root + 'kodak',
-                              args.root + 'BSDS300/all', ]
+        test_data_path_set = [args.root + 'SEM']
+                              #args.root + 'BSDS300/all', ]
 
     # model
     ch = 1 if 'gray' in args.ntype else 3

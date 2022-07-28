@@ -66,10 +66,10 @@ def main():
     # Preparation
     # ----------------------------------------
 
-    noise_level_img = 0                  # default: 0, noise level for LR image
+    noise_level_img = 50                  # default: 0, noise level for LR image
     noise_level_model = noise_level_img  # noise level for model 
     model_name = 'srmdnf_x4'             # 'srmd_x2' | 'srmd_x3' | 'srmd_x4' | 'srmdnf_x2' | 'srmdnf_x3' | 'srmdnf_x4'
-    testset_name = 'set5'                # test set,  'set5' | 'srbsd68'
+    testset_name = 'SEM'                # test set,  'set5' | 'srbsd68'
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
     x8 = False                           # default: False, x8 to boost performance
     need_degradation = True              # default: True, use degradation model to generate LR image
@@ -79,7 +79,7 @@ def main():
 
 
     srmd_pca_path = os.path.join('kernels', 'srmd_pca_matlab.mat')
-    task_current = 'sr'       # 'dn' for denoising | 'sr' for super-resolution
+    task_current = 'dn'       # 'dn' for denoising | 'sr' for super-resolution
     n_channels = 3            # fixed
     in_nc = 18 if 'nf' in model_name else 19
     nc = 128                  # fixed, number of channels

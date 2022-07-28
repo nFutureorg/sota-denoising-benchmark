@@ -66,7 +66,7 @@ def main():
     # ----------------------------------------
 
     model_name = 'msrresnet_x4_psnr'     # 'msrresnet_x4_gan' | 'msrresnet_x4_psnr'
-    testset_name = 'set5'                # test set,  'set5' | 'srbsd68'
+    testset_name = 'SEM'                # test set,  'set5' | 'srbsd68'
     need_degradation = True              # default: True
     x8 = False                           # default: False, x8 to boost performance, default: False
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
@@ -75,7 +75,7 @@ def main():
 
 
 
-    task_current = 'sr'       # 'dn' for denoising | 'sr' for super-resolution
+    task_current = 'dn'       # 'dn' for denoising | 'sr' for super-resolution
     n_channels = 3            # fixed
     model_pool = 'model_zoo'  # fixed
     testsets = 'testsets'     # fixed

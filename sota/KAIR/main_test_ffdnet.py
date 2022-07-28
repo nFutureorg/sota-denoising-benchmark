@@ -61,10 +61,10 @@ def main():
     # Preparation
     # ----------------------------------------
 
-    noise_level_img = 15                 # noise level for noisy image
+    noise_level_img = 50                 # noise level for noisy image
     noise_level_model = noise_level_img  # noise level for model
-    model_name = 'ffdnet_gray'           # 'ffdnet_gray' | 'ffdnet_color' | 'ffdnet_color_clip' | 'ffdnet_gray_clip'
-    testset_name = 'bsd68'               # test set,  'bsd68' | 'cbsd68' | 'set12'
+    model_name = 'ffdnet_color'           # 'ffdnet_gray' | 'ffdnet_color' | 'ffdnet_color_clip' | 'ffdnet_gray_clip'
+    testset_name = 'SEM'               # test set,  'bsd68' | 'cbsd68' | 'set12'
     need_degradation = True              # default: True
     show_img = False                     # default: False
 

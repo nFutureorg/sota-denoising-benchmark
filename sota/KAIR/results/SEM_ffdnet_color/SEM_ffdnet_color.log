@@ -1,0 +1,9 @@
+22-07-28 13:43:35.485 : Model path: model_zoo/ffdnet_color.pth
+22-07-28 13:43:35.486 : model_name:ffdnet_color, model sigma:50, image sigma:50
+22-07-28 13:43:35.487 : testsets/SEM
+22-07-28 13:43:35.990 : pollen.spd1.0098.png - PSNR: 21.78 dB; SSIM: 0.7803.
+22-07-28 13:43:36.512 : pollen.spd2.0098.png - PSNR: 21.95 dB; SSIM: 0.7278.
+22-07-28 13:43:36.961 : pollen.spd3.0098.png - PSNR: 22.38 dB; SSIM: 0.6738.
+22-07-28 13:43:37.413 : pollen.spd5.0098.png - PSNR: 23.78 dB; SSIM: 0.6342.
+22-07-28 13:43:37.865 : pollen.spd8.0098.png - PSNR: 24.61 dB; SSIM: 0.6992.
+22-07-28 13:43:37.912 : Average PSNR/SSIM(RGB) - SEM_ffdnet_color - PSNR: 22.90 dB; SSIM: 0.7030

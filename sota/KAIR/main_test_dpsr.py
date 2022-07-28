@@ -74,7 +74,7 @@ def main():
 
 
 
-    task_current = 'dn'       # 'dn' for denoising | 'sr' for super-resolution
+    task_current = 'sr'       # 'dn' for denoising | 'sr' for super-resolution
     n_channels = 3            # fixed
     nc = 96                   # fixed, number of channels
     nb = 16                   # fixed, number of conv layers

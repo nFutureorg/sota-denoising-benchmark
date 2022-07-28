@@ -63,10 +63,10 @@ def main():
     # Preparation
     # ----------------------------------------
 
-    noise_level_img = 0                  # default: 0, noise level for LR image
+    noise_level_img = 50                  # default: 0, noise level for LR image
     noise_level_model = noise_level_img  # noise level for model    
     model_name = 'dpsr_x4_gan'           # 'dpsr_x2' | 'dpsr_x3' | 'dpsr_x4' | 'dpsr_x4_gan'
-    testset_name = 'set5'                # test set,  'set5' | 'srbsd68'
+    testset_name = 'SEM'                # test set,  'set5' | 'srbsd68'
     need_degradation = True              # default: True
     x8 = False                           # default: False, x8 to boost performance
     sf = [int(s) for s in re.findall(r'\d+', model_name)][0]  # scale factor
@@ -74,7 +74,7 @@ def main():
 
 
 
-    task_current = 'sr'       # 'dn' for denoising | 'sr' for super-resolution
+    task_current = 'dn'       # 'dn' for denoising | 'sr' for super-resolution
     n_channels = 3            # fixed
     nc = 96                   # fixed, number of channels
     nb = 16                   # fixed, number of conv layers

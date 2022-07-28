@@ -8,3 +8,13 @@
 22-07-28 13:07:11.130 : pollen.spd5.0098.png - PSNR: 30.54 dB; SSIM: 0.9226.
 22-07-28 13:07:11.797 : pollen.spd8.0098.png - PSNR: 31.41 dB; SSIM: 0.9170.
 22-07-28 13:07:11.851 : Average PSNR/SSIM(RGB) - SEM_dncnn_color_blind - PSNR: 30.30 dB; SSIM: 0.9435
+22-07-28 13:12:06.570 : Model path: model_zoo/dncnn_color_blind.pth
+22-07-28 13:12:06.572 : Params number: 668227
+22-07-28 13:12:06.572 : model_name:dncnn_color_blind, image sigma:50
+22-07-28 13:12:06.573 : testsets/SEM
+22-07-28 13:12:07.116 : pollen.spd1.0098.png - PSNR: 21.81 dB; SSIM: 0.7833.
+22-07-28 13:12:07.615 : pollen.spd2.0098.png - PSNR: 21.99 dB; SSIM: 0.7314.
+22-07-28 13:12:08.091 : pollen.spd3.0098.png - PSNR: 22.43 dB; SSIM: 0.6799.
+22-07-28 13:12:08.598 : pollen.spd5.0098.png - PSNR: 23.82 dB; SSIM: 0.6452.
+22-07-28 13:12:09.075 : pollen.spd8.0098.png - PSNR: 24.60 dB; SSIM: 0.7016.
+22-07-28 13:12:09.125 : Average PSNR/SSIM(RGB) - SEM_dncnn_color_blind - PSNR: 22.93 dB; SSIM: 0.7083

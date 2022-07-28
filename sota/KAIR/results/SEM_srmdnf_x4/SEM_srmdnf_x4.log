@@ -1,0 +1,11 @@
+22-07-28 13:52:07.432 : Model path: model_zoo/srmdnf_x4.pth
+22-07-28 13:52:07.433 : Params number: 1552048
+22-07-28 13:52:07.434 : model_name:srmdnf_x4, model sigma:50, image sigma:50
+22-07-28 13:52:07.435 : testsets/SEM
+22-07-28 13:52:08.086 : pollen.spd1.0098.png - PSNR: 11.14 dB; SSIM: 0.0761.
+22-07-28 13:52:08.607 : pollen.spd2.0098.png - PSNR: 11.36 dB; SSIM: 0.0708.
+22-07-28 13:52:09.133 : pollen.spd3.0098.png - PSNR: 11.55 dB; SSIM: 0.0722.
+22-07-28 13:52:09.878 : pollen.spd5.0098.png - PSNR: 11.77 dB; SSIM: 0.0742.
+22-07-28 13:52:10.547 : pollen.spd8.0098.png - PSNR: 11.82 dB; SSIM: 0.0722.
+22-07-28 13:52:10.739 : Average PSNR/SSIM(RGB) - SEM_srmdnf_x4 - x4 --PSNR: 11.53 dB; SSIM: 0.0731
+22-07-28 13:52:10.740 : Average PSNR/SSIM( Y ) - SEM_srmdnf_x4 - x4 - PSNR: 15.11 dB; SSIM: 0.1209

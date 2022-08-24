@@ -1,10 +1,12 @@
-from keras.utils import conv_utils
-from keras import backend as K
-from tensorflow.keras.layers import InputSpec
-from keras.layers import Conv2D
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
-
+#from keras.utils import conv_utils
+import tensorflow.keras.utils as conv_utils
+#from keras import backend as K
+from tensorflow.keras import backend as K
+from tensorflow. keras.layers import InputSpec
+from tensorflow.keras.layers import Conv2D
+#tf.compat.v1.disable_eager_execution()
 class PConv2D(Conv2D):
     def __init__(self, *args, n_channels=3, mono=False, **kwargs):
         super().__init__(*args, **kwargs)

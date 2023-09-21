@@ -1,0 +1,18 @@
+23-09-21 09:56:49.618 : Model path: model_zoo/scunet_color_real_psnr.pth
+23-09-21 09:56:49.623 : Params number: 17946072
+23-09-21 09:56:49.623 : model_name:scunet_color_real_psnr
+23-09-21 09:56:49.624 : testsets/real3
+23-09-21 09:56:49.627 :          #Params : 17.9461 [M]
+23-09-21 09:56:49.628 : ---1--> building.png
+23-09-21 09:56:49.909 : ---2--> palace.png
+23-09-21 09:56:50.049 : ---3--> pollen.spd8.0098.png
+23-09-21 09:56:50.600 : ---4-->  stars.png
+23-09-21 10:00:05.011 : Model path: model_zoo/scunet_color_real_psnr.pth
+23-09-21 10:00:05.014 : Params number: 17946072
+23-09-21 10:00:05.015 : model_name:scunet_color_real_psnr
+23-09-21 10:00:05.015 : testsets/real3
+23-09-21 10:00:05.018 :          #Params : 17.9461 [M]
+23-09-21 10:00:05.019 : ---1--> building.png
+23-09-21 10:00:05.239 : ---2--> palace.png
+23-09-21 10:00:05.323 : ---3--> pollen.spd3.0098.png
+23-09-21 10:00:05.912 : ---4-->  stars.png

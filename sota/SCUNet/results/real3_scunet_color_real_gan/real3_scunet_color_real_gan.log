@@ -1,0 +1,9 @@
+23-09-21 10:00:50.008 : Model path: model_zoo/scunet_color_real_gan.pth
+23-09-21 10:00:50.017 : Params number: 17946072
+23-09-21 10:00:50.018 : model_name:scunet_color_real_gan
+23-09-21 10:00:50.019 : testsets/real3
+23-09-21 10:00:50.023 :          #Params : 17.9461 [M]
+23-09-21 10:00:50.024 : ---1--> building.png
+23-09-21 10:00:50.267 : ---2--> palace.png
+23-09-21 10:00:50.373 : ---3--> pollen.spd3.0098.png
+23-09-21 10:00:50.948 : ---4-->  stars.png

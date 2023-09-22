@@ -20,3 +20,26 @@
 23-09-21 10:13:41.648 : Window.png - PSNR: 29.09 dB; SSIM: 0.8244.
 23-09-21 10:13:42.824 : pollen.spd8.0098.png - PSNR: 28.82 dB; SSIM: 0.8698.
 23-09-21 10:13:42.887 : Average PSNR/SSIM(RGB) - RNI15_scunet_color_25 - PSNR: 28.24 dB; SSIM: 0.7616
+23-09-22 19:11:51.999 : Model path: model_zoo/scunet_color_25.pth
+23-09-22 19:11:52.023 : Params number: 17946072
+23-09-22 19:11:52.024 : model_name:scunet_color_25, image sigma:25
+23-09-22 19:11:52.025 : testsets/RNI15
+23-09-22 19:11:52.030 :          #Params : 17.9461 [M]
+23-09-22 19:11:52.726 : Audrey_Hepburn.jpg - PSNR: 36.11 dB; SSIM: 0.9143.
+23-09-22 19:11:53.162 : Bears.png - PSNR: 28.34 dB; SSIM: 0.7517.
+23-09-22 19:11:54.049 : Boy.png - PSNR: 29.69 dB; SSIM: 0.7982.
+23-09-22 19:11:54.521 : Dog.png - PSNR: 26.35 dB; SSIM: 0.7811.
+23-09-22 19:11:55.082 : Flowers.png - PSNR: 19.71 dB; SSIM: 0.8843.
+23-09-22 19:11:55.627 : Frog.png - PSNR: 25.59 dB; SSIM: 0.5276.
+23-09-22 19:11:56.662 : Glass.png - PSNR: 29.71 dB; SSIM: 0.7583.
+23-09-22 19:11:57.142 : Movie.png - PSNR: 33.20 dB; SSIM: 0.8335.
+23-09-22 19:11:57.538 : Pattern1.png - PSNR: 28.29 dB; SSIM: 0.6543.
+23-09-22 19:11:57.908 : Pattern2.png - PSNR: 21.84 dB; SSIM: 0.7344.
+23-09-22 19:11:58.530 : Pattern3.png - PSNR: 28.32 dB; SSIM: 0.6781.
+23-09-22 19:11:59.331 : Postcards.png - PSNR: 25.44 dB; SSIM: 0.5591.
+23-09-22 19:11:59.730 : Singer.png - PSNR: 32.30 dB; SSIM: 0.8648.
+23-09-22 19:12:00.354 : Stars.png - PSNR: 29.12 dB; SSIM: 0.7522.
+23-09-22 19:12:00.841 : Window.png - PSNR: 29.09 dB; SSIM: 0.8244.
+23-09-22 19:12:02.129 : pollen.spd3.0098.png - PSNR: 26.69 dB; SSIM: 0.8898.
+23-09-22 19:12:03.501 : pollen.spd8.0098.png - PSNR: 28.82 dB; SSIM: 0.8698.
+23-09-22 19:12:03.620 : Average PSNR/SSIM(RGB) - RNI15_scunet_color_25 - PSNR: 28.15 dB; SSIM: 0.7692

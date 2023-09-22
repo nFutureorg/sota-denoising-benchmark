@@ -35,3 +35,23 @@
 23-09-21 09:56:10.891 : 12.png - PSNR: 30.63 dB; SSIM: 0.8486.
 23-09-21 09:56:11.683 : pollen.spd8.0098.png - PSNR: 25.93 dB; SSIM: 0.7721.
 23-09-21 09:56:11.747 : Average PSNR/SSIM(RGB) - set12_scunet_gray_25 - PSNR: 30.69 dB; SSIM: 0.8678
+23-09-22 19:10:07.563 : Model path: model_zoo/scunet_gray_25.pth
+23-09-22 19:10:07.584 : Params number: 17943768
+23-09-22 19:10:07.585 : model_name:scunet_gray_25, image sigma:25
+23-09-22 19:10:07.586 : testsets/set12
+23-09-22 19:10:07.594 :          #Params : 17.9438 [M]
+23-09-22 19:10:08.207 : 01.png - PSNR: 30.72 dB; SSIM: 0.8841.
+23-09-22 19:10:08.516 : 02.png - PSNR: 34.16 dB; SSIM: 0.8783.
+23-09-22 19:10:08.755 : 03.png - PSNR: 31.34 dB; SSIM: 0.8873.
+23-09-22 19:10:09.048 : 04.png - PSNR: 30.05 dB; SSIM: 0.8788.
+23-09-22 19:10:09.342 : 05.png - PSNR: 31.05 dB; SSIM: 0.9309.
+23-09-22 19:10:09.549 : 06.png - PSNR: 29.45 dB; SSIM: 0.8768.
+23-09-22 19:10:09.815 : 07.png - PSNR: 29.79 dB; SSIM: 0.8700.
+23-09-22 19:10:10.225 : 08.png - PSNR: 33.06 dB; SSIM: 0.8855.
+23-09-22 19:10:10.633 : 09.png - PSNR: 31.72 dB; SSIM: 0.9106.
+23-09-22 19:10:11.070 : 10.png - PSNR: 30.72 dB; SSIM: 0.8269.
+23-09-22 19:10:11.448 : 11.png - PSNR: 30.37 dB; SSIM: 0.8313.
+23-09-22 19:10:11.872 : 12.png - PSNR: 30.63 dB; SSIM: 0.8486.
+23-09-22 19:10:12.724 : pollen.spd3.0098.png - PSNR: 23.58 dB; SSIM: 0.7636.
+23-09-22 19:10:13.736 : pollen.spd8.0098.png - PSNR: 25.93 dB; SSIM: 0.7721.
+23-09-22 19:10:13.825 : Average PSNR/SSIM(RGB) - set12_scunet_gray_25 - PSNR: 30.18 dB; SSIM: 0.8603

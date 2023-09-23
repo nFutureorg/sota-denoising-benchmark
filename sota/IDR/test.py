@@ -134,7 +134,7 @@ if __name__ == '__main__':
     # set testing noise levels
     if "gaussian" in args.ntype:
         args.zero_mean = True
-        args.test_noise_levels = [25, 50]
+        args.test_noise_levels = [0, 0]
     elif args.ntype == 'line':
         args.test_noise_levels = [25]
     elif args.ntype in ['binomial', 'impulse']:
@@ -147,7 +147,7 @@ if __name__ == '__main__':
 
     # set testing datasets
     if 'gray' in args.ntype:
-        test_data_path_set = [args.root + 'BSD68']
+        test_data_path_set = [args.root + 'SEM']
     else:
         test_data_path_set = [args.root + 'SEM']
                               #args.root + 'BSDS300/all', ]

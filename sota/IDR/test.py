@@ -32,22 +32,22 @@ def add_noise(clean, ntype, sigma=None):
     # assert ntype.lower() in ['gaussian', 'gaussian_gray', 'impulse', 'binomial', 'pattern1', 'pattern2', 'pattern3', 'line']
     assert sigma < 1
     if 'gaussian' in ntype:
-        noisy = clean + np.random.normal(0, sigma, clean.shape)
+        noisy = clean #+ np.random.normal(0, sigma, clean.shape)
 
     elif ntype == 'binomial':
         h, w, c = clean.shape
         mask = np.random.binomial(n=1, p=(1 - sigma), size=(h, w, 1))
-        noisy = clean * mask
+        noisy = clean #* mask
 
     elif ntype == 'impulse':
         mask = np.random.binomial(n=1, p=(1 - sigma), size=clean.shape)
-        noisy = clean * mask
+        noisy = clean #* mask
 
     elif ntype[:4] == 'line':
         # sigma = 25 / 255.0
         h, w, c = clean.shape
         line_noise = np.ones_like(clean) * np.random.normal(0, sigma, (h, 1, 1))
-        noisy = clean + line_noise
+        noisy = clean #+ line_noise
 
     elif ntype[:7] == 'pattern':
         # sigma = 5 / 255.0

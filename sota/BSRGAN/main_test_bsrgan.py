@@ -44,8 +44,8 @@ def main():
     testsets = 'testsets'       # fixed, set path of testsets
     testset_Ls = ['RealSRSet']  # ['RealSRSet','DPED']
 
-    model_names = ['RRDB','ESRGAN','FSSR_DPED','FSSR_JPEG','RealSR_DPED','RealSR_JPEG']
-    model_names = ['BSRGAN']    # 'BSRGANx2' for scale factor 2
+    model_names = ['BSRGAN','RRDB','ESRGAN','FSSR_DPED','FSSR_JPEG','RealSR_DPED','RealSR_JPEG']
+    #model_names = ['BSRGAN']    # 'BSRGANx2' for scale factor 2
 
 
 

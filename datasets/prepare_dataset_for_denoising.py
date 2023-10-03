@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import sys
 from pathlib import Path
-
+import random
 
 def add_gamma_noise_to_images(input_folder, output_folder_clean, output_folder_noisy, scale_parameters):
     """

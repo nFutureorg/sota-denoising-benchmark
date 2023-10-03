@@ -17,7 +17,7 @@
     "train": {
       "name": "train_dataset"           // fixed
       , "dataset_type": "blindsr"       // "dncnn" | "dnpatch" | "fdncnn" | "ffdnet" | "sr" | "srmd" | "dpsr" | "plain" | "plainpatch"
-      , "dataroot_H": "trainsets/trainH"// path of H training dataset
+      , "dataroot_H": "../../../datasets/dataset_denoise/gaussian/clean"// path of H training dataset
       , "dataroot_L": null              // path of L training dataset
 
       , "degradation_type": "bsrgan"    // "bsrgan" | "bsrgan_plus"

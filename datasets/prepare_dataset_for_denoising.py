@@ -35,9 +35,10 @@ def add_gamma_noise_to_images(input_folder, output_folder_clean, output_folder_n
             image = cv2.imread(image_file)
             crop_img_clean = image[y:y+h, x:x+w]
             #image = crop_img_clean.copy()
+            print("Gamma noise for: " + str(image_file))
             for scale_parameter in scale_parameters:
                 # Add gamma-distributed noise
-                print("Gamma noise for scale: " + str(scale_parameter))
+                
                 gamma_noisy_image = crop_img_clean.copy()
                 gamma_noise = np.random.gamma(shape=2, scale=scale_parameter, size=image.shape[:2])
                 gamma_noise = np.repeat(gamma_noise[:, :, np.newaxis], 3, axis=2).astype(np.uint8)
@@ -49,7 +50,7 @@ def add_gamma_noise_to_images(input_folder, output_folder_clean, output_folder_n
                 #print(clean_image_output_path)
                 cv2.imwrite(clean_image_output_path, image)
                 cv2.imwrite(noisy_image_output_path, gamma_noisy_image)
-                print("Done! Gamma noise for scale: " + str(scale_parameter))
+
 
 def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folder_noisy, sigma_parameters):
     """
@@ -79,9 +80,10 @@ def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folde
             image = cv2.imread(image_file)
             crop_img_clean = image[y:y+h, x:x+w]
             image = crop_img_clean.copy()
+            print("Gaussian noise for : " + str(image_file))
             for sigma_parameter in sigma_parameters:
                 # Add Gaussian noise
-                print("Gaussian noise for sigma: " + str(sigma_parameter))
+                
                 gaussian_noisy_image = image.copy()
                 gaussian_noise = np.random.normal(0, sigma_parameter, image.shape).astype(np.uint8)
                 gaussian_noisy_image = cv2.add(image, gaussian_noise)
@@ -92,7 +94,6 @@ def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folde
 
                 cv2.imwrite(clean_image_output_path, image)
                 cv2.imwrite(noisy_image_output_path, gaussian_noisy_image)
-                print("Done! Gaussian noise for sigma: " + str(sigma_parameter))
 
 # Function to recursively list image files in a directory
 def list_image_files(root_dir):

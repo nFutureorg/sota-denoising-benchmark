@@ -35,7 +35,7 @@ def add_gamma_noise_to_images(input_folder, output_folder_clean, output_folder_n
             image = cv2.imread(image_file)
             crop_img_clean = image[y:y+h, x:x+w]
             #image = crop_img_clean.copy()
-            print("Gamma noise for: " + str(image_file))
+            #print("Gamma noise for: " + str(image_file))
             for scale_parameter in scale_parameters:
                 # Add gamma-distributed noise
                 
@@ -80,7 +80,7 @@ def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folde
             image = cv2.imread(image_file)
             crop_img_clean = image[y:y+h, x:x+w]
             image = crop_img_clean.copy()
-            print("Gaussian noise for : " + str(image_file))
+            #print("Gaussian noise for : " + str(image_file))
             for sigma_parameter in sigma_parameters:
                 # Add Gaussian noise
                 

@@ -102,7 +102,7 @@ def list_image_files(root_dir):
         for file in files:
             if file.lower().endswith(('.png', '.jpg', '.jpeg')):
                 image_files.append(os.path.join(root, file))
-    image_files_n = random.choices(image_files, k=1000)
+    image_files_n = random.choices(image_files, k=100)
     return image_files_n
 
 if __name__ == "__main__":

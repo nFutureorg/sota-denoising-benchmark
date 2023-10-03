@@ -84,8 +84,8 @@ def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folde
                 gaussian_noisy_image = cv2.add(image, gaussian_noise)
 
                 # Save clean and noisy images in separate folders
-                clean_image_output_path = os.path.join(output_folder_clean, f"{image_file[:-4]}_gaussian_{sigma_parameter}.png")
-                noisy_image_output_path = os.path.join(output_folder_noisy, f"{image_file[:-4]}_gaussian_{sigma_parameter}.png")
+                clean_image_output_path = os.path.join(output_folder_clean, f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
+                noisy_image_output_path = os.path.join(output_folder_noisy, f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
 
                 cv2.imwrite(clean_image_output_path, image)
                 cv2.imwrite(noisy_image_output_path, gaussian_noisy_image)
@@ -101,7 +101,7 @@ def list_image_files(root_dir):
 
 if __name__ == "__main__":
 
-    input_folder = "clean/Biological"
+    input_folder = "clean"
     output_folder_clean_gamma = "dataset_denoise/gamma/clean"
     output_folder_noisy_gamma = "dataset_denoise/gamma/noisy"
     output_folder_clean_gaussian = "dataset_denoise/gaussian/clean"
@@ -112,5 +112,5 @@ if __name__ == "__main__":
     #sigma_parameters = [10, 20, 30]     # List of Gaussian standard deviations
 
     add_gamma_noise_to_images(input_folder, output_folder_clean_gamma, output_folder_noisy_gamma, scale_parameters)
-    #add_gaussian_noise_to_images(input_folder, output_folder_clean_gaussian, output_folder_noisy_gaussian, sigma_parameters)
+    add_gaussian_noise_to_images(input_folder, output_folder_clean_gaussian, output_folder_noisy_gaussian, sigma_parameters)
 

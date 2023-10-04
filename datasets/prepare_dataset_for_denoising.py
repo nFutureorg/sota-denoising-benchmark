@@ -24,8 +24,8 @@ def add_gamma_noise_to_images(input_folder, output_folder_clean, output_folder_n
     image_files = list_image_files(input_folder)
     y=0
     x=0
-    h=500
-    w=504
+    h=600
+    w=1024
     #print("Gamma Noise")
     for image_file in image_files:
         if image_file.endswith(('.jpg', '.jpeg', '.png')):
@@ -102,7 +102,7 @@ def list_image_files(root_dir):
         for file in files:
             if file.lower().endswith(('.png', '.jpg', '.jpeg')):
                 image_files.append(os.path.join(root, file))
-    image_files_n = random.choices(image_files, k=100)
+    image_files_n = random.choices(image_files, k=1000)
     return image_files_n
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@ noise_type = str(sys.argv[1])
 noise_level = sys.argv[2]
 
 # Define the U-Net architecture with residual connections
-def unet_res(input_size=(256, 256, 3)):
+def unet_res(input_size=(1024, 600, 3)):
     inputs = Input(input_size)
 
     conv1 = Conv2D(64, 3, activation='relu', padding='same', kernel_initializer='he_normal')(inputs)
@@ -68,7 +68,7 @@ def unet_res(input_size=(256, 256, 3)):
     return model
 
 # Load data and preprocess
-def load_data(data_directory, img_size=(256, 256)):
+def load_data(data_directory, img_size=(1024, 600)):
     clean_images = []
     noisy_images = []
     clean_directory = os.path.join(data_directory, 'clean'+'/'+str(noise_level))

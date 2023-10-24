@@ -9,9 +9,13 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array, array_t
 from sklearn.model_selection import train_test_split
 from skimage.metrics import peak_signal_noise_ratio as compare_psnr
 from skimage.metrics import structural_similarity as compare_ssim
+import sys
+
+noise_type = str(sys.argv[1])
+noise_level = sys.argv[2]
 
 # Define the U-Net architecture with residual connections
-def unet_res(input_size=(256, 256, 1)):
+def unet_res(input_size=(256, 256, 3)):
     inputs = Input(input_size)
 
     conv1 = Conv2D(64, 3, activation='relu', padding='same', kernel_initializer='he_normal')(inputs)
@@ -56,7 +60,7 @@ def unet_res(input_size=(256, 256, 1)):
     conv9 = Conv2D(64, 3, activation='relu', padding='same', kernel_initializer='he_normal')(conv9)
     resid9 = add([resid1, conv9])
 
-    conv10 = Conv2D(1, 1, activation='linear')(resid9)
+    conv10 = Conv2D(3, 1, activation='linear')(resid9)
 
     model = Model(inputs=inputs, outputs=conv10)
 
@@ -80,12 +84,14 @@ def load_data(data_directory, img_size=(256, 256)):
 
     return np.array(clean_images), np.array(noisy_images)
 
-# Load the dataset
-data_directory = 'dataset_denoise/gamma'
+# Load your dataset
+data_directory = 'dataset_denoise/'+str(noise_type)+'/'+str(noise_level)
 clean_images, noisy_images = load_data(data_directory)
 
+
+
 # Split the dataset into training, testing, and validation sets
-train_clean, temp_clean, train_noisy, temp_noisy = train_test_split(clean_images, noisy_images, test_size=0.3, random_state=42)
+train_clean, temp_clean, train_noisy, temp_noisy = train_test_split(clean_images, noisy_images, test_size=0.1, random_state=42)
 test_clean, val_clean, test_noisy, val_noisy = train_test_split(temp_clean, temp_noisy, test_size=0.5, random_state=42)
 
 # Define the model
@@ -93,7 +99,7 @@ model = unet_res()
 model.compile(optimizer=Adam(lr=1e-4), loss='mean_squared_error', metrics=['mean_squared_error'])
 
 # Train the model
-checkpoint = ModelCheckpoint('unet_res_denoising_weights.h5', monitor='val_loss', save_best_only=True)
+checkpoint = ModelCheckpoint('unet_res_denoising_'+str(noise_type)+'_'+str(noise_level)+'_weights.h5', monitor='val_loss', save_best_only=True)
 callbacks_list = [checkpoint]
 model.fit(train_noisy, train_clean, batch_size=32, epochs=20, verbose=1, validation_data=(val_noisy, val_clean), callbacks=callbacks_list)
 
@@ -107,6 +113,11 @@ ssim_values = []
 for i in range(len(test_clean)):
     psnr = compare_psnr(test_clean[i], denoised_images[i])
     ssim = compare_ssim(test_clean[i], denoised_images[i])
+    # Convert the denoised image array to an image and save it
+    denoised_img = array_to_img(denoised_images[i] * 255.0, scale=False)
+    denoised_img.save('den/'+str(noise_type)+'/'+str(noise_level)+'/denoised/denoised_res_image_'+str(i)+'.png')
+    cn_img = array_to_img(test_clean[i] * 255.0, scale=False)
+    cn_img.save('den/'+str(noise_type)+'/'+str(noise_level)+'/clean/clean_res_image_'+str(i)+'.png')
     psnr_values.append(psnr)
     ssim_values.append(ssim)
 
@@ -116,4 +127,7 @@ avg_ssim = sum(ssim_values) / len(ssim_values)
 
 print(f'Average PSNR: {avg_psnr}')
 print(f'Average SSIM: {avg_ssim}')
+
+# Save the model
+model.save('models/unet_res_denoising_'+str(noise_type)+'_'+str(noise_level)+'_model.h5')
 

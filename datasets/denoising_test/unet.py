@@ -95,7 +95,7 @@ model = unet()
 model.compile(optimizer=Adam(learning_rate=1e-4), loss='mean_squared_error', metrics=['mean_squared_error'])
 
 # Train the model
-checkpoint = ModelCheckpoint('unet_denoising_weights.h5', monitor='val_loss', save_best_only=True)
+checkpoint = ModelCheckpoint('unet_denoising_gamma_weights.h5', monitor='val_loss', save_best_only=True)
 callbacks_list = [checkpoint]
 
 # Fit the model

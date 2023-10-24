@@ -38,15 +38,17 @@ def add_gamma_noise_to_images(input_folder, output_folder_clean, output_folder_n
             #print("Gamma noise for: " + str(image_file))
             for scale_parameter in scale_parameters:
                 # Add gamma-distributed noise
-                
+                # Create output folders if they don't exist
+                os.makedirs(output_folder_clean+'/'+str(scale_parameter), exist_ok=True)
+                os.makedirs(output_folder_noisy+'/'+str(scale_parameter), exist_ok=True)
                 gamma_noisy_image = crop_img_clean.copy()
                 gamma_noise = np.random.gamma(shape=2, scale=scale_parameter, size=image.shape[:2])
                 gamma_noise = np.repeat(gamma_noise[:, :, np.newaxis], 3, axis=2).astype(np.uint8)
                 gamma_noisy_image = cv2.add(image, gamma_noise)
                 #print(Path(image_file).stem)
                 # Save clean and noisy images in separate folders
-                clean_image_output_path = os.path.join(output_folder_clean, f"{Path(image_file).stem}_gamma_{scale_parameter}.png")
-                noisy_image_output_path = os.path.join(output_folder_noisy, f"{Path(image_file).stem}_gamma_{scale_parameter}.png")
+                clean_image_output_path = os.path.join(output_folder_clean+'/'+str(scale_parameter), f"{Path(image_file).stem}_gamma_{scale_parameter}.png")
+                noisy_image_output_path = os.path.join(output_folder_noisy+'/'+str(scale_parameter), f"{Path(image_file).stem}_gamma_{scale_parameter}.png")
                 #print(clean_image_output_path)
                 cv2.imwrite(clean_image_output_path, image)
                 cv2.imwrite(noisy_image_output_path, gamma_noisy_image)
@@ -87,10 +89,12 @@ def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folde
                 gaussian_noisy_image = image.copy()
                 gaussian_noise = np.random.normal(0, sigma_parameter, image.shape).astype(np.uint8)
                 gaussian_noisy_image = cv2.add(image, gaussian_noise)
-
+                # Create output folders if they don't exist
+                os.makedirs(output_folder_clean+'/'+str(sigma_parameter), exist_ok=True)
+                os.makedirs(output_folder_noisy+'/'+str(sigma_parameter), exist_ok=True)
                 # Save clean and noisy images in separate folders
-                clean_image_output_path = os.path.join(output_folder_clean, f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
-                noisy_image_output_path = os.path.join(output_folder_noisy, f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
+                clean_image_output_path = os.path.join(output_folder_clean+'/'+str(sigma_parameter), f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
+                noisy_image_output_path = os.path.join(output_folder_noisy+'/'+str(sigma_parameter), f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
 
                 cv2.imwrite(clean_image_output_path, image)
                 cv2.imwrite(noisy_image_output_path, gaussian_noisy_image)
@@ -120,4 +124,3 @@ if __name__ == "__main__":
     add_gamma_noise_to_images(input_folder, output_folder_clean_gamma, output_folder_noisy_gamma, scale_parameters)
     print("Gaussian Noise")
     add_gaussian_noise_to_images(input_folder, output_folder_clean_gaussian, output_folder_noisy_gaussian, sigma_parameters)
-

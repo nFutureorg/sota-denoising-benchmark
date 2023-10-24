@@ -125,9 +125,11 @@ for i in range(len(test_clean)):
     ssim = compare_ssim(test_clean[i], denoised_images[i],channel_axis=2) #multichannel=True
     # Convert the denoised image array to an image and save it
     denoised_img = array_to_img(denoised_images[i] * 255.0, scale=False)
-    denoised_img.save('den/'+str(noise_type)+'/'+str(noise_level)+'/denoised/denoised_image_'+str(i)+'.png')
+    os.makedirs('den/'+str(noise_type)+'/denoised/'+str(noise_level), exist_ok=True)
+    os.makedirs('den/'+str(noise_type)+'/clean/'+str(noise_level), exist_ok=True)
+    denoised_img.save('den/'+str(noise_type)+'/denoised/'+str(noise_level)+'/denoised_image_'+str(i)+'.png')
     cn_img = array_to_img(test_clean[i] * 255.0, scale=False)
-    cn_img.save('den/'+str(noise_type)+'/'+str(noise_level)+'/clean/clean_image_'+str(i)+'.png')
+    cn_img.save('den/'+str(noise_type)+'/clean/'+str(noise_level)+'/clean_image_'+str(i)+'.png')
     psnr_values.append(psnr)
     ssim_values.append(ssim)
 

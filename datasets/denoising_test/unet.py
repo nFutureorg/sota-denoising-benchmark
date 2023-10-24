@@ -119,7 +119,7 @@ ssim_values = []
 
 for i in range(len(test_clean)):
     psnr = compare_psnr(test_clean[i], denoised_images[i])
-    ssim = compare_ssim(test_clean[i], denoised_images[i])
+    ssim = compare_ssim(test_clean[i], denoised_images[i],channel_axis=2)
     # Convert the denoised image array to an image and save it
     denoised_img = array_to_img(denoised_images[i] * 255.0, scale=False)
     denoised_img.save('den/gamma/denoised__gamma_image_'+str(i)+'.png')

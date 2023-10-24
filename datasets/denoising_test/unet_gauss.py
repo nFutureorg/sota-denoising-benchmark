@@ -83,7 +83,7 @@ def load_data(data_directory, img_size=(256, 256)):
     return np.array(clean_images), np.array(noisy_images)
 
 # Load your dataset
-data_directory = 'dataset_denoise/gamma'
+data_directory = 'dataset_denoise/gaussian'
 clean_images, noisy_images = load_data(data_directory)
 
 
@@ -122,9 +122,9 @@ for i in range(len(test_clean)):
     ssim = compare_ssim(test_clean[i], denoised_images[i],channel_axis=2)
     # Convert the denoised image array to an image and save it
     denoised_img = array_to_img(denoised_images[i] * 255.0, scale=False)
-    denoised_img.save('den/gamma/denoised/denoised__gamma_image_'+str(i)+'.png')
+    denoised_img.save('den/gauss/denoised/denoised__gaussian_image_'+str(i)+'.png')
     cn_img = array_to_img(test_clean[i] * 255.0, scale=False)
-    cn_img.save('den/gamma/clean/clean__gamma_image_'+str(i)+'.png')
+    cn_img.save('den/gauss/clean/clean__gaussian_image_'+str(i)+'.png')
     psnr_values.append(psnr)
     ssim_values.append(ssim)
 
@@ -150,5 +150,5 @@ print(f'Average SSIM: {avg_ssim}')
 #denoised_img.save('denoised__gamma_image.png')
 
 # Save the model
-model.save('unet_denoising_gamma_model.h5')
+model.save('unet_denoising_gauss_model.h5')
 

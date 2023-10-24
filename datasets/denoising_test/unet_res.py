@@ -71,8 +71,8 @@ def unet_res(input_size=(256, 256, 3)):
 def load_data(data_directory, img_size=(256, 256)):
     clean_images = []
     noisy_images = []
-    clean_directory = os.path.join(data_directory, 'clean')
-    noisy_directory = os.path.join(data_directory, 'noisy')
+    clean_directory = os.path.join(data_directory, 'clean'+'/'+str(noise_level))
+    noisy_directory = os.path.join(data_directory, 'noisy'+'/'+str(noise_level))
     for img_file in os.listdir(clean_directory):
         clean_img = load_img(os.path.join(clean_directory, img_file), color_mode="grayscale", target_size=img_size)
         clean_img_array = img_to_array(clean_img) / 255.0
@@ -85,7 +85,7 @@ def load_data(data_directory, img_size=(256, 256)):
     return np.array(clean_images), np.array(noisy_images)
 
 # Load your dataset
-data_directory = 'dataset_denoise/'+str(noise_type)+'/'+str(noise_level)
+data_directory = 'dataset_denoise/'+str(noise_type)
 clean_images, noisy_images = load_data(data_directory)
 
 

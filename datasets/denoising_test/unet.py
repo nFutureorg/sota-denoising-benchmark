@@ -83,7 +83,7 @@ def load_data(data_directory):
         noisy_img_array = img_to_array(noisy_img) / 255.0  # Normalize to [0, 1]
         noisy_images.append(noisy_img_array)
         if input_shape is None:
-            input_shape = clean_img_array.shape
+            input_shape = clean_img.size
     #input_shape = clean_images[0].shape
     return np.array(clean_images), np.array(noisy_images),input_shape
 

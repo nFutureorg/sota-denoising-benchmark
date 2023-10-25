@@ -88,7 +88,7 @@ def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folde
                 
                 gaussian_noisy_image = image.copy()
                 gaussian_noise = np.random.normal(0, sigma_parameter, crop_img_clean.shape).astype(np.uint8)
-                gaussian_noisy_image = cv2.add(image, gaussian_noise)
+                gaussian_noisy_image = cv2.add(crop_img_clean, gaussian_noise)
                 # Create output folders if they don't exist
                 os.makedirs(output_folder_clean+'/'+str(sigma_parameter), exist_ok=True)
                 os.makedirs(output_folder_noisy+'/'+str(sigma_parameter), exist_ok=True)
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     scale_parameters = [5,10,15,20,25,30,35,40,45,50]
     #scale_parameters = [1.0, 2.0, 5.0]  # List of gamma scale parameters
     #sigma_parameters = [10, 20, 30]     # List of Gaussian standard deviations
-    print("Gamma Noise")
-    add_gamma_noise_to_images(input_folder, output_folder_clean_gamma, output_folder_noisy_gamma, scale_parameters)
+    #print("Gamma Noise")
+    #add_gamma_noise_to_images(input_folder, output_folder_clean_gamma, output_folder_noisy_gamma, scale_parameters)
     print("Gaussian Noise")
     add_gaussian_noise_to_images(input_folder, output_folder_clean_gaussian, output_folder_noisy_gaussian, sigma_parameters)

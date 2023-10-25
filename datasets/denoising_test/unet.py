@@ -93,10 +93,16 @@ clean_images, noisy_images = load_data(data_directory)
 train_clean, temp_clean, train_noisy, temp_noisy = train_test_split(clean_images, noisy_images, test_size=0.1, random_state=42)
 test_clean, val_clean, test_noisy, val_noisy = train_test_split(temp_clean, temp_noisy, test_size=0.5, random_state=42)
 
+#SSIM loss function
+
+def SSIMLoss(y_true, y_pred):
+    return 1 - tf.reduce_mean(tf.image.ssim(y_true, y_pred, 1.0))
+
+
 # Compile the model
 model = unet()
-model.compile(optimizer=Adam(learning_rate=1e-4), loss='mean_squared_error', metrics=['mean_squared_error'])
-
+#model.compile(optimizer=Adam(learning_rate=1e-4), loss='mean_squared_error', metrics=['mean_squared_error'])
+model.compile(optimizer=Adam(learning_rate=1e-4), loss=SSIMLoss)
 # Train the model
 checkpoint = ModelCheckpoint('models/unet_denoising_'+str(noise_type)+'_'+str(noise_level)+'_weights.h5', monitor='val_loss', save_best_only=True)
 callbacks_list = [checkpoint]

@@ -69,17 +69,17 @@ def unet(input_shape):
 
 # Data loading and preprocessing
 # Data loading and preprocessing
-def load_data(data_directory, img_size=(256, 256)):
+def load_data(data_directory):
     clean_images = []
     noisy_images = []
     clean_directory = os.path.join(data_directory, 'clean'+'/'+str(noise_level))
     noisy_directory = os.path.join(data_directory, 'noisy'+'/'+str(noise_level))
     for img_file in os.listdir(clean_directory):
-        clean_img = load_img(os.path.join(clean_directory, img_file), target_size=img_size)
+        clean_img = load_img(os.path.join(clean_directory, img_file))
         clean_img_array = img_to_array(clean_img) / 255.0  # Normalize to [0, 1]
         clean_images.append(clean_img_array)
         input_shape = clean_img.size[::-1] + (3,)
-        noisy_img = load_img(os.path.join(noisy_directory, img_file), target_size=img_size)
+        noisy_img = load_img(os.path.join(noisy_directory, img_file))
         noisy_img_array = img_to_array(noisy_img) / 255.0  # Normalize to [0, 1]
         noisy_images.append(noisy_img_array)
 

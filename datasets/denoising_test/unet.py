@@ -15,8 +15,8 @@ noise_type = str(sys.argv[1])
 noise_level = sys.argv[2]
 
 # Define the U-Net architecture
-def unet(input_size=input_shape):
-    inputs = Input(input_size)
+def unet(input_shape):
+    inputs = Input(input_shape)
 
     conv1 = Conv2D(64, 3, activation='relu', padding='same', kernel_initializer='he_normal')(inputs)
     conv1 = Conv2D(64, 3, activation='relu', padding='same', kernel_initializer='he_normal')(conv1)

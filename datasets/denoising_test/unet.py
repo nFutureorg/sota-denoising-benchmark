@@ -69,22 +69,20 @@ def unet(input_shape):
 
 # Data loading and preprocessing
 # Data loading and preprocessing
-def load_data(data_directory):
+def load_data(data_directory, img_size=(512, 512)):
     clean_images = []
     noisy_images = []
     clean_directory = os.path.join(data_directory, 'clean'+'/'+str(noise_level))
     noisy_directory = os.path.join(data_directory, 'noisy'+'/'+str(noise_level))
-    input_shape = None
     for img_file in os.listdir(clean_directory):
-        clean_img = load_img(os.path.join(clean_directory, img_file))
+        clean_img = load_img(os.path.join(clean_directory, img_file), target_size=img_size)
         clean_img_array = img_to_array(clean_img) / 255.0  # Normalize to [0, 1]
         clean_images.append(clean_img_array)
-        noisy_img = load_img(os.path.join(noisy_directory, img_file))
+        input_shape = clean_img.size[::-1] + (3,)
+        noisy_img = load_img(os.path.join(noisy_directory, img_file), target_size=img_size)
         noisy_img_array = img_to_array(noisy_img) / 255.0  # Normalize to [0, 1]
         noisy_images.append(noisy_img_array)
-        if input_shape is None:
-            input_shape = clean_img.size
-    #input_shape = clean_images[0].shape
+
     return np.array(clean_images), np.array(noisy_images),input_shape
 
 # Load your dataset

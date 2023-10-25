@@ -108,7 +108,7 @@ checkpoint = ModelCheckpoint('models/unet_denoising_'+str(noise_type)+'_'+str(no
 callbacks_list = [checkpoint]
 
 # Fit the model
-model.fit(train_noisy, train_clean, batch_size=32, epochs=20, verbose=1, validation_data=(val_noisy, val_clean), callbacks=callbacks_list)
+model.fit(train_noisy, train_clean, batch_size=32, epochs=1000, verbose=1, validation_data=(val_noisy, val_clean), callbacks=callbacks_list)
 
 # Evaluate the model on the test data
 loss, mse = model.evaluate(test_noisy, test_clean, verbose=1)

@@ -96,7 +96,7 @@ def add_gaussian_noise_to_images(input_folder, output_folder_clean, output_folde
                 clean_image_output_path = os.path.join(output_folder_clean+'/'+str(sigma_parameter), f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
                 noisy_image_output_path = os.path.join(output_folder_noisy+'/'+str(sigma_parameter), f"{Path(image_file).stem}_gaussian_{sigma_parameter}.png")
 
-                cv2.imwrite(clean_image_output_path, image)
+                cv2.imwrite(clean_image_output_path, crop_img_clean)
                 cv2.imwrite(noisy_image_output_path, gaussian_noisy_image)
 
 # Function to recursively list image files in a directory

@@ -120,7 +120,7 @@ if __name__ == "__main__":
     scale_parameters = [5,10,15,20,25,30,35,40,45,50]
     #scale_parameters = [1.0, 2.0, 5.0]  # List of gamma scale parameters
     #sigma_parameters = [10, 20, 30]     # List of Gaussian standard deviations
-    #print("Gamma Noise")
-    #add_gamma_noise_to_images(input_folder, output_folder_clean_gamma, output_folder_noisy_gamma, scale_parameters)
+    print("Gamma Noise")
+    add_gamma_noise_to_images(input_folder, output_folder_clean_gamma, output_folder_noisy_gamma, scale_parameters)
     print("Gaussian Noise")
     add_gaussian_noise_to_images(input_folder, output_folder_clean_gaussian, output_folder_noisy_gaussian, sigma_parameters)

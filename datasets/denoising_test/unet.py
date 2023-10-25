@@ -15,7 +15,7 @@ noise_type = str(sys.argv[1])
 noise_level = sys.argv[2]
 
 # Define the U-Net architecture
-def unet(input_size=(256, 256, 3)):
+def unet(input_size=input_shape):
     inputs = Input(input_size)
 
     conv1 = Conv2D(64, 3, activation='relu', padding='same', kernel_initializer='he_normal')(inputs)
@@ -78,16 +78,16 @@ def load_data(data_directory, img_size=(256, 256)):
         clean_img = load_img(os.path.join(clean_directory, img_file), target_size=img_size)
         clean_img_array = img_to_array(clean_img) / 255.0  # Normalize to [0, 1]
         clean_images.append(clean_img_array)
-
+        input_shape = clean_img.size[::-1] + (3,)
         noisy_img = load_img(os.path.join(noisy_directory, img_file), target_size=img_size)
         noisy_img_array = img_to_array(noisy_img) / 255.0  # Normalize to [0, 1]
         noisy_images.append(noisy_img_array)
 
-    return np.array(clean_images), np.array(noisy_images)
+    return np.array(clean_images), np.array(noisy_images),input_shape
 
 # Load your dataset
 data_directory = 'dataset_denoise/'+str(noise_type)
-clean_images, noisy_images = load_data(data_directory)
+clean_images, noisy_images, input_shape = load_data(data_directory)
 
 
 train_clean, temp_clean, train_noisy, temp_noisy = train_test_split(clean_images, noisy_images, test_size=0.1, random_state=42)
@@ -100,9 +100,9 @@ def SSIMLoss(y_true, y_pred):
 
 
 # Compile the model
-model = unet()
-#model.compile(optimizer=Adam(learning_rate=1e-4), loss='mean_squared_error', metrics=['mean_squared_error'])
-model.compile(optimizer=Adam(learning_rate=1e-4), loss=SSIMLoss)
+model = unet(input_shape)
+model.compile(optimizer=Adam(learning_rate=1e-4), loss='mean_squared_error', metrics=['mean_squared_error'])
+#model.compile(optimizer=Adam(learning_rate=1e-4), loss=SSIMLoss)
 # Train the model
 checkpoint = ModelCheckpoint('models/unet_denoising_'+str(noise_type)+'_'+str(noise_level)+'_weights.h5', monitor='val_loss', save_best_only=True)
 callbacks_list = [checkpoint]

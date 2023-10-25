@@ -74,6 +74,7 @@ def load_data(data_directory):
     noisy_images = []
     clean_directory = os.path.join(data_directory, 'clean'+'/'+str(noise_level))
     noisy_directory = os.path.join(data_directory, 'noisy'+'/'+str(noise_level))
+    input_shape = None
     for img_file in os.listdir(clean_directory):
         clean_img = load_img(os.path.join(clean_directory, img_file))
         clean_img_array = img_to_array(clean_img) / 255.0  # Normalize to [0, 1]

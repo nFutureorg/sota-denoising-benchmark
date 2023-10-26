@@ -111,7 +111,7 @@ def list_image_files(root_dir):
 
 if __name__ == "__main__":
 
-    input_folder = "clean"
+    input_folder = "../custom_dataset/SEM_Custom_Dataset/"
     output_folder_clean_gamma = "dataset_denoise/gamma/clean"
     output_folder_noisy_gamma = "dataset_denoise/gamma/noisy"
     output_folder_clean_gaussian = "dataset_denoise/gaussian/clean"

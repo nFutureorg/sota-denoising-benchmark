@@ -1,4 +1,3 @@
-%matplotlib inline
 import warnings
 warnings.filterwarnings("ignore")
 import numpy as np

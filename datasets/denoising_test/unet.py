@@ -202,8 +202,8 @@ image_generator_val = tf_data_generator(X=val_noisy, y=val_clean, batch_size=BAT
 
 image_generator_test = tf_data_generator(X=test_noisy, y=test_clean, batch_size=BATCH_SIZE)
 
-steps_per_epoch_train = len(noisy_train_images)
-steps_per_epoch_validation = len(noisy_test_images)
+steps_per_epoch_train = len(train_noisy)
+steps_per_epoch_validation = len(val_noisy)
 
 callbacks_lst = [
     tf.keras.callbacks.ModelCheckpoint('models/unet_denoising_'+str(noise_type)+'_'+str(noise_level)+'_weights.h5', monitor='val_loss', save_best_only=True),

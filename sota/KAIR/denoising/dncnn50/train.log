@@ -1,0 +1,1423 @@
+23-10-29 16:15:54.017 :   task: dncnn50
+  model: plain
+  gpu_ids: [0]
+  scale: 1
+  n_channels: 1
+  merge_bn: True
+  merge_bn_startpoint: 400000
+  path:[
+    root: denoising
+    pretrained_netG: None
+    task: denoising/dncnn50
+    log: denoising/dncnn50
+    options: denoising/dncnn50/options
+    models: denoising/dncnn50/models
+    images: denoising/dncnn50/images
+  ]
+  datasets:[
+    train:[
+      name: train_dataset
+      dataset_type: dncnn
+      dataroot_H: ../../datasets/custom_dataset/SEM_Custom_Dataset
+      dataroot_L: None
+      H_size: 40
+      sigma: 50
+      sigma_test: 50
+      dataloader_shuffle: True
+      dataloader_num_workers: 8
+      dataloader_batch_size: 64
+      phase: train
+      scale: 1
+      n_channels: 1
+    ]
+    test:[
+      name: test_dataset
+      dataset_type: dncnn
+      dataroot_H: testsets/SEM
+      dataroot_L: None
+      sigma: 50
+      sigma_test: 50
+      phase: test
+      scale: 1
+      n_channels: 1
+    ]
+  ]
+  netG:[
+    net_type: dncnn
+    in_nc: 1
+    out_nc: 1
+    nc: 64
+    nb: 17
+    gc: 32
+    ng: 2
+    reduction: 16
+    act_mode: BR
+    upsample_mode: convtranspose
+    downsample_mode: strideconv
+    init_type: orthogonal
+    init_bn_type: uniform
+    init_gain: 0.2
+    scale: 1
+  ]
+  train:[
+    G_lossfn_type: l1
+    G_lossfn_weight: 1.0
+    G_optimizer_type: adam
+    G_optimizer_lr: 0.0001
+    G_optimizer_clipgrad: None
+    G_scheduler_type: MultiStepLR
+    G_scheduler_milestones: [200000, 400000, 600000, 800000, 1000000, 2000000]
+    G_scheduler_gamma: 0.5
+    G_regularizer_orthstep: None
+    G_regularizer_clipstep: None
+    checkpoint_test: 1000
+    checkpoint_save: 1000
+    checkpoint_print: 200
+    F_feature_layer: 34
+    F_weights: 1.0
+    F_lossfn_type: l1
+    F_use_input_norm: True
+    F_use_range_norm: False
+    G_optimizer_betas: [0.9, 0.999]
+    G_scheduler_restart_weights: 1
+    G_optimizer_wd: 0
+    G_optimizer_reuse: False
+    G_param_strict: True
+    E_param_strict: True
+    E_decay: 0
+  ]
+  opt_path: options/train_dncnn.json
+  is_train: True
+  find_unused_parameters: True
+  use_static_graph: False
+  dist: False
+  num_gpu: 1
+
+23-10-29 16:15:54.018 : Random seed: 9555
+23-10-29 16:15:54.245 : Number of train images: 3,900, iters: 61
+23-10-29 16:16:10.230 : 
+Networks name: DnCNN
+Params number: 557057
+Net structure:
+DnCNN(
+  (model): Sequential(
+    (0): Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace=True)
+    (2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (4): ReLU(inplace=True)
+    (5): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (7): ReLU(inplace=True)
+    (8): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (10): ReLU(inplace=True)
+    (11): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (12): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (13): ReLU(inplace=True)
+    (14): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (15): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (16): ReLU(inplace=True)
+    (17): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (18): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (19): ReLU(inplace=True)
+    (20): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (21): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (22): ReLU(inplace=True)
+    (23): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (24): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (25): ReLU(inplace=True)
+    (26): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (27): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (28): ReLU(inplace=True)
+    (29): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (30): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (31): ReLU(inplace=True)
+    (32): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (33): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (34): ReLU(inplace=True)
+    (35): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (36): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (37): ReLU(inplace=True)
+    (38): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (39): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (40): ReLU(inplace=True)
+    (41): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (42): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (43): ReLU(inplace=True)
+    (44): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (45): BatchNorm2d(64, eps=0.0001, momentum=0.9, affine=True, track_running_stats=True)
+    (46): ReLU(inplace=True)
+    (47): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+)
+
+23-10-29 16:16:10.347 : 
+ |  mean  |  min   |  max   |  std   || shape               
+ |  0.002 | -0.077 |  0.072 |  0.025 | torch.Size([64, 1, 3, 3]) || model.0.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.0.bias
+ |  0.000 | -0.035 |  0.033 |  0.008 | torch.Size([64, 64, 3, 3]) || model.2.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.2.bias
+ |  0.513 |  0.106 |  0.979 |  0.274 | torch.Size([64]) || model.3.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.3.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.3.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.3.running_var
+ | -0.000 | -0.039 |  0.033 |  0.008 | torch.Size([64, 64, 3, 3]) || model.5.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.5.bias
+ |  0.586 |  0.144 |  0.987 |  0.253 | torch.Size([64]) || model.6.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.6.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.6.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.6.running_var
+ | -0.000 | -0.034 |  0.032 |  0.008 | torch.Size([64, 64, 3, 3]) || model.8.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.8.bias
+ |  0.576 |  0.111 |  0.988 |  0.252 | torch.Size([64]) || model.9.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.9.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.9.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.9.running_var
+ | -0.000 | -0.035 |  0.032 |  0.008 | torch.Size([64, 64, 3, 3]) || model.11.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.11.bias
+ |  0.587 |  0.135 |  0.989 |  0.239 | torch.Size([64]) || model.12.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.12.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.12.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.12.running_var
+ |  0.000 | -0.034 |  0.036 |  0.008 | torch.Size([64, 64, 3, 3]) || model.14.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.14.bias
+ |  0.519 |  0.113 |  0.987 |  0.248 | torch.Size([64]) || model.15.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.15.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.15.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.15.running_var
+ |  0.000 | -0.037 |  0.037 |  0.008 | torch.Size([64, 64, 3, 3]) || model.17.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.17.bias
+ |  0.554 |  0.114 |  0.996 |  0.286 | torch.Size([64]) || model.18.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.18.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.18.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.18.running_var
+ | -0.000 | -0.032 |  0.035 |  0.008 | torch.Size([64, 64, 3, 3]) || model.20.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.20.bias
+ |  0.509 |  0.116 |  0.957 |  0.267 | torch.Size([64]) || model.21.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.21.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.21.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.21.running_var
+ |  0.000 | -0.034 |  0.031 |  0.008 | torch.Size([64, 64, 3, 3]) || model.23.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.23.bias
+ |  0.533 |  0.110 |  0.990 |  0.272 | torch.Size([64]) || model.24.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.24.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.24.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.24.running_var
+ |  0.000 | -0.036 |  0.032 |  0.008 | torch.Size([64, 64, 3, 3]) || model.26.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.26.bias
+ |  0.524 |  0.128 |  0.941 |  0.252 | torch.Size([64]) || model.27.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.27.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.27.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.27.running_var
+ |  0.000 | -0.034 |  0.034 |  0.008 | torch.Size([64, 64, 3, 3]) || model.29.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.29.bias
+ |  0.493 |  0.102 |  0.992 |  0.285 | torch.Size([64]) || model.30.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.30.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.30.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.30.running_var
+ | -0.000 | -0.031 |  0.036 |  0.008 | torch.Size([64, 64, 3, 3]) || model.32.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.32.bias
+ |  0.584 |  0.159 |  0.987 |  0.280 | torch.Size([64]) || model.33.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.33.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.33.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.33.running_var
+ |  0.000 | -0.038 |  0.035 |  0.008 | torch.Size([64, 64, 3, 3]) || model.35.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.35.bias
+ |  0.524 |  0.101 |  0.983 |  0.260 | torch.Size([64]) || model.36.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.36.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.36.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.36.running_var
+ | -0.000 | -0.034 |  0.035 |  0.008 | torch.Size([64, 64, 3, 3]) || model.38.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.38.bias
+ |  0.563 |  0.108 |  0.983 |  0.250 | torch.Size([64]) || model.39.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.39.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.39.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.39.running_var
+ | -0.000 | -0.035 |  0.032 |  0.008 | torch.Size([64, 64, 3, 3]) || model.41.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.41.bias
+ |  0.579 |  0.105 |  0.990 |  0.237 | torch.Size([64]) || model.42.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.42.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.42.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.42.running_var
+ | -0.000 | -0.035 |  0.036 |  0.008 | torch.Size([64, 64, 3, 3]) || model.44.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.44.bias
+ |  0.597 |  0.111 |  0.984 |  0.228 | torch.Size([64]) || model.45.weight
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.45.bias
+ |  0.000 |  0.000 |  0.000 |  0.000 | torch.Size([64]) || model.45.running_mean
+ |  1.000 |  1.000 |  1.000 |  0.000 | torch.Size([64]) || model.45.running_var
+ | -0.000 | -0.026 |  0.023 |  0.008 | torch.Size([1, 64, 3, 3]) || model.47.weight
+ |  0.000 |  0.000 |  0.000 |    nan | torch.Size([1]) || model.47.bias
+
+23-10-29 16:18:10.699 : <epoch:  3, iter:     200, lr:1.000e-04> G_loss: 4.476e-02 
+23-10-29 16:19:59.039 : <epoch:  6, iter:     400, lr:1.000e-04> G_loss: 4.182e-02 
+23-10-29 16:21:48.952 : <epoch:  9, iter:     600, lr:1.000e-04> G_loss: 4.080e-02 
+23-10-29 16:23:42.219 : <epoch: 13, iter:     800, lr:1.000e-04> G_loss: 3.954e-02 
+23-10-29 16:25:30.351 : <epoch: 16, iter:   1,000, lr:1.000e-04> G_loss: 4.015e-02 
+23-10-29 16:25:30.374 : Saving the model.
+23-10-29 16:25:31.999 : ---1--> pollen.spd1.0098.png | 18.14dB
+23-10-29 16:25:32.302 : ---2--> pollen.spd2.0098.png | 18.93dB
+23-10-29 16:25:32.772 : ---3--> pollen.spd3.0098.png | 19.84dB
+23-10-29 16:25:33.051 : ---4--> pollen.spd5.0098.png | 21.37dB
+23-10-29 16:25:33.360 : ---5--> pollen.spd8.0098.png | 21.99dB
+23-10-29 16:25:33.624 : <epoch: 16, iter:   1,000, Average PSNR : 20.05dB
+
+23-10-29 16:27:20.173 : <epoch: 19, iter:   1,200, lr:1.000e-04> G_loss: 3.709e-02 
+23-10-29 16:29:12.596 : <epoch: 23, iter:   1,400, lr:1.000e-04> G_loss: 3.690e-02 
+23-10-29 16:31:00.710 : <epoch: 26, iter:   1,600, lr:1.000e-04> G_loss: 3.818e-02 
+23-10-29 16:32:49.755 : <epoch: 29, iter:   1,800, lr:1.000e-04> G_loss: 3.375e-02 
+23-10-29 16:34:43.555 : <epoch: 33, iter:   2,000, lr:1.000e-04> G_loss: 3.422e-02 
+23-10-29 16:34:43.584 : Saving the model.
+23-10-29 16:34:44.973 : ---1--> pollen.spd1.0098.png | 18.35dB
+23-10-29 16:34:45.295 : ---2--> pollen.spd2.0098.png | 19.07dB
+23-10-29 16:34:45.668 : ---3--> pollen.spd3.0098.png | 19.94dB
+23-10-29 16:34:46.016 : ---4--> pollen.spd5.0098.png | 21.44dB
+23-10-29 16:34:46.328 : ---5--> pollen.spd8.0098.png | 22.06dB
+23-10-29 16:34:46.631 : <epoch: 33, iter:   2,000, Average PSNR : 20.17dB
+
+23-10-29 16:36:32.158 : <epoch: 36, iter:   2,200, lr:1.000e-04> G_loss: 3.424e-02 
+23-10-29 16:38:20.996 : <epoch: 39, iter:   2,400, lr:1.000e-04> G_loss: 4.225e-02 
+23-10-29 16:40:13.541 : <epoch: 43, iter:   2,600, lr:1.000e-04> G_loss: 3.760e-02 
+23-10-29 16:42:01.978 : <epoch: 46, iter:   2,800, lr:1.000e-04> G_loss: 3.676e-02 
+23-10-29 16:43:51.345 : <epoch: 49, iter:   3,000, lr:1.000e-04> G_loss: 3.950e-02 
+23-10-29 16:43:51.346 : Saving the model.
+23-10-29 16:43:51.639 : ---1--> pollen.spd1.0098.png | 18.36dB
+23-10-29 16:43:51.752 : ---2--> pollen.spd2.0098.png | 19.07dB
+23-10-29 16:43:51.855 : ---3--> pollen.spd3.0098.png | 19.95dB
+23-10-29 16:43:51.951 : ---4--> pollen.spd5.0098.png | 21.49dB
+23-10-29 16:43:52.057 : ---5--> pollen.spd8.0098.png | 22.13dB
+23-10-29 16:43:52.097 : <epoch: 49, iter:   3,000, Average PSNR : 20.20dB
+
+23-10-29 16:45:45.254 : <epoch: 53, iter:   3,200, lr:1.000e-04> G_loss: 3.769e-02 
+23-10-29 16:47:33.040 : <epoch: 56, iter:   3,400, lr:1.000e-04> G_loss: 4.020e-02 
+23-10-29 16:49:22.315 : <epoch: 59, iter:   3,600, lr:1.000e-04> G_loss: 3.659e-02 
+23-10-29 16:51:15.167 : <epoch: 63, iter:   3,800, lr:1.000e-04> G_loss: 3.893e-02 
+23-10-29 16:53:04.292 : <epoch: 66, iter:   4,000, lr:1.000e-04> G_loss: 3.705e-02 
+23-10-29 16:53:04.324 : Saving the model.
+23-10-29 16:53:05.712 : ---1--> pollen.spd1.0098.png | 18.37dB
+23-10-29 16:53:06.061 : ---2--> pollen.spd2.0098.png | 19.08dB
+23-10-29 16:53:06.392 : ---3--> pollen.spd3.0098.png | 19.96dB
+23-10-29 16:53:06.723 : ---4--> pollen.spd5.0098.png | 21.49dB
+23-10-29 16:53:07.106 : ---5--> pollen.spd8.0098.png | 22.12dB
+23-10-29 16:53:07.368 : <epoch: 66, iter:   4,000, Average PSNR : 20.20dB
+
+23-10-29 16:54:53.859 : <epoch: 69, iter:   4,200, lr:1.000e-04> G_loss: 4.018e-02 
+23-10-29 16:56:46.961 : <epoch: 73, iter:   4,400, lr:1.000e-04> G_loss: 3.521e-02 
+23-10-29 16:58:34.869 : <epoch: 76, iter:   4,600, lr:1.000e-04> G_loss: 3.673e-02 
+23-10-29 17:00:24.666 : <epoch: 79, iter:   4,800, lr:1.000e-04> G_loss: 3.435e-02 
+23-10-29 17:02:17.433 : <epoch: 83, iter:   5,000, lr:1.000e-04> G_loss: 3.904e-02 
+23-10-29 17:02:17.465 : Saving the model.
+23-10-29 17:02:18.795 : ---1--> pollen.spd1.0098.png | 18.44dB
+23-10-29 17:02:19.121 : ---2--> pollen.spd2.0098.png | 19.10dB
+23-10-29 17:02:19.413 : ---3--> pollen.spd3.0098.png | 19.94dB
+23-10-29 17:02:19.783 : ---4--> pollen.spd5.0098.png | 21.48dB
+23-10-29 17:02:20.182 : ---5--> pollen.spd8.0098.png | 22.11dB
+23-10-29 17:02:20.440 : <epoch: 83, iter:   5,000, Average PSNR : 20.21dB
+
+23-10-29 17:04:05.714 : <epoch: 86, iter:   5,200, lr:1.000e-04> G_loss: 3.868e-02 
+23-10-29 17:05:54.423 : <epoch: 89, iter:   5,400, lr:1.000e-04> G_loss: 4.046e-02 
+23-10-29 17:07:47.196 : <epoch: 93, iter:   5,600, lr:1.000e-04> G_loss: 3.743e-02 
+23-10-29 17:09:35.327 : <epoch: 96, iter:   5,800, lr:1.000e-04> G_loss: 3.605e-02 
+23-10-29 17:11:24.335 : <epoch: 99, iter:   6,000, lr:1.000e-04> G_loss: 3.562e-02 
+23-10-29 17:11:24.336 : Saving the model.
+23-10-29 17:11:24.614 : ---1--> pollen.spd1.0098.png | 18.48dB
+23-10-29 17:11:24.715 : ---2--> pollen.spd2.0098.png | 19.15dB
+23-10-29 17:11:25.042 : ---3--> pollen.spd3.0098.png | 19.99dB
+23-10-29 17:11:25.135 : ---4--> pollen.spd5.0098.png | 21.51dB
+23-10-29 17:11:25.229 : ---5--> pollen.spd8.0098.png | 22.15dB
+23-10-29 17:11:25.269 : <epoch: 99, iter:   6,000, Average PSNR : 20.26dB
+
+23-10-29 17:13:17.851 : <epoch:103, iter:   6,200, lr:1.000e-04> G_loss: 3.638e-02 
+23-10-29 17:15:06.178 : <epoch:106, iter:   6,400, lr:1.000e-04> G_loss: 3.586e-02 
+23-10-29 17:16:55.048 : <epoch:109, iter:   6,600, lr:1.000e-04> G_loss: 3.601e-02 
+23-10-29 17:18:47.800 : <epoch:113, iter:   6,800, lr:1.000e-04> G_loss: 3.340e-02 
+23-10-29 17:20:36.082 : <epoch:116, iter:   7,000, lr:1.000e-04> G_loss: 3.367e-02 
+23-10-29 17:20:36.103 : Saving the model.
+23-10-29 17:20:37.445 : ---1--> pollen.spd1.0098.png | 18.63dB
+23-10-29 17:20:37.802 : ---2--> pollen.spd2.0098.png | 19.26dB
+23-10-29 17:20:38.135 : ---3--> pollen.spd3.0098.png | 20.07dB
+23-10-29 17:20:38.454 : ---4--> pollen.spd5.0098.png | 21.55dB
+23-10-29 17:20:38.800 : ---5--> pollen.spd8.0098.png | 22.18dB
+23-10-29 17:20:39.103 : <epoch:116, iter:   7,000, Average PSNR : 20.34dB
+
+23-10-29 17:22:26.173 : <epoch:119, iter:   7,200, lr:1.000e-04> G_loss: 3.464e-02 
+23-10-29 17:24:19.221 : <epoch:123, iter:   7,400, lr:1.000e-04> G_loss: 3.469e-02 
+23-10-29 17:26:07.401 : <epoch:126, iter:   7,600, lr:1.000e-04> G_loss: 3.216e-02 
+23-10-29 17:27:55.717 : <epoch:129, iter:   7,800, lr:1.000e-04> G_loss: 3.576e-02 
+23-10-29 17:29:48.538 : <epoch:133, iter:   8,000, lr:1.000e-04> G_loss: 3.761e-02 
+23-10-29 17:29:48.573 : Saving the model.
+23-10-29 17:29:49.853 : ---1--> pollen.spd1.0098.png | 18.67dB
+23-10-29 17:29:50.265 : ---2--> pollen.spd2.0098.png | 19.32dB
+23-10-29 17:29:50.608 : ---3--> pollen.spd3.0098.png | 20.14dB
+23-10-29 17:29:50.952 : ---4--> pollen.spd5.0098.png | 21.65dB
+23-10-29 17:29:51.254 : ---5--> pollen.spd8.0098.png | 22.27dB
+23-10-29 17:29:51.556 : <epoch:133, iter:   8,000, Average PSNR : 20.41dB
+
+23-10-29 17:31:37.930 : <epoch:136, iter:   8,200, lr:1.000e-04> G_loss: 3.325e-02 
+23-10-29 17:33:26.562 : <epoch:139, iter:   8,400, lr:1.000e-04> G_loss: 3.671e-02 
+23-10-29 17:35:19.242 : <epoch:143, iter:   8,600, lr:1.000e-04> G_loss: 3.820e-02 
+23-10-29 17:37:07.919 : <epoch:146, iter:   8,800, lr:1.000e-04> G_loss: 3.468e-02 
+23-10-29 17:38:57.497 : <epoch:149, iter:   9,000, lr:1.000e-04> G_loss: 3.762e-02 
+23-10-29 17:38:57.498 : Saving the model.
+23-10-29 17:38:57.758 : ---1--> pollen.spd1.0098.png | 18.57dB
+23-10-29 17:38:57.863 : ---2--> pollen.spd2.0098.png | 19.22dB
+23-10-29 17:38:57.968 : ---3--> pollen.spd3.0098.png | 20.05dB
+23-10-29 17:38:58.063 : ---4--> pollen.spd5.0098.png | 21.58dB
+23-10-29 17:38:58.156 : ---5--> pollen.spd8.0098.png | 22.23dB
+23-10-29 17:38:58.196 : <epoch:149, iter:   9,000, Average PSNR : 20.33dB
+
+23-10-29 17:40:50.939 : <epoch:153, iter:   9,200, lr:1.000e-04> G_loss: 3.563e-02 
+23-10-29 17:42:38.889 : <epoch:156, iter:   9,400, lr:1.000e-04> G_loss: 3.936e-02 
+23-10-29 17:44:28.252 : <epoch:159, iter:   9,600, lr:1.000e-04> G_loss: 3.293e-02 
+23-10-29 17:46:21.280 : <epoch:163, iter:   9,800, lr:1.000e-04> G_loss: 3.740e-02 
+23-10-29 17:48:09.368 : <epoch:166, iter:  10,000, lr:1.000e-04> G_loss: 3.322e-02 
+23-10-29 17:48:09.389 : Saving the model.
+23-10-29 17:48:10.783 : ---1--> pollen.spd1.0098.png | 18.55dB
+23-10-29 17:48:11.113 : ---2--> pollen.spd2.0098.png | 19.21dB
+23-10-29 17:48:11.469 : ---3--> pollen.spd3.0098.png | 20.05dB
+23-10-29 17:48:11.850 : ---4--> pollen.spd5.0098.png | 21.58dB
+23-10-29 17:48:12.096 : ---5--> pollen.spd8.0098.png | 22.22dB
+23-10-29 17:48:12.391 : <epoch:166, iter:  10,000, Average PSNR : 20.32dB
+
+23-10-29 17:49:59.568 : <epoch:169, iter:  10,200, lr:1.000e-04> G_loss: 3.482e-02 
+23-10-29 17:51:52.569 : <epoch:173, iter:  10,400, lr:1.000e-04> G_loss: 3.219e-02 
+23-10-29 17:53:40.618 : <epoch:176, iter:  10,600, lr:1.000e-04> G_loss: 3.835e-02 
+23-10-29 17:55:30.135 : <epoch:179, iter:  10,800, lr:1.000e-04> G_loss: 3.264e-02 
+23-10-29 17:57:22.769 : <epoch:183, iter:  11,000, lr:1.000e-04> G_loss: 3.393e-02 
+23-10-29 17:57:22.800 : Saving the model.
+23-10-29 17:57:24.091 : ---1--> pollen.spd1.0098.png | 18.61dB
+23-10-29 17:57:24.440 : ---2--> pollen.spd2.0098.png | 19.27dB
+23-10-29 17:57:24.798 : ---3--> pollen.spd3.0098.png | 20.10dB
+23-10-29 17:57:25.102 : ---4--> pollen.spd5.0098.png | 21.63dB
+23-10-29 17:57:25.501 : ---5--> pollen.spd8.0098.png | 22.26dB
+23-10-29 17:57:25.777 : <epoch:183, iter:  11,000, Average PSNR : 20.37dB
+
+23-10-29 17:59:11.671 : <epoch:186, iter:  11,200, lr:1.000e-04> G_loss: 3.748e-02 
+23-10-29 18:01:01.344 : <epoch:189, iter:  11,400, lr:1.000e-04> G_loss: 3.704e-02 
+23-10-29 18:02:54.349 : <epoch:193, iter:  11,600, lr:1.000e-04> G_loss: 3.380e-02 
+23-10-29 18:04:43.117 : <epoch:196, iter:  11,800, lr:1.000e-04> G_loss: 3.678e-02 
+23-10-29 18:06:32.497 : <epoch:199, iter:  12,000, lr:1.000e-04> G_loss: 3.220e-02 
+23-10-29 18:06:32.498 : Saving the model.
+23-10-29 18:06:32.768 : ---1--> pollen.spd1.0098.png | 18.73dB
+23-10-29 18:06:32.891 : ---2--> pollen.spd2.0098.png | 19.38dB
+23-10-29 18:06:32.996 : ---3--> pollen.spd3.0098.png | 20.20dB
+23-10-29 18:06:33.091 : ---4--> pollen.spd5.0098.png | 21.72dB
+23-10-29 18:06:33.185 : ---5--> pollen.spd8.0098.png | 22.36dB
+23-10-29 18:06:33.225 : <epoch:199, iter:  12,000, Average PSNR : 20.48dB
+
+23-10-29 18:08:25.891 : <epoch:203, iter:  12,200, lr:1.000e-04> G_loss: 3.830e-02 
+23-10-29 18:10:13.968 : <epoch:206, iter:  12,400, lr:1.000e-04> G_loss: 3.680e-02 
+23-10-29 18:12:03.666 : <epoch:209, iter:  12,600, lr:1.000e-04> G_loss: 3.790e-02 
+23-10-29 18:13:57.239 : <epoch:213, iter:  12,800, lr:1.000e-04> G_loss: 3.714e-02 
+23-10-29 18:15:45.899 : <epoch:216, iter:  13,000, lr:1.000e-04> G_loss: 3.186e-02 
+23-10-29 18:15:45.946 : Saving the model.
+23-10-29 18:15:47.267 : ---1--> pollen.spd1.0098.png | 18.78dB
+23-10-29 18:15:47.658 : ---2--> pollen.spd2.0098.png | 19.42dB
+23-10-29 18:15:47.974 : ---3--> pollen.spd3.0098.png | 20.23dB
+23-10-29 18:15:48.307 : ---4--> pollen.spd5.0098.png | 21.73dB
+23-10-29 18:15:48.688 : ---5--> pollen.spd8.0098.png | 22.36dB
+23-10-29 18:15:48.955 : <epoch:216, iter:  13,000, Average PSNR : 20.50dB
+
+23-10-29 18:17:35.302 : <epoch:219, iter:  13,200, lr:1.000e-04> G_loss: 3.412e-02 
+23-10-29 18:19:28.647 : <epoch:223, iter:  13,400, lr:1.000e-04> G_loss: 3.558e-02 
+23-10-29 18:21:16.769 : <epoch:226, iter:  13,600, lr:1.000e-04> G_loss: 3.475e-02 
+23-10-29 18:23:05.962 : <epoch:229, iter:  13,800, lr:1.000e-04> G_loss: 3.660e-02 
+23-10-29 18:24:59.085 : <epoch:233, iter:  14,000, lr:1.000e-04> G_loss: 3.137e-02 
+23-10-29 18:24:59.101 : Saving the model.
+23-10-29 18:25:00.435 : ---1--> pollen.spd1.0098.png | 18.69dB
+23-10-29 18:25:00.751 : ---2--> pollen.spd2.0098.png | 19.33dB
+23-10-29 18:25:01.075 : ---3--> pollen.spd3.0098.png | 20.14dB
+23-10-29 18:25:01.463 : ---4--> pollen.spd5.0098.png | 21.71dB
+23-10-29 18:25:01.804 : ---5--> pollen.spd8.0098.png | 22.35dB
+23-10-29 18:25:02.099 : <epoch:233, iter:  14,000, Average PSNR : 20.44dB
+
+23-10-29 18:26:47.827 : <epoch:236, iter:  14,200, lr:1.000e-04> G_loss: 3.142e-02 
+23-10-29 18:28:37.708 : <epoch:239, iter:  14,400, lr:1.000e-04> G_loss: 3.167e-02 
+23-10-29 18:30:30.709 : <epoch:243, iter:  14,600, lr:1.000e-04> G_loss: 3.920e-02 
+23-10-29 18:32:19.528 : <epoch:246, iter:  14,800, lr:1.000e-04> G_loss: 3.647e-02 
+23-10-29 18:34:08.952 : <epoch:249, iter:  15,000, lr:1.000e-04> G_loss: 3.624e-02 
+23-10-29 18:34:08.954 : Saving the model.
+23-10-29 18:34:09.238 : ---1--> pollen.spd1.0098.png | 18.73dB
+23-10-29 18:34:09.349 : ---2--> pollen.spd2.0098.png | 19.37dB
+23-10-29 18:34:09.448 : ---3--> pollen.spd3.0098.png | 20.18dB
+23-10-29 18:34:09.542 : ---4--> pollen.spd5.0098.png | 21.74dB
+23-10-29 18:34:09.637 : ---5--> pollen.spd8.0098.png | 22.39dB
+23-10-29 18:34:09.677 : <epoch:249, iter:  15,000, Average PSNR : 20.48dB
+
+23-10-29 18:36:02.533 : <epoch:253, iter:  15,200, lr:1.000e-04> G_loss: 3.566e-02 
+23-10-29 18:37:50.743 : <epoch:256, iter:  15,400, lr:1.000e-04> G_loss: 3.745e-02 
+23-10-29 18:39:40.389 : <epoch:259, iter:  15,600, lr:1.000e-04> G_loss: 3.450e-02 
+23-10-29 18:41:33.295 : <epoch:263, iter:  15,800, lr:1.000e-04> G_loss: 3.998e-02 
+23-10-29 18:43:21.558 : <epoch:266, iter:  16,000, lr:1.000e-04> G_loss: 3.197e-02 
+23-10-29 18:43:21.583 : Saving the model.
+23-10-29 18:43:22.883 : ---1--> pollen.spd1.0098.png | 18.78dB
+23-10-29 18:43:23.180 : ---2--> pollen.spd2.0098.png | 19.39dB
+23-10-29 18:43:23.501 : ---3--> pollen.spd3.0098.png | 20.18dB
+23-10-29 18:43:23.900 : ---4--> pollen.spd5.0098.png | 21.71dB
+23-10-29 18:43:24.288 : ---5--> pollen.spd8.0098.png | 22.36dB
+23-10-29 18:43:24.608 : <epoch:266, iter:  16,000, Average PSNR : 20.48dB
+
+23-10-29 18:45:12.060 : <epoch:269, iter:  16,200, lr:1.000e-04> G_loss: 3.546e-02 
+23-10-29 18:47:04.690 : <epoch:273, iter:  16,400, lr:1.000e-04> G_loss: 3.710e-02 
+23-10-29 18:48:53.075 : <epoch:276, iter:  16,600, lr:1.000e-04> G_loss: 3.449e-02 
+23-10-29 18:50:42.610 : <epoch:279, iter:  16,800, lr:1.000e-04> G_loss: 3.274e-02 
+23-10-29 18:52:35.180 : <epoch:283, iter:  17,000, lr:1.000e-04> G_loss: 3.210e-02 
+23-10-29 18:52:35.194 : Saving the model.
+23-10-29 18:52:36.494 : ---1--> pollen.spd1.0098.png | 18.71dB
+23-10-29 18:52:36.794 : ---2--> pollen.spd2.0098.png | 19.37dB
+23-10-29 18:52:37.138 : ---3--> pollen.spd3.0098.png | 20.19dB
+23-10-29 18:52:37.578 : ---4--> pollen.spd5.0098.png | 21.75dB
+23-10-29 18:52:37.889 : ---5--> pollen.spd8.0098.png | 22.42dB
+23-10-29 18:52:38.179 : <epoch:283, iter:  17,000, Average PSNR : 20.49dB
+
+23-10-29 18:54:24.350 : <epoch:286, iter:  17,200, lr:1.000e-04> G_loss: 3.546e-02 
+23-10-29 18:56:13.836 : <epoch:289, iter:  17,400, lr:1.000e-04> G_loss: 3.514e-02 
+23-10-29 18:58:06.854 : <epoch:293, iter:  17,600, lr:1.000e-04> G_loss: 3.287e-02 
+23-10-29 18:59:55.242 : <epoch:296, iter:  17,800, lr:1.000e-04> G_loss: 3.478e-02 
+23-10-29 19:01:44.793 : <epoch:299, iter:  18,000, lr:1.000e-04> G_loss: 3.800e-02 
+23-10-29 19:01:44.794 : Saving the model.
+23-10-29 19:01:45.082 : ---1--> pollen.spd1.0098.png | 18.67dB
+23-10-29 19:01:45.185 : ---2--> pollen.spd2.0098.png | 19.31dB
+23-10-29 19:01:45.285 : ---3--> pollen.spd3.0098.png | 20.11dB
+23-10-29 19:01:45.378 : ---4--> pollen.spd5.0098.png | 21.65dB
+23-10-29 19:01:45.472 : ---5--> pollen.spd8.0098.png | 22.30dB
+23-10-29 19:01:45.513 : <epoch:299, iter:  18,000, Average PSNR : 20.41dB
+
+23-10-29 19:03:38.239 : <epoch:303, iter:  18,200, lr:1.000e-04> G_loss: 3.421e-02 
+23-10-29 19:05:26.940 : <epoch:306, iter:  18,400, lr:1.000e-04> G_loss: 3.676e-02 
+23-10-29 19:07:16.085 : <epoch:309, iter:  18,600, lr:1.000e-04> G_loss: 3.744e-02 
+23-10-29 19:09:08.958 : <epoch:313, iter:  18,800, lr:1.000e-04> G_loss: 3.253e-02 
+23-10-29 19:10:58.350 : <epoch:316, iter:  19,000, lr:1.000e-04> G_loss: 3.306e-02 
+23-10-29 19:10:58.374 : Saving the model.
+23-10-29 19:10:59.627 : ---1--> pollen.spd1.0098.png | 18.78dB
+23-10-29 19:10:59.996 : ---2--> pollen.spd2.0098.png | 19.42dB
+23-10-29 19:11:00.275 : ---3--> pollen.spd3.0098.png | 20.22dB
+23-10-29 19:11:00.672 : ---4--> pollen.spd5.0098.png | 21.78dB
+23-10-29 19:11:01.055 : ---5--> pollen.spd8.0098.png | 22.44dB
+23-10-29 19:11:01.342 : <epoch:316, iter:  19,000, Average PSNR : 20.53dB
+
+23-10-29 19:12:48.283 : <epoch:319, iter:  19,200, lr:1.000e-04> G_loss: 3.442e-02 
+23-10-29 19:14:40.734 : <epoch:323, iter:  19,400, lr:1.000e-04> G_loss: 3.397e-02 
+23-10-29 19:16:29.340 : <epoch:326, iter:  19,600, lr:1.000e-04> G_loss: 3.603e-02 
+23-10-29 19:18:18.437 : <epoch:329, iter:  19,800, lr:1.000e-04> G_loss: 3.502e-02 
+23-10-29 19:20:11.194 : <epoch:333, iter:  20,000, lr:1.000e-04> G_loss: 3.576e-02 
+23-10-29 19:20:11.225 : Saving the model.
+23-10-29 19:20:12.519 : ---1--> pollen.spd1.0098.png | 18.77dB
+23-10-29 19:20:12.836 : ---2--> pollen.spd2.0098.png | 19.41dB
+23-10-29 19:20:13.192 : ---3--> pollen.spd3.0098.png | 20.22dB
+23-10-29 19:20:13.592 : ---4--> pollen.spd5.0098.png | 21.77dB
+23-10-29 19:20:13.936 : ---5--> pollen.spd8.0098.png | 22.42dB
+23-10-29 19:20:14.230 : <epoch:333, iter:  20,000, Average PSNR : 20.52dB
+
+23-10-29 19:22:00.346 : <epoch:336, iter:  20,200, lr:1.000e-04> G_loss: 3.585e-02 
+23-10-29 19:23:49.812 : <epoch:339, iter:  20,400, lr:1.000e-04> G_loss: 3.547e-02 
+23-10-29 19:25:42.389 : <epoch:343, iter:  20,600, lr:1.000e-04> G_loss: 3.062e-02 
+23-10-29 19:27:30.455 : <epoch:346, iter:  20,800, lr:1.000e-04> G_loss: 3.490e-02 
+23-10-29 19:29:20.701 : <epoch:349, iter:  21,000, lr:1.000e-04> G_loss: 3.465e-02 
+23-10-29 19:29:20.702 : Saving the model.
+23-10-29 19:29:20.972 : ---1--> pollen.spd1.0098.png | 18.76dB
+23-10-29 19:29:21.079 : ---2--> pollen.spd2.0098.png | 19.39dB
+23-10-29 19:29:21.184 : ---3--> pollen.spd3.0098.png | 20.18dB
+23-10-29 19:29:21.278 : ---4--> pollen.spd5.0098.png | 21.74dB
+23-10-29 19:29:21.371 : ---5--> pollen.spd8.0098.png | 22.40dB
+23-10-29 19:29:21.411 : <epoch:349, iter:  21,000, Average PSNR : 20.50dB
+
+23-10-29 19:31:15.112 : <epoch:353, iter:  21,200, lr:1.000e-04> G_loss: 3.797e-02 
+23-10-29 19:33:03.634 : <epoch:356, iter:  21,400, lr:1.000e-04> G_loss: 3.718e-02 
+23-10-29 19:34:53.057 : <epoch:359, iter:  21,600, lr:1.000e-04> G_loss: 3.652e-02 
+23-10-29 19:36:46.013 : <epoch:363, iter:  21,800, lr:1.000e-04> G_loss: 3.603e-02 
+23-10-29 19:38:34.680 : <epoch:366, iter:  22,000, lr:1.000e-04> G_loss: 3.518e-02 
+23-10-29 19:38:34.732 : Saving the model.
+23-10-29 19:38:36.058 : ---1--> pollen.spd1.0098.png | 18.85dB
+23-10-29 19:38:36.446 : ---2--> pollen.spd2.0098.png | 19.48dB
+23-10-29 19:38:36.778 : ---3--> pollen.spd3.0098.png | 20.27dB
+23-10-29 19:38:37.129 : ---4--> pollen.spd5.0098.png | 21.80dB
+23-10-29 19:38:37.448 : ---5--> pollen.spd8.0098.png | 22.45dB
+23-10-29 19:38:37.755 : <epoch:366, iter:  22,000, Average PSNR : 20.57dB
+
+23-10-29 19:40:24.844 : <epoch:369, iter:  22,200, lr:1.000e-04> G_loss: 3.607e-02 
+23-10-29 19:42:18.519 : <epoch:373, iter:  22,400, lr:1.000e-04> G_loss: 3.642e-02 
+23-10-29 19:44:07.577 : <epoch:376, iter:  22,600, lr:1.000e-04> G_loss: 3.639e-02 
+23-10-29 19:45:56.855 : <epoch:379, iter:  22,800, lr:1.000e-04> G_loss: 3.643e-02 
+23-10-29 19:47:49.584 : <epoch:383, iter:  23,000, lr:1.000e-04> G_loss: 3.619e-02 
+23-10-29 19:47:49.596 : Saving the model.
+23-10-29 19:47:50.871 : ---1--> pollen.spd1.0098.png | 18.79dB
+23-10-29 19:47:51.223 : ---2--> pollen.spd2.0098.png | 19.42dB
+23-10-29 19:47:51.525 : ---3--> pollen.spd3.0098.png | 20.21dB
+23-10-29 19:47:51.878 : ---4--> pollen.spd5.0098.png | 21.76dB
+23-10-29 19:47:52.247 : ---5--> pollen.spd8.0098.png | 22.41dB
+23-10-29 19:47:52.537 : <epoch:383, iter:  23,000, Average PSNR : 20.52dB
+
+23-10-29 19:49:38.887 : <epoch:386, iter:  23,200, lr:1.000e-04> G_loss: 3.355e-02 
+23-10-29 19:51:27.884 : <epoch:389, iter:  23,400, lr:1.000e-04> G_loss: 3.192e-02 
+23-10-29 19:53:20.979 : <epoch:393, iter:  23,600, lr:1.000e-04> G_loss: 3.469e-02 
+23-10-29 19:55:08.398 : <epoch:396, iter:  23,800, lr:1.000e-04> G_loss: 3.716e-02 
+23-10-29 19:56:57.368 : <epoch:399, iter:  24,000, lr:1.000e-04> G_loss: 3.381e-02 
+23-10-29 19:56:57.369 : Saving the model.
+23-10-29 19:56:57.627 : ---1--> pollen.spd1.0098.png | 18.85dB
+23-10-29 19:56:57.740 : ---2--> pollen.spd2.0098.png | 19.48dB
+23-10-29 19:56:57.841 : ---3--> pollen.spd3.0098.png | 20.27dB
+23-10-29 19:56:57.935 : ---4--> pollen.spd5.0098.png | 21.82dB
+23-10-29 19:56:58.029 : ---5--> pollen.spd8.0098.png | 22.48dB
+23-10-29 19:56:58.069 : <epoch:399, iter:  24,000, Average PSNR : 20.58dB
+
+23-10-29 19:58:51.189 : <epoch:403, iter:  24,200, lr:1.000e-04> G_loss: 3.452e-02 
+23-10-29 20:00:38.925 : <epoch:406, iter:  24,400, lr:1.000e-04> G_loss: 3.843e-02 
+23-10-29 20:02:28.667 : <epoch:409, iter:  24,600, lr:1.000e-04> G_loss: 3.705e-02 
+23-10-29 20:04:22.056 : <epoch:413, iter:  24,800, lr:1.000e-04> G_loss: 3.342e-02 
+23-10-29 20:06:10.372 : <epoch:416, iter:  25,000, lr:1.000e-04> G_loss: 3.825e-02 
+23-10-29 20:06:10.396 : Saving the model.
+23-10-29 20:06:11.687 : ---1--> pollen.spd1.0098.png | 18.82dB
+23-10-29 20:06:12.027 : ---2--> pollen.spd2.0098.png | 19.44dB
+23-10-29 20:06:12.374 : ---3--> pollen.spd3.0098.png | 20.23dB
+23-10-29 20:06:12.728 : ---4--> pollen.spd5.0098.png | 21.80dB
+23-10-29 20:06:13.110 : ---5--> pollen.spd8.0098.png | 22.45dB
+23-10-29 20:06:13.382 : <epoch:416, iter:  25,000, Average PSNR : 20.55dB
+
+23-10-29 20:08:00.404 : <epoch:419, iter:  25,200, lr:1.000e-04> G_loss: 3.328e-02 
+23-10-29 20:09:53.222 : <epoch:423, iter:  25,400, lr:1.000e-04> G_loss: 3.157e-02 
+23-10-29 20:11:41.553 : <epoch:426, iter:  25,600, lr:1.000e-04> G_loss: 3.571e-02 
+23-10-29 20:13:30.751 : <epoch:429, iter:  25,800, lr:1.000e-04> G_loss: 3.502e-02 
+23-10-29 20:15:23.727 : <epoch:433, iter:  26,000, lr:1.000e-04> G_loss: 3.842e-02 
+23-10-29 20:15:23.750 : Saving the model.
+23-10-29 20:15:25.078 : ---1--> pollen.spd1.0098.png | 18.90dB
+23-10-29 20:15:25.419 : ---2--> pollen.spd2.0098.png | 19.51dB
+23-10-29 20:15:25.779 : ---3--> pollen.spd3.0098.png | 20.28dB
+23-10-29 20:15:26.121 : ---4--> pollen.spd5.0098.png | 21.84dB
+23-10-29 20:15:26.443 : ---5--> pollen.spd8.0098.png | 22.50dB
+23-10-29 20:15:26.694 : <epoch:433, iter:  26,000, Average PSNR : 20.61dB
+
+23-10-29 20:17:12.864 : <epoch:436, iter:  26,200, lr:1.000e-04> G_loss: 3.593e-02 
+23-10-29 20:19:02.514 : <epoch:439, iter:  26,400, lr:1.000e-04> G_loss: 3.413e-02 
+23-10-29 20:20:55.479 : <epoch:443, iter:  26,600, lr:1.000e-04> G_loss: 3.615e-02 
+23-10-29 20:22:44.334 : <epoch:446, iter:  26,800, lr:1.000e-04> G_loss: 3.574e-02 
+23-10-29 20:24:34.004 : <epoch:449, iter:  27,000, lr:1.000e-04> G_loss: 3.207e-02 
+23-10-29 20:24:34.005 : Saving the model.
+23-10-29 20:24:34.290 : ---1--> pollen.spd1.0098.png | 18.85dB
+23-10-29 20:24:34.404 : ---2--> pollen.spd2.0098.png | 19.50dB
+23-10-29 20:24:34.500 : ---3--> pollen.spd3.0098.png | 20.29dB
+23-10-29 20:24:34.595 : ---4--> pollen.spd5.0098.png | 21.86dB
+23-10-29 20:24:34.688 : ---5--> pollen.spd8.0098.png | 22.52dB
+23-10-29 20:24:34.728 : <epoch:449, iter:  27,000, Average PSNR : 20.61dB
+
+23-10-29 20:26:27.487 : <epoch:453, iter:  27,200, lr:1.000e-04> G_loss: 3.749e-02 
+23-10-29 20:28:16.114 : <epoch:456, iter:  27,400, lr:1.000e-04> G_loss: 3.490e-02 
+23-10-29 20:30:05.468 : <epoch:459, iter:  27,600, lr:1.000e-04> G_loss: 3.392e-02 
+23-10-29 20:31:58.643 : <epoch:463, iter:  27,800, lr:1.000e-04> G_loss: 4.065e-02 
+23-10-29 20:33:46.766 : <epoch:466, iter:  28,000, lr:1.000e-04> G_loss: 3.337e-02 
+23-10-29 20:33:46.790 : Saving the model.
+23-10-29 20:33:48.058 : ---1--> pollen.spd1.0098.png | 18.86dB
+23-10-29 20:33:48.369 : ---2--> pollen.spd2.0098.png | 19.52dB
+23-10-29 20:33:48.787 : ---3--> pollen.spd3.0098.png | 20.32dB
+23-10-29 20:33:49.144 : ---4--> pollen.spd5.0098.png | 21.88dB
+23-10-29 20:33:49.513 : ---5--> pollen.spd8.0098.png | 22.54dB
+23-10-29 20:33:49.794 : <epoch:466, iter:  28,000, Average PSNR : 20.62dB
+
+23-10-29 20:35:37.489 : <epoch:469, iter:  28,200, lr:1.000e-04> G_loss: 3.656e-02 
+23-10-29 20:37:29.788 : <epoch:473, iter:  28,400, lr:1.000e-04> G_loss: 3.417e-02 
+23-10-29 20:39:18.239 : <epoch:476, iter:  28,600, lr:1.000e-04> G_loss: 3.244e-02 
+23-10-29 20:41:07.828 : <epoch:479, iter:  28,800, lr:1.000e-04> G_loss: 3.410e-02 
+23-10-29 20:43:01.379 : <epoch:483, iter:  29,000, lr:1.000e-04> G_loss: 3.129e-02 
+23-10-29 20:43:01.416 : Saving the model.
+23-10-29 20:43:02.728 : ---1--> pollen.spd1.0098.png | 18.83dB
+23-10-29 20:43:03.067 : ---2--> pollen.spd2.0098.png | 19.49dB
+23-10-29 20:43:03.434 : ---3--> pollen.spd3.0098.png | 20.30dB
+23-10-29 20:43:03.740 : ---4--> pollen.spd5.0098.png | 21.87dB
+23-10-29 20:43:04.151 : ---5--> pollen.spd8.0098.png | 22.54dB
+23-10-29 20:43:04.441 : <epoch:483, iter:  29,000, Average PSNR : 20.61dB
+
+23-10-29 20:44:49.827 : <epoch:486, iter:  29,200, lr:1.000e-04> G_loss: 3.295e-02 
+23-10-29 20:46:39.544 : <epoch:489, iter:  29,400, lr:1.000e-04> G_loss: 3.740e-02 
+23-10-29 20:48:32.272 : <epoch:493, iter:  29,600, lr:1.000e-04> G_loss: 3.218e-02 
+23-10-29 20:50:20.286 : <epoch:496, iter:  29,800, lr:1.000e-04> G_loss: 3.949e-02 
+23-10-29 20:52:09.701 : <epoch:499, iter:  30,000, lr:1.000e-04> G_loss: 3.463e-02 
+23-10-29 20:52:09.702 : Saving the model.
+23-10-29 20:52:09.994 : ---1--> pollen.spd1.0098.png | 18.89dB
+23-10-29 20:52:10.099 : ---2--> pollen.spd2.0098.png | 19.51dB
+23-10-29 20:52:10.201 : ---3--> pollen.spd3.0098.png | 20.27dB
+23-10-29 20:52:10.294 : ---4--> pollen.spd5.0098.png | 21.81dB
+23-10-29 20:52:10.388 : ---5--> pollen.spd8.0098.png | 22.47dB
+23-10-29 20:52:10.427 : <epoch:499, iter:  30,000, Average PSNR : 20.59dB
+
+23-10-29 20:54:02.783 : <epoch:503, iter:  30,200, lr:1.000e-04> G_loss: 3.827e-02 
+23-10-29 20:55:51.214 : <epoch:506, iter:  30,400, lr:1.000e-04> G_loss: 3.310e-02 
+23-10-29 20:57:40.430 : <epoch:509, iter:  30,600, lr:1.000e-04> G_loss: 3.528e-02 
+23-10-29 20:59:33.736 : <epoch:513, iter:  30,800, lr:1.000e-04> G_loss: 3.335e-02 
+23-10-29 21:01:22.112 : <epoch:516, iter:  31,000, lr:1.000e-04> G_loss: 3.191e-02 
+23-10-29 21:01:22.131 : Saving the model.
+23-10-29 21:01:23.385 : ---1--> pollen.spd1.0098.png | 18.86dB
+23-10-29 21:01:23.704 : ---2--> pollen.spd2.0098.png | 19.50dB
+23-10-29 21:01:24.061 : ---3--> pollen.spd3.0098.png | 20.29dB
+23-10-29 21:01:24.436 : ---4--> pollen.spd5.0098.png | 21.85dB
+23-10-29 21:01:24.795 : ---5--> pollen.spd8.0098.png | 22.53dB
+23-10-29 21:01:25.110 : <epoch:516, iter:  31,000, Average PSNR : 20.60dB
+
+23-10-29 21:03:11.723 : <epoch:519, iter:  31,200, lr:1.000e-04> G_loss: 3.261e-02 
+23-10-29 21:05:04.769 : <epoch:523, iter:  31,400, lr:1.000e-04> G_loss: 3.697e-02 
+23-10-29 21:06:52.223 : <epoch:526, iter:  31,600, lr:1.000e-04> G_loss: 3.296e-02 
+23-10-29 21:08:41.391 : <epoch:529, iter:  31,800, lr:1.000e-04> G_loss: 3.470e-02 
+23-10-29 21:10:34.194 : <epoch:533, iter:  32,000, lr:1.000e-04> G_loss: 3.518e-02 
+23-10-29 21:10:34.228 : Saving the model.
+23-10-29 21:10:35.479 : ---1--> pollen.spd1.0098.png | 18.88dB
+23-10-29 21:10:35.803 : ---2--> pollen.spd2.0098.png | 19.53dB
+23-10-29 21:10:36.164 : ---3--> pollen.spd3.0098.png | 20.33dB
+23-10-29 21:10:36.552 : ---4--> pollen.spd5.0098.png | 21.89dB
+23-10-29 21:10:36.906 : ---5--> pollen.spd8.0098.png | 22.55dB
+23-10-29 21:10:37.195 : <epoch:533, iter:  32,000, Average PSNR : 20.64dB
+
+23-10-29 21:12:22.515 : <epoch:536, iter:  32,200, lr:1.000e-04> G_loss: 3.618e-02 
+23-10-29 21:14:12.274 : <epoch:539, iter:  32,400, lr:1.000e-04> G_loss: 3.226e-02 
+23-10-29 21:16:05.246 : <epoch:543, iter:  32,600, lr:1.000e-04> G_loss: 3.197e-02 
+23-10-29 21:17:53.652 : <epoch:546, iter:  32,800, lr:1.000e-04> G_loss: 3.493e-02 
+23-10-29 21:19:42.725 : <epoch:549, iter:  33,000, lr:1.000e-04> G_loss: 3.354e-02 
+23-10-29 21:19:42.726 : Saving the model.
+23-10-29 21:19:42.988 : ---1--> pollen.spd1.0098.png | 18.89dB
+23-10-29 21:19:43.092 : ---2--> pollen.spd2.0098.png | 19.54dB
+23-10-29 21:19:43.194 : ---3--> pollen.spd3.0098.png | 20.33dB
+23-10-29 21:19:43.290 : ---4--> pollen.spd5.0098.png | 21.89dB
+23-10-29 21:19:43.384 : ---5--> pollen.spd8.0098.png | 22.56dB
+23-10-29 21:19:43.424 : <epoch:549, iter:  33,000, Average PSNR : 20.64dB
+
+23-10-29 21:21:36.632 : <epoch:553, iter:  33,200, lr:1.000e-04> G_loss: 3.413e-02 
+23-10-29 21:23:24.589 : <epoch:556, iter:  33,400, lr:1.000e-04> G_loss: 3.747e-02 
+23-10-29 21:25:14.198 : <epoch:559, iter:  33,600, lr:1.000e-04> G_loss: 3.357e-02 
+23-10-29 21:27:06.678 : <epoch:563, iter:  33,800, lr:1.000e-04> G_loss: 3.499e-02 
+23-10-29 21:28:55.820 : <epoch:566, iter:  34,000, lr:1.000e-04> G_loss: 3.327e-02 
+23-10-29 21:28:55.833 : Saving the model.
+23-10-29 21:28:57.181 : ---1--> pollen.spd1.0098.png | 18.95dB
+23-10-29 21:28:57.591 : ---2--> pollen.spd2.0098.png | 19.60dB
+23-10-29 21:28:57.949 : ---3--> pollen.spd3.0098.png | 20.38dB
+23-10-29 21:28:58.328 : ---4--> pollen.spd5.0098.png | 21.93dB
+23-10-29 21:28:58.646 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-29 21:28:58.962 : <epoch:566, iter:  34,000, Average PSNR : 20.69dB
+
+23-10-29 21:30:45.158 : <epoch:569, iter:  34,200, lr:1.000e-04> G_loss: 3.612e-02 
+23-10-29 21:32:38.555 : <epoch:573, iter:  34,400, lr:1.000e-04> G_loss: 3.244e-02 
+23-10-29 21:34:27.097 : <epoch:576, iter:  34,600, lr:1.000e-04> G_loss: 3.351e-02 
+23-10-29 21:36:16.623 : <epoch:579, iter:  34,800, lr:1.000e-04> G_loss: 3.286e-02 
+23-10-29 21:38:09.968 : <epoch:583, iter:  35,000, lr:1.000e-04> G_loss: 3.477e-02 
+23-10-29 21:38:09.991 : Saving the model.
+23-10-29 21:38:11.295 : ---1--> pollen.spd1.0098.png | 18.92dB
+23-10-29 21:38:11.657 : ---2--> pollen.spd2.0098.png | 19.57dB
+23-10-29 21:38:11.990 : ---3--> pollen.spd3.0098.png | 20.35dB
+23-10-29 21:38:12.310 : ---4--> pollen.spd5.0098.png | 21.92dB
+23-10-29 21:38:12.715 : ---5--> pollen.spd8.0098.png | 22.60dB
+23-10-29 21:38:13.033 : <epoch:583, iter:  35,000, Average PSNR : 20.67dB
+
+23-10-29 21:39:59.012 : <epoch:586, iter:  35,200, lr:1.000e-04> G_loss: 3.552e-02 
+23-10-29 21:41:47.942 : <epoch:589, iter:  35,400, lr:1.000e-04> G_loss: 3.357e-02 
+23-10-29 21:43:40.867 : <epoch:593, iter:  35,600, lr:1.000e-04> G_loss: 3.706e-02 
+23-10-29 21:45:28.999 : <epoch:596, iter:  35,800, lr:1.000e-04> G_loss: 3.657e-02 
+23-10-29 21:47:18.071 : <epoch:599, iter:  36,000, lr:1.000e-04> G_loss: 3.721e-02 
+23-10-29 21:47:18.072 : Saving the model.
+23-10-29 21:47:18.346 : ---1--> pollen.spd1.0098.png | 18.90dB
+23-10-29 21:47:18.449 : ---2--> pollen.spd2.0098.png | 19.55dB
+23-10-29 21:47:18.551 : ---3--> pollen.spd3.0098.png | 20.33dB
+23-10-29 21:47:18.646 : ---4--> pollen.spd5.0098.png | 21.89dB
+23-10-29 21:47:18.740 : ---5--> pollen.spd8.0098.png | 22.56dB
+23-10-29 21:47:18.779 : <epoch:599, iter:  36,000, Average PSNR : 20.64dB
+
+23-10-29 21:49:11.428 : <epoch:603, iter:  36,200, lr:1.000e-04> G_loss: 3.049e-02 
+23-10-29 21:50:59.654 : <epoch:606, iter:  36,400, lr:1.000e-04> G_loss: 3.446e-02 
+23-10-29 21:52:48.894 : <epoch:609, iter:  36,600, lr:1.000e-04> G_loss: 3.329e-02 
+23-10-29 21:54:42.409 : <epoch:613, iter:  36,800, lr:1.000e-04> G_loss: 3.588e-02 
+23-10-29 21:56:30.346 : <epoch:616, iter:  37,000, lr:1.000e-04> G_loss: 3.419e-02 
+23-10-29 21:56:30.391 : Saving the model.
+23-10-29 21:56:31.663 : ---1--> pollen.spd1.0098.png | 18.92dB
+23-10-29 21:56:32.042 : ---2--> pollen.spd2.0098.png | 19.58dB
+23-10-29 21:56:32.377 : ---3--> pollen.spd3.0098.png | 20.37dB
+23-10-29 21:56:32.717 : ---4--> pollen.spd5.0098.png | 21.92dB
+23-10-29 21:56:33.106 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-29 21:56:33.385 : <epoch:616, iter:  37,000, Average PSNR : 20.68dB
+
+23-10-29 21:58:20.200 : <epoch:619, iter:  37,200, lr:1.000e-04> G_loss: 3.731e-02 
+23-10-29 22:00:13.660 : <epoch:623, iter:  37,400, lr:1.000e-04> G_loss: 3.114e-02 
+23-10-29 22:02:01.285 : <epoch:626, iter:  37,600, lr:1.000e-04> G_loss: 3.592e-02 
+23-10-29 22:03:50.916 : <epoch:629, iter:  37,800, lr:1.000e-04> G_loss: 3.377e-02 
+23-10-29 22:05:43.976 : <epoch:633, iter:  38,000, lr:1.000e-04> G_loss: 3.462e-02 
+23-10-29 22:05:44.037 : Saving the model.
+23-10-29 22:05:45.316 : ---1--> pollen.spd1.0098.png | 18.87dB
+23-10-29 22:05:45.613 : ---2--> pollen.spd2.0098.png | 19.53dB
+23-10-29 22:05:45.967 : ---3--> pollen.spd3.0098.png | 20.31dB
+23-10-29 22:05:46.361 : ---4--> pollen.spd5.0098.png | 21.89dB
+23-10-29 22:05:46.714 : ---5--> pollen.spd8.0098.png | 22.56dB
+23-10-29 22:05:46.983 : <epoch:633, iter:  38,000, Average PSNR : 20.63dB
+
+23-10-29 22:07:32.859 : <epoch:636, iter:  38,200, lr:1.000e-04> G_loss: 3.432e-02 
+23-10-29 22:09:22.239 : <epoch:639, iter:  38,400, lr:1.000e-04> G_loss: 3.470e-02 
+23-10-29 22:11:14.825 : <epoch:643, iter:  38,600, lr:1.000e-04> G_loss: 3.566e-02 
+23-10-29 22:13:03.152 : <epoch:646, iter:  38,800, lr:1.000e-04> G_loss: 3.166e-02 
+23-10-29 22:14:51.675 : <epoch:649, iter:  39,000, lr:1.000e-04> G_loss: 3.312e-02 
+23-10-29 22:14:51.677 : Saving the model.
+23-10-29 22:14:51.943 : ---1--> pollen.spd1.0098.png | 18.82dB
+23-10-29 22:14:52.045 : ---2--> pollen.spd2.0098.png | 19.47dB
+23-10-29 22:14:52.146 : ---3--> pollen.spd3.0098.png | 20.27dB
+23-10-29 22:14:52.240 : ---4--> pollen.spd5.0098.png | 21.83dB
+23-10-29 22:14:52.415 : ---5--> pollen.spd8.0098.png | 22.49dB
+23-10-29 22:14:52.455 : <epoch:649, iter:  39,000, Average PSNR : 20.58dB
+
+23-10-29 22:16:44.879 : <epoch:653, iter:  39,200, lr:1.000e-04> G_loss: 3.398e-02 
+23-10-29 22:18:33.132 : <epoch:656, iter:  39,400, lr:1.000e-04> G_loss: 3.393e-02 
+23-10-29 22:20:22.107 : <epoch:659, iter:  39,600, lr:1.000e-04> G_loss: 3.156e-02 
+23-10-29 22:22:14.738 : <epoch:663, iter:  39,800, lr:1.000e-04> G_loss: 3.140e-02 
+23-10-29 22:24:02.867 : <epoch:666, iter:  40,000, lr:1.000e-04> G_loss: 3.488e-02 
+23-10-29 22:24:02.911 : Saving the model.
+23-10-29 22:24:04.164 : ---1--> pollen.spd1.0098.png | 18.94dB
+23-10-29 22:24:04.536 : ---2--> pollen.spd2.0098.png | 19.60dB
+23-10-29 22:24:04.835 : ---3--> pollen.spd3.0098.png | 20.39dB
+23-10-29 22:24:05.226 : ---4--> pollen.spd5.0098.png | 21.93dB
+23-10-29 22:24:05.549 : ---5--> pollen.spd8.0098.png | 22.61dB
+23-10-29 22:24:05.828 : <epoch:666, iter:  40,000, Average PSNR : 20.69dB
+
+23-10-29 22:25:52.318 : <epoch:669, iter:  40,200, lr:1.000e-04> G_loss: 3.503e-02 
+23-10-29 22:27:44.710 : <epoch:673, iter:  40,400, lr:1.000e-04> G_loss: 3.271e-02 
+23-10-29 22:29:32.779 : <epoch:676, iter:  40,600, lr:1.000e-04> G_loss: 3.490e-02 
+23-10-29 22:31:21.762 : <epoch:679, iter:  40,800, lr:1.000e-04> G_loss: 3.355e-02 
+23-10-29 22:33:15.201 : <epoch:683, iter:  41,000, lr:1.000e-04> G_loss: 3.239e-02 
+23-10-29 22:33:15.240 : Saving the model.
+23-10-29 22:33:16.600 : ---1--> pollen.spd1.0098.png | 18.93dB
+23-10-29 22:33:16.971 : ---2--> pollen.spd2.0098.png | 19.60dB
+23-10-29 22:33:17.327 : ---3--> pollen.spd3.0098.png | 20.40dB
+23-10-29 22:33:17.679 : ---4--> pollen.spd5.0098.png | 21.94dB
+23-10-29 22:33:17.979 : ---5--> pollen.spd8.0098.png | 22.62dB
+23-10-29 22:33:18.277 : <epoch:683, iter:  41,000, Average PSNR : 20.70dB
+
+23-10-29 22:35:03.881 : <epoch:686, iter:  41,200, lr:1.000e-04> G_loss: 3.771e-02 
+23-10-29 22:36:52.809 : <epoch:689, iter:  41,400, lr:1.000e-04> G_loss: 3.458e-02 
+23-10-29 22:38:45.533 : <epoch:693, iter:  41,600, lr:1.000e-04> G_loss: 3.435e-02 
+23-10-29 22:40:33.650 : <epoch:696, iter:  41,800, lr:1.000e-04> G_loss: 3.891e-02 
+23-10-29 22:42:22.679 : <epoch:699, iter:  42,000, lr:1.000e-04> G_loss: 3.378e-02 
+23-10-29 22:42:22.681 : Saving the model.
+23-10-29 22:42:22.930 : ---1--> pollen.spd1.0098.png | 18.88dB
+23-10-29 22:42:23.050 : ---2--> pollen.spd2.0098.png | 19.54dB
+23-10-29 22:42:23.151 : ---3--> pollen.spd3.0098.png | 20.34dB
+23-10-29 22:42:23.244 : ---4--> pollen.spd5.0098.png | 21.91dB
+23-10-29 22:42:23.337 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-29 22:42:23.377 : <epoch:699, iter:  42,000, Average PSNR : 20.65dB
+
+23-10-29 22:44:16.472 : <epoch:703, iter:  42,200, lr:1.000e-04> G_loss: 3.328e-02 
+23-10-29 22:46:04.592 : <epoch:706, iter:  42,400, lr:1.000e-04> G_loss: 3.627e-02 
+23-10-29 22:47:53.266 : <epoch:709, iter:  42,600, lr:1.000e-04> G_loss: 3.351e-02 
+23-10-29 22:49:45.835 : <epoch:713, iter:  42,800, lr:1.000e-04> G_loss: 3.381e-02 
+23-10-29 22:51:33.820 : <epoch:716, iter:  43,000, lr:1.000e-04> G_loss: 3.072e-02 
+23-10-29 22:51:33.844 : Saving the model.
+23-10-29 22:51:35.226 : ---1--> pollen.spd1.0098.png | 18.93dB
+23-10-29 22:51:35.559 : ---2--> pollen.spd2.0098.png | 19.60dB
+23-10-29 22:51:35.893 : ---3--> pollen.spd3.0098.png | 20.40dB
+23-10-29 22:51:36.235 : ---4--> pollen.spd5.0098.png | 21.96dB
+23-10-29 22:51:36.556 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-29 22:51:36.844 : <epoch:716, iter:  43,000, Average PSNR : 20.70dB
+
+23-10-29 22:53:23.297 : <epoch:719, iter:  43,200, lr:1.000e-04> G_loss: 3.626e-02 
+23-10-29 22:55:16.250 : <epoch:723, iter:  43,400, lr:1.000e-04> G_loss: 3.488e-02 
+23-10-29 22:57:04.227 : <epoch:726, iter:  43,600, lr:1.000e-04> G_loss: 3.519e-02 
+23-10-29 22:58:53.286 : <epoch:729, iter:  43,800, lr:1.000e-04> G_loss: 3.538e-02 
+23-10-29 23:00:46.623 : <epoch:733, iter:  44,000, lr:1.000e-04> G_loss: 3.614e-02 
+23-10-29 23:00:46.642 : Saving the model.
+23-10-29 23:00:47.883 : ---1--> pollen.spd1.0098.png | 18.87dB
+23-10-29 23:00:48.239 : ---2--> pollen.spd2.0098.png | 19.53dB
+23-10-29 23:00:48.591 : ---3--> pollen.spd3.0098.png | 20.32dB
+23-10-29 23:00:49.027 : ---4--> pollen.spd5.0098.png | 21.89dB
+23-10-29 23:00:49.349 : ---5--> pollen.spd8.0098.png | 22.56dB
+23-10-29 23:00:49.613 : <epoch:733, iter:  44,000, Average PSNR : 20.64dB
+
+23-10-29 23:02:35.279 : <epoch:736, iter:  44,200, lr:1.000e-04> G_loss: 3.479e-02 
+23-10-29 23:04:24.432 : <epoch:739, iter:  44,400, lr:1.000e-04> G_loss: 4.207e-02 
+23-10-29 23:06:16.916 : <epoch:743, iter:  44,600, lr:1.000e-04> G_loss: 3.409e-02 
+23-10-29 23:08:05.681 : <epoch:746, iter:  44,800, lr:1.000e-04> G_loss: 3.445e-02 
+23-10-29 23:09:54.877 : <epoch:749, iter:  45,000, lr:1.000e-04> G_loss: 3.559e-02 
+23-10-29 23:09:54.878 : Saving the model.
+23-10-29 23:09:55.158 : ---1--> pollen.spd1.0098.png | 18.89dB
+23-10-29 23:09:55.264 : ---2--> pollen.spd2.0098.png | 19.52dB
+23-10-29 23:09:55.383 : ---3--> pollen.spd3.0098.png | 20.30dB
+23-10-29 23:09:55.477 : ---4--> pollen.spd5.0098.png | 21.85dB
+23-10-29 23:09:55.570 : ---5--> pollen.spd8.0098.png | 22.51dB
+23-10-29 23:09:55.610 : <epoch:749, iter:  45,000, Average PSNR : 20.61dB
+
+23-10-29 23:11:48.773 : <epoch:753, iter:  45,200, lr:1.000e-04> G_loss: 3.242e-02 
+23-10-29 23:13:37.004 : <epoch:756, iter:  45,400, lr:1.000e-04> G_loss: 3.549e-02 
+23-10-29 23:15:26.043 : <epoch:759, iter:  45,600, lr:1.000e-04> G_loss: 4.010e-02 
+23-10-29 23:17:18.555 : <epoch:763, iter:  45,800, lr:1.000e-04> G_loss: 3.454e-02 
+23-10-29 23:19:07.335 : <epoch:766, iter:  46,000, lr:1.000e-04> G_loss: 3.751e-02 
+23-10-29 23:19:07.379 : Saving the model.
+23-10-29 23:19:08.713 : ---1--> pollen.spd1.0098.png | 18.92dB
+23-10-29 23:19:09.016 : ---2--> pollen.spd2.0098.png | 19.57dB
+23-10-29 23:19:09.392 : ---3--> pollen.spd3.0098.png | 20.35dB
+23-10-29 23:19:09.757 : ---4--> pollen.spd5.0098.png | 21.92dB
+23-10-29 23:19:10.113 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-29 23:19:10.396 : <epoch:766, iter:  46,000, Average PSNR : 20.67dB
+
+23-10-29 23:20:57.084 : <epoch:769, iter:  46,200, lr:1.000e-04> G_loss: 3.553e-02 
+23-10-29 23:22:50.326 : <epoch:773, iter:  46,400, lr:1.000e-04> G_loss: 3.255e-02 
+23-10-29 23:24:38.258 : <epoch:776, iter:  46,600, lr:1.000e-04> G_loss: 3.343e-02 
+23-10-29 23:26:27.672 : <epoch:779, iter:  46,800, lr:1.000e-04> G_loss: 3.486e-02 
+23-10-29 23:28:20.764 : <epoch:783, iter:  47,000, lr:1.000e-04> G_loss: 3.706e-02 
+23-10-29 23:28:20.803 : Saving the model.
+23-10-29 23:28:22.052 : ---1--> pollen.spd1.0098.png | 18.91dB
+23-10-29 23:28:22.440 : ---2--> pollen.spd2.0098.png | 19.54dB
+23-10-29 23:28:22.761 : ---3--> pollen.spd3.0098.png | 20.32dB
+23-10-29 23:28:23.113 : ---4--> pollen.spd5.0098.png | 21.88dB
+23-10-29 23:28:23.462 : ---5--> pollen.spd8.0098.png | 22.55dB
+23-10-29 23:28:23.746 : <epoch:783, iter:  47,000, Average PSNR : 20.64dB
+
+23-10-29 23:30:09.704 : <epoch:786, iter:  47,200, lr:1.000e-04> G_loss: 2.962e-02 
+23-10-29 23:31:58.763 : <epoch:789, iter:  47,400, lr:1.000e-04> G_loss: 3.421e-02 
+23-10-29 23:33:51.876 : <epoch:793, iter:  47,600, lr:1.000e-04> G_loss: 3.381e-02 
+23-10-29 23:35:40.889 : <epoch:796, iter:  47,800, lr:1.000e-04> G_loss: 3.654e-02 
+23-10-29 23:37:30.137 : <epoch:799, iter:  48,000, lr:1.000e-04> G_loss: 3.360e-02 
+23-10-29 23:37:30.139 : Saving the model.
+23-10-29 23:37:30.396 : ---1--> pollen.spd1.0098.png | 18.91dB
+23-10-29 23:37:30.513 : ---2--> pollen.spd2.0098.png | 19.58dB
+23-10-29 23:37:30.627 : ---3--> pollen.spd3.0098.png | 20.38dB
+23-10-29 23:37:30.722 : ---4--> pollen.spd5.0098.png | 21.96dB
+23-10-29 23:37:30.815 : ---5--> pollen.spd8.0098.png | 22.64dB
+23-10-29 23:37:30.855 : <epoch:799, iter:  48,000, Average PSNR : 20.70dB
+
+23-10-29 23:39:23.825 : <epoch:803, iter:  48,200, lr:1.000e-04> G_loss: 3.123e-02 
+23-10-29 23:41:12.164 : <epoch:806, iter:  48,400, lr:1.000e-04> G_loss: 3.565e-02 
+23-10-29 23:43:00.959 : <epoch:809, iter:  48,600, lr:1.000e-04> G_loss: 3.637e-02 
+23-10-29 23:44:53.241 : <epoch:813, iter:  48,800, lr:1.000e-04> G_loss: 3.796e-02 
+23-10-29 23:46:41.603 : <epoch:816, iter:  49,000, lr:1.000e-04> G_loss: 3.591e-02 
+23-10-29 23:46:41.612 : Saving the model.
+23-10-29 23:46:42.866 : ---1--> pollen.spd1.0098.png | 18.87dB
+23-10-29 23:46:43.239 : ---2--> pollen.spd2.0098.png | 19.52dB
+23-10-29 23:46:43.556 : ---3--> pollen.spd3.0098.png | 20.32dB
+23-10-29 23:46:43.965 : ---4--> pollen.spd5.0098.png | 21.91dB
+23-10-29 23:46:44.341 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-29 23:46:44.618 : <epoch:816, iter:  49,000, Average PSNR : 20.64dB
+
+23-10-29 23:48:31.763 : <epoch:819, iter:  49,200, lr:1.000e-04> G_loss: 3.483e-02 
+23-10-29 23:50:24.424 : <epoch:823, iter:  49,400, lr:1.000e-04> G_loss: 3.404e-02 
+23-10-29 23:52:12.890 : <epoch:826, iter:  49,600, lr:1.000e-04> G_loss: 3.234e-02 
+23-10-29 23:54:01.657 : <epoch:829, iter:  49,800, lr:1.000e-04> G_loss: 3.185e-02 
+23-10-29 23:55:54.078 : <epoch:833, iter:  50,000, lr:1.000e-04> G_loss: 3.647e-02 
+23-10-29 23:55:54.103 : Saving the model.
+23-10-29 23:55:55.382 : ---1--> pollen.spd1.0098.png | 18.86dB
+23-10-29 23:55:55.686 : ---2--> pollen.spd2.0098.png | 19.54dB
+23-10-29 23:55:56.028 : ---3--> pollen.spd3.0098.png | 20.34dB
+23-10-29 23:55:56.474 : ---4--> pollen.spd5.0098.png | 21.91dB
+23-10-29 23:55:56.810 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-29 23:55:57.105 : <epoch:833, iter:  50,000, Average PSNR : 20.65dB
+
+23-10-29 23:57:43.047 : <epoch:836, iter:  50,200, lr:1.000e-04> G_loss: 3.472e-02 
+23-10-29 23:59:32.349 : <epoch:839, iter:  50,400, lr:1.000e-04> G_loss: 3.383e-02 
+23-10-30 00:01:25.092 : <epoch:843, iter:  50,600, lr:1.000e-04> G_loss: 3.509e-02 
+23-10-30 00:03:13.583 : <epoch:846, iter:  50,800, lr:1.000e-04> G_loss: 3.602e-02 
+23-10-30 00:05:03.649 : <epoch:849, iter:  51,000, lr:1.000e-04> G_loss: 3.837e-02 
+23-10-30 00:05:03.650 : Saving the model.
+23-10-30 00:05:03.937 : ---1--> pollen.spd1.0098.png | 18.94dB
+23-10-30 00:05:04.041 : ---2--> pollen.spd2.0098.png | 19.59dB
+23-10-30 00:05:04.143 : ---3--> pollen.spd3.0098.png | 20.37dB
+23-10-30 00:05:04.237 : ---4--> pollen.spd5.0098.png | 21.92dB
+23-10-30 00:05:04.330 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-30 00:05:04.370 : <epoch:849, iter:  51,000, Average PSNR : 20.68dB
+
+23-10-30 00:06:57.337 : <epoch:853, iter:  51,200, lr:1.000e-04> G_loss: 3.116e-02 
+23-10-30 00:08:45.241 : <epoch:856, iter:  51,400, lr:1.000e-04> G_loss: 3.643e-02 
+23-10-30 00:10:34.699 : <epoch:859, iter:  51,600, lr:1.000e-04> G_loss: 3.611e-02 
+23-10-30 00:12:28.365 : <epoch:863, iter:  51,800, lr:1.000e-04> G_loss: 3.813e-02 
+23-10-30 00:14:16.159 : <epoch:866, iter:  52,000, lr:1.000e-04> G_loss: 3.276e-02 
+23-10-30 00:14:16.173 : Saving the model.
+23-10-30 00:14:17.416 : ---1--> pollen.spd1.0098.png | 18.95dB
+23-10-30 00:14:17.795 : ---2--> pollen.spd2.0098.png | 19.62dB
+23-10-30 00:14:18.138 : ---3--> pollen.spd3.0098.png | 20.41dB
+23-10-30 00:14:18.494 : ---4--> pollen.spd5.0098.png | 21.97dB
+23-10-30 00:14:18.888 : ---5--> pollen.spd8.0098.png | 22.65dB
+23-10-30 00:14:19.140 : <epoch:866, iter:  52,000, Average PSNR : 20.72dB
+
+23-10-30 00:16:06.091 : <epoch:869, iter:  52,200, lr:1.000e-04> G_loss: 3.352e-02 
+23-10-30 00:17:59.247 : <epoch:873, iter:  52,400, lr:1.000e-04> G_loss: 3.151e-02 
+23-10-30 00:19:47.652 : <epoch:876, iter:  52,600, lr:1.000e-04> G_loss: 3.436e-02 
+23-10-30 00:21:36.858 : <epoch:879, iter:  52,800, lr:1.000e-04> G_loss: 3.648e-02 
+23-10-30 00:23:30.194 : <epoch:883, iter:  53,000, lr:1.000e-04> G_loss: 3.390e-02 
+23-10-30 00:23:30.220 : Saving the model.
+23-10-30 00:23:31.447 : ---1--> pollen.spd1.0098.png | 18.96dB
+23-10-30 00:23:31.808 : ---2--> pollen.spd2.0098.png | 19.61dB
+23-10-30 00:23:32.169 : ---3--> pollen.spd3.0098.png | 20.39dB
+23-10-30 00:23:32.565 : ---4--> pollen.spd5.0098.png | 21.95dB
+23-10-30 00:23:32.927 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-30 00:23:33.210 : <epoch:883, iter:  53,000, Average PSNR : 20.71dB
+
+23-10-30 00:25:18.876 : <epoch:886, iter:  53,200, lr:1.000e-04> G_loss: 3.436e-02 
+23-10-30 00:27:08.095 : <epoch:889, iter:  53,400, lr:1.000e-04> G_loss: 3.671e-02 
+23-10-30 00:29:01.274 : <epoch:893, iter:  53,600, lr:1.000e-04> G_loss: 3.338e-02 
+23-10-30 00:30:49.427 : <epoch:896, iter:  53,800, lr:1.000e-04> G_loss: 3.146e-02 
+23-10-30 00:32:38.510 : <epoch:899, iter:  54,000, lr:1.000e-04> G_loss: 3.244e-02 
+23-10-30 00:32:38.511 : Saving the model.
+23-10-30 00:32:38.835 : ---1--> pollen.spd1.0098.png | 18.96dB
+23-10-30 00:32:38.939 : ---2--> pollen.spd2.0098.png | 19.61dB
+23-10-30 00:32:39.111 : ---3--> pollen.spd3.0098.png | 20.39dB
+23-10-30 00:32:39.205 : ---4--> pollen.spd5.0098.png | 21.95dB
+23-10-30 00:32:39.298 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-30 00:32:39.339 : <epoch:899, iter:  54,000, Average PSNR : 20.71dB
+
+23-10-30 00:34:32.109 : <epoch:903, iter:  54,200, lr:1.000e-04> G_loss: 3.507e-02 
+23-10-30 00:36:20.893 : <epoch:906, iter:  54,400, lr:1.000e-04> G_loss: 3.141e-02 
+23-10-30 00:38:09.445 : <epoch:909, iter:  54,600, lr:1.000e-04> G_loss: 3.349e-02 
+23-10-30 00:40:02.812 : <epoch:913, iter:  54,800, lr:1.000e-04> G_loss: 3.336e-02 
+23-10-30 00:41:50.332 : <epoch:916, iter:  55,000, lr:1.000e-04> G_loss: 3.439e-02 
+23-10-30 00:41:50.365 : Saving the model.
+23-10-30 00:41:51.635 : ---1--> pollen.spd1.0098.png | 18.91dB
+23-10-30 00:41:51.951 : ---2--> pollen.spd2.0098.png | 19.58dB
+23-10-30 00:41:52.268 : ---3--> pollen.spd3.0098.png | 20.39dB
+23-10-30 00:41:52.695 : ---4--> pollen.spd5.0098.png | 21.96dB
+23-10-30 00:41:53.056 : ---5--> pollen.spd8.0098.png | 22.65dB
+23-10-30 00:41:53.337 : <epoch:916, iter:  55,000, Average PSNR : 20.70dB
+
+23-10-30 00:43:40.597 : <epoch:919, iter:  55,200, lr:1.000e-04> G_loss: 3.700e-02 
+23-10-30 00:45:33.565 : <epoch:923, iter:  55,400, lr:1.000e-04> G_loss: 3.625e-02 
+23-10-30 00:47:21.704 : <epoch:926, iter:  55,600, lr:1.000e-04> G_loss: 3.122e-02 
+23-10-30 00:49:10.771 : <epoch:929, iter:  55,800, lr:1.000e-04> G_loss: 3.603e-02 
+23-10-30 00:51:03.146 : <epoch:933, iter:  56,000, lr:1.000e-04> G_loss: 3.363e-02 
+23-10-30 00:51:03.171 : Saving the model.
+23-10-30 00:51:04.470 : ---1--> pollen.spd1.0098.png | 18.91dB
+23-10-30 00:51:04.888 : ---2--> pollen.spd2.0098.png | 19.55dB
+23-10-30 00:51:05.142 : ---3--> pollen.spd3.0098.png | 20.33dB
+23-10-30 00:51:05.482 : ---4--> pollen.spd5.0098.png | 21.89dB
+23-10-30 00:51:05.902 : ---5--> pollen.spd8.0098.png | 22.57dB
+23-10-30 00:51:06.201 : <epoch:933, iter:  56,000, Average PSNR : 20.65dB
+
+23-10-30 00:52:52.445 : <epoch:936, iter:  56,200, lr:1.000e-04> G_loss: 3.378e-02 
+23-10-30 00:54:41.659 : <epoch:939, iter:  56,400, lr:1.000e-04> G_loss: 3.186e-02 
+23-10-30 00:56:34.474 : <epoch:943, iter:  56,600, lr:1.000e-04> G_loss: 2.891e-02 
+23-10-30 00:58:22.271 : <epoch:946, iter:  56,800, lr:1.000e-04> G_loss: 3.379e-02 
+23-10-30 01:00:11.398 : <epoch:949, iter:  57,000, lr:1.000e-04> G_loss: 3.631e-02 
+23-10-30 01:00:11.399 : Saving the model.
+23-10-30 01:00:11.666 : ---1--> pollen.spd1.0098.png | 18.85dB
+23-10-30 01:00:11.772 : ---2--> pollen.spd2.0098.png | 19.52dB
+23-10-30 01:00:11.872 : ---3--> pollen.spd3.0098.png | 20.32dB
+23-10-30 01:00:11.966 : ---4--> pollen.spd5.0098.png | 21.89dB
+23-10-30 01:00:12.059 : ---5--> pollen.spd8.0098.png | 22.57dB
+23-10-30 01:00:12.098 : <epoch:949, iter:  57,000, Average PSNR : 20.63dB
+
+23-10-30 01:02:05.199 : <epoch:953, iter:  57,200, lr:1.000e-04> G_loss: 3.342e-02 
+23-10-30 01:03:54.077 : <epoch:956, iter:  57,400, lr:1.000e-04> G_loss: 3.542e-02 
+23-10-30 01:05:43.060 : <epoch:959, iter:  57,600, lr:1.000e-04> G_loss: 3.444e-02 
+23-10-30 01:07:36.187 : <epoch:963, iter:  57,800, lr:1.000e-04> G_loss: 3.271e-02 
+23-10-30 01:09:24.209 : <epoch:966, iter:  58,000, lr:1.000e-04> G_loss: 3.533e-02 
+23-10-30 01:09:24.245 : Saving the model.
+23-10-30 01:09:25.530 : ---1--> pollen.spd1.0098.png | 18.90dB
+23-10-30 01:09:25.947 : ---2--> pollen.spd2.0098.png | 19.56dB
+23-10-30 01:09:26.238 : ---3--> pollen.spd3.0098.png | 20.36dB
+23-10-30 01:09:26.623 : ---4--> pollen.spd5.0098.png | 21.92dB
+23-10-30 01:09:26.966 : ---5--> pollen.spd8.0098.png | 22.61dB
+23-10-30 01:09:27.249 : <epoch:966, iter:  58,000, Average PSNR : 20.67dB
+
+23-10-30 01:11:13.716 : <epoch:969, iter:  58,200, lr:1.000e-04> G_loss: 3.711e-02 
+23-10-30 01:13:06.451 : <epoch:973, iter:  58,400, lr:1.000e-04> G_loss: 3.802e-02 
+23-10-30 01:14:54.769 : <epoch:976, iter:  58,600, lr:1.000e-04> G_loss: 3.376e-02 
+23-10-30 01:16:44.154 : <epoch:979, iter:  58,800, lr:1.000e-04> G_loss: 3.241e-02 
+23-10-30 01:18:36.936 : <epoch:983, iter:  59,000, lr:1.000e-04> G_loss: 3.615e-02 
+23-10-30 01:18:36.964 : Saving the model.
+23-10-30 01:18:38.223 : ---1--> pollen.spd1.0098.png | 18.95dB
+23-10-30 01:18:38.512 : ---2--> pollen.spd2.0098.png | 19.59dB
+23-10-30 01:18:38.867 : ---3--> pollen.spd3.0098.png | 20.36dB
+23-10-30 01:18:39.260 : ---4--> pollen.spd5.0098.png | 21.92dB
+23-10-30 01:18:39.607 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-30 01:18:39.897 : <epoch:983, iter:  59,000, Average PSNR : 20.68dB
+
+23-10-30 01:20:27.012 : <epoch:986, iter:  59,200, lr:1.000e-04> G_loss: 3.508e-02 
+23-10-30 01:22:15.606 : <epoch:989, iter:  59,400, lr:1.000e-04> G_loss: 3.511e-02 
+23-10-30 01:24:08.782 : <epoch:993, iter:  59,600, lr:1.000e-04> G_loss: 3.372e-02 
+23-10-30 01:25:56.846 : <epoch:996, iter:  59,800, lr:1.000e-04> G_loss: 3.613e-02 
+23-10-30 01:27:46.139 : <epoch:999, iter:  60,000, lr:1.000e-04> G_loss: 3.199e-02 
+23-10-30 01:27:46.141 : Saving the model.
+23-10-30 01:27:46.401 : ---1--> pollen.spd1.0098.png | 18.89dB
+23-10-30 01:27:46.505 : ---2--> pollen.spd2.0098.png | 19.56dB
+23-10-30 01:27:46.614 : ---3--> pollen.spd3.0098.png | 20.36dB
+23-10-30 01:27:46.708 : ---4--> pollen.spd5.0098.png | 21.94dB
+23-10-30 01:27:46.802 : ---5--> pollen.spd8.0098.png | 22.62dB
+23-10-30 01:27:46.842 : <epoch:999, iter:  60,000, Average PSNR : 20.68dB
+
+23-10-30 01:29:39.774 : <epoch:1003, iter:  60,200, lr:1.000e-04> G_loss: 3.186e-02 
+23-10-30 01:31:27.911 : <epoch:1006, iter:  60,400, lr:1.000e-04> G_loss: 3.435e-02 
+23-10-30 01:33:17.529 : <epoch:1009, iter:  60,600, lr:1.000e-04> G_loss: 3.767e-02 
+23-10-30 01:35:10.908 : <epoch:1013, iter:  60,800, lr:1.000e-04> G_loss: 3.587e-02 
+23-10-30 01:36:59.642 : <epoch:1016, iter:  61,000, lr:1.000e-04> G_loss: 3.728e-02 
+23-10-30 01:36:59.656 : Saving the model.
+23-10-30 01:37:00.971 : ---1--> pollen.spd1.0098.png | 18.96dB
+23-10-30 01:37:01.328 : ---2--> pollen.spd2.0098.png | 19.61dB
+23-10-30 01:37:01.626 : ---3--> pollen.spd3.0098.png | 20.38dB
+23-10-30 01:37:01.979 : ---4--> pollen.spd5.0098.png | 21.94dB
+23-10-30 01:37:02.344 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-30 01:37:02.638 : <epoch:1016, iter:  61,000, Average PSNR : 20.70dB
+
+23-10-30 01:38:49.400 : <epoch:1019, iter:  61,200, lr:1.000e-04> G_loss: 3.670e-02 
+23-10-30 01:40:42.827 : <epoch:1023, iter:  61,400, lr:1.000e-04> G_loss: 3.616e-02 
+23-10-30 01:42:30.917 : <epoch:1026, iter:  61,600, lr:1.000e-04> G_loss: 3.394e-02 
+23-10-30 01:44:20.442 : <epoch:1029, iter:  61,800, lr:1.000e-04> G_loss: 3.465e-02 
+23-10-30 01:46:13.534 : <epoch:1033, iter:  62,000, lr:1.000e-04> G_loss: 3.761e-02 
+23-10-30 01:46:13.536 : Saving the model.
+23-10-30 01:46:14.808 : ---1--> pollen.spd1.0098.png | 18.92dB
+23-10-30 01:46:15.116 : ---2--> pollen.spd2.0098.png | 19.58dB
+23-10-30 01:46:15.452 : ---3--> pollen.spd3.0098.png | 20.37dB
+23-10-30 01:46:15.844 : ---4--> pollen.spd5.0098.png | 21.95dB
+23-10-30 01:46:16.161 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-30 01:46:16.417 : <epoch:1033, iter:  62,000, Average PSNR : 20.69dB
+
+23-10-30 01:48:02.052 : <epoch:1036, iter:  62,200, lr:1.000e-04> G_loss: 3.277e-02 
+23-10-30 01:49:51.275 : <epoch:1039, iter:  62,400, lr:1.000e-04> G_loss: 3.573e-02 
+23-10-30 01:51:44.600 : <epoch:1043, iter:  62,600, lr:1.000e-04> G_loss: 3.425e-02 
+23-10-30 01:53:31.753 : <epoch:1046, iter:  62,800, lr:1.000e-04> G_loss: 3.269e-02 
+23-10-30 01:55:21.439 : <epoch:1049, iter:  63,000, lr:1.000e-04> G_loss: 3.192e-02 
+23-10-30 01:55:21.440 : Saving the model.
+23-10-30 01:55:21.769 : ---1--> pollen.spd1.0098.png | 18.91dB
+23-10-30 01:55:21.897 : ---2--> pollen.spd2.0098.png | 19.59dB
+23-10-30 01:55:21.997 : ---3--> pollen.spd3.0098.png | 20.40dB
+23-10-30 01:55:22.091 : ---4--> pollen.spd5.0098.png | 21.97dB
+23-10-30 01:55:22.185 : ---5--> pollen.spd8.0098.png | 22.66dB
+23-10-30 01:55:22.225 : <epoch:1049, iter:  63,000, Average PSNR : 20.71dB
+
+23-10-30 01:57:15.354 : <epoch:1053, iter:  63,200, lr:1.000e-04> G_loss: 3.600e-02 
+23-10-30 01:59:03.242 : <epoch:1056, iter:  63,400, lr:1.000e-04> G_loss: 3.540e-02 
+23-10-30 02:00:52.613 : <epoch:1059, iter:  63,600, lr:1.000e-04> G_loss: 3.344e-02 
+23-10-30 02:02:45.482 : <epoch:1063, iter:  63,800, lr:1.000e-04> G_loss: 3.194e-02 
+23-10-30 02:04:33.366 : <epoch:1066, iter:  64,000, lr:1.000e-04> G_loss: 3.302e-02 
+23-10-30 02:04:33.404 : Saving the model.
+23-10-30 02:04:34.600 : ---1--> pollen.spd1.0098.png | 18.99dB
+23-10-30 02:04:35.065 : ---2--> pollen.spd2.0098.png | 19.64dB
+23-10-30 02:04:35.325 : ---3--> pollen.spd3.0098.png | 20.43dB
+23-10-30 02:04:35.734 : ---4--> pollen.spd5.0098.png | 21.99dB
+23-10-30 02:04:36.078 : ---5--> pollen.spd8.0098.png | 22.67dB
+23-10-30 02:04:36.388 : <epoch:1066, iter:  64,000, Average PSNR : 20.74dB
+
+23-10-30 02:06:23.332 : <epoch:1069, iter:  64,200, lr:1.000e-04> G_loss: 3.601e-02 
+23-10-30 02:08:16.127 : <epoch:1073, iter:  64,400, lr:1.000e-04> G_loss: 3.623e-02 
+23-10-30 02:10:05.076 : <epoch:1076, iter:  64,600, lr:1.000e-04> G_loss: 3.119e-02 
+23-10-30 02:11:53.906 : <epoch:1079, iter:  64,800, lr:1.000e-04> G_loss: 3.205e-02 
+23-10-30 02:13:46.975 : <epoch:1083, iter:  65,000, lr:1.000e-04> G_loss: 3.405e-02 
+23-10-30 02:13:47.001 : Saving the model.
+23-10-30 02:13:48.273 : ---1--> pollen.spd1.0098.png | 18.92dB
+23-10-30 02:13:48.611 : ---2--> pollen.spd2.0098.png | 19.58dB
+23-10-30 02:13:48.959 : ---3--> pollen.spd3.0098.png | 20.38dB
+23-10-30 02:13:49.341 : ---4--> pollen.spd5.0098.png | 21.95dB
+23-10-30 02:13:49.684 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-30 02:13:49.971 : <epoch:1083, iter:  65,000, Average PSNR : 20.69dB
+
+23-10-30 02:15:35.805 : <epoch:1086, iter:  65,200, lr:1.000e-04> G_loss: 2.955e-02 
+23-10-30 02:17:24.969 : <epoch:1089, iter:  65,400, lr:1.000e-04> G_loss: 3.574e-02 
+23-10-30 02:19:18.152 : <epoch:1093, iter:  65,600, lr:1.000e-04> G_loss: 3.099e-02 
+23-10-30 02:21:07.246 : <epoch:1096, iter:  65,800, lr:1.000e-04> G_loss: 3.824e-02 
+23-10-30 02:22:55.844 : <epoch:1099, iter:  66,000, lr:1.000e-04> G_loss: 3.452e-02 
+23-10-30 02:22:55.845 : Saving the model.
+23-10-30 02:22:56.100 : ---1--> pollen.spd1.0098.png | 18.97dB
+23-10-30 02:22:56.212 : ---2--> pollen.spd2.0098.png | 19.63dB
+23-10-30 02:22:56.337 : ---3--> pollen.spd3.0098.png | 20.41dB
+23-10-30 02:22:56.470 : ---4--> pollen.spd5.0098.png | 21.98dB
+23-10-30 02:22:56.653 : ---5--> pollen.spd8.0098.png | 22.66dB
+23-10-30 02:22:56.693 : <epoch:1099, iter:  66,000, Average PSNR : 20.73dB
+
+23-10-30 02:24:49.996 : <epoch:1103, iter:  66,200, lr:1.000e-04> G_loss: 3.824e-02 
+23-10-30 02:26:37.928 : <epoch:1106, iter:  66,400, lr:1.000e-04> G_loss: 3.501e-02 
+23-10-30 02:28:26.975 : <epoch:1109, iter:  66,600, lr:1.000e-04> G_loss: 3.316e-02 
+23-10-30 02:30:20.215 : <epoch:1113, iter:  66,800, lr:1.000e-04> G_loss: 3.276e-02 
+23-10-30 02:32:08.078 : <epoch:1116, iter:  67,000, lr:1.000e-04> G_loss: 3.324e-02 
+23-10-30 02:32:08.102 : Saving the model.
+23-10-30 02:32:09.324 : ---1--> pollen.spd1.0098.png | 18.86dB
+23-10-30 02:32:09.688 : ---2--> pollen.spd2.0098.png | 19.56dB
+23-10-30 02:32:10.034 : ---3--> pollen.spd3.0098.png | 20.38dB
+23-10-30 02:32:10.448 : ---4--> pollen.spd5.0098.png | 21.96dB
+23-10-30 02:32:10.771 : ---5--> pollen.spd8.0098.png | 22.66dB
+23-10-30 02:32:11.075 : <epoch:1116, iter:  67,000, Average PSNR : 20.68dB
+
+23-10-30 02:33:58.573 : <epoch:1119, iter:  67,200, lr:1.000e-04> G_loss: 3.428e-02 
+23-10-30 02:35:51.245 : <epoch:1123, iter:  67,400, lr:1.000e-04> G_loss: 3.527e-02 
+23-10-30 02:37:39.847 : <epoch:1126, iter:  67,600, lr:1.000e-04> G_loss: 3.181e-02 
+23-10-30 02:39:28.818 : <epoch:1129, iter:  67,800, lr:1.000e-04> G_loss: 3.093e-02 
+23-10-30 02:41:21.476 : <epoch:1133, iter:  68,000, lr:1.000e-04> G_loss: 3.389e-02 
+23-10-30 02:41:21.481 : Saving the model.
+23-10-30 02:41:22.739 : ---1--> pollen.spd1.0098.png | 19.01dB
+23-10-30 02:41:23.159 : ---2--> pollen.spd2.0098.png | 19.67dB
+23-10-30 02:41:23.468 : ---3--> pollen.spd3.0098.png | 20.46dB
+23-10-30 02:41:23.796 : ---4--> pollen.spd5.0098.png | 22.03dB
+23-10-30 02:41:24.146 : ---5--> pollen.spd8.0098.png | 22.71dB
+23-10-30 02:41:24.423 : <epoch:1133, iter:  68,000, Average PSNR : 20.78dB
+
+23-10-30 02:43:10.133 : <epoch:1136, iter:  68,200, lr:1.000e-04> G_loss: 3.350e-02 
+23-10-30 02:44:59.682 : <epoch:1139, iter:  68,400, lr:1.000e-04> G_loss: 3.562e-02 
+23-10-30 02:46:52.114 : <epoch:1143, iter:  68,600, lr:1.000e-04> G_loss: 3.157e-02 
+23-10-30 02:48:40.326 : <epoch:1146, iter:  68,800, lr:1.000e-04> G_loss: 3.318e-02 
+23-10-30 02:50:29.008 : <epoch:1149, iter:  69,000, lr:1.000e-04> G_loss: 3.504e-02 
+23-10-30 02:50:29.010 : Saving the model.
+23-10-30 02:50:29.305 : ---1--> pollen.spd1.0098.png | 18.97dB
+23-10-30 02:50:29.412 : ---2--> pollen.spd2.0098.png | 19.63dB
+23-10-30 02:50:29.516 : ---3--> pollen.spd3.0098.png | 20.42dB
+23-10-30 02:50:29.610 : ---4--> pollen.spd5.0098.png | 21.99dB
+23-10-30 02:50:29.703 : ---5--> pollen.spd8.0098.png | 22.67dB
+23-10-30 02:50:29.743 : <epoch:1149, iter:  69,000, Average PSNR : 20.73dB
+
+23-10-30 02:52:22.061 : <epoch:1153, iter:  69,200, lr:1.000e-04> G_loss: 3.132e-02 
+23-10-30 02:54:10.319 : <epoch:1156, iter:  69,400, lr:1.000e-04> G_loss: 3.429e-02 
+23-10-30 02:55:59.525 : <epoch:1159, iter:  69,600, lr:1.000e-04> G_loss: 3.599e-02 
+23-10-30 02:57:52.413 : <epoch:1163, iter:  69,800, lr:1.000e-04> G_loss: 3.508e-02 
+23-10-30 02:59:40.639 : <epoch:1166, iter:  70,000, lr:1.000e-04> G_loss: 3.576e-02 
+23-10-30 02:59:40.695 : Saving the model.
+23-10-30 02:59:41.984 : ---1--> pollen.spd1.0098.png | 18.88dB
+23-10-30 02:59:42.315 : ---2--> pollen.spd2.0098.png | 19.55dB
+23-10-30 02:59:42.608 : ---3--> pollen.spd3.0098.png | 20.35dB
+23-10-30 02:59:43.027 : ---4--> pollen.spd5.0098.png | 21.93dB
+23-10-30 02:59:43.407 : ---5--> pollen.spd8.0098.png | 22.61dB
+23-10-30 02:59:43.687 : <epoch:1166, iter:  70,000, Average PSNR : 20.67dB
+
+23-10-30 03:01:30.405 : <epoch:1169, iter:  70,200, lr:1.000e-04> G_loss: 3.723e-02 
+23-10-30 03:03:23.632 : <epoch:1173, iter:  70,400, lr:1.000e-04> G_loss: 3.117e-02 
+23-10-30 03:05:11.995 : <epoch:1176, iter:  70,600, lr:1.000e-04> G_loss: 3.555e-02 
+23-10-30 03:07:01.171 : <epoch:1179, iter:  70,800, lr:1.000e-04> G_loss: 3.360e-02 
+23-10-30 03:08:54.001 : <epoch:1183, iter:  71,000, lr:1.000e-04> G_loss: 3.984e-02 
+23-10-30 03:08:54.030 : Saving the model.
+23-10-30 03:08:55.350 : ---1--> pollen.spd1.0098.png | 18.96dB
+23-10-30 03:08:55.710 : ---2--> pollen.spd2.0098.png | 19.61dB
+23-10-30 03:08:56.040 : ---3--> pollen.spd3.0098.png | 20.39dB
+23-10-30 03:08:56.467 : ---4--> pollen.spd5.0098.png | 21.94dB
+23-10-30 03:08:56.865 : ---5--> pollen.spd8.0098.png | 22.62dB
+23-10-30 03:08:57.164 : <epoch:1183, iter:  71,000, Average PSNR : 20.70dB
+
+23-10-30 03:10:43.960 : <epoch:1186, iter:  71,200, lr:1.000e-04> G_loss: 3.560e-02 
+23-10-30 03:12:32.881 : <epoch:1189, iter:  71,400, lr:1.000e-04> G_loss: 3.572e-02 
+23-10-30 03:14:25.608 : <epoch:1193, iter:  71,600, lr:1.000e-04> G_loss: 3.344e-02 
+23-10-30 03:16:14.467 : <epoch:1196, iter:  71,800, lr:1.000e-04> G_loss: 3.614e-02 
+23-10-30 03:18:03.538 : <epoch:1199, iter:  72,000, lr:1.000e-04> G_loss: 3.728e-02 
+23-10-30 03:18:03.539 : Saving the model.
+23-10-30 03:18:03.795 : ---1--> pollen.spd1.0098.png | 18.90dB
+23-10-30 03:18:03.901 : ---2--> pollen.spd2.0098.png | 19.54dB
+23-10-30 03:18:04.001 : ---3--> pollen.spd3.0098.png | 20.31dB
+23-10-30 03:18:04.095 : ---4--> pollen.spd5.0098.png | 21.87dB
+23-10-30 03:18:04.189 : ---5--> pollen.spd8.0098.png | 22.55dB
+23-10-30 03:18:04.229 : <epoch:1199, iter:  72,000, Average PSNR : 20.63dB
+
+23-10-30 03:19:57.306 : <epoch:1203, iter:  72,200, lr:1.000e-04> G_loss: 3.325e-02 
+23-10-30 03:21:45.229 : <epoch:1206, iter:  72,400, lr:1.000e-04> G_loss: 3.554e-02 
+23-10-30 03:23:34.697 : <epoch:1209, iter:  72,600, lr:1.000e-04> G_loss: 3.629e-02 
+23-10-30 03:25:27.150 : <epoch:1213, iter:  72,800, lr:1.000e-04> G_loss: 3.460e-02 
+23-10-30 03:27:14.907 : <epoch:1216, iter:  73,000, lr:1.000e-04> G_loss: 3.115e-02 
+23-10-30 03:27:14.935 : Saving the model.
+23-10-30 03:27:16.249 : ---1--> pollen.spd1.0098.png | 18.98dB
+23-10-30 03:27:16.531 : ---2--> pollen.spd2.0098.png | 19.63dB
+23-10-30 03:27:16.923 : ---3--> pollen.spd3.0098.png | 20.43dB
+23-10-30 03:27:17.301 : ---4--> pollen.spd5.0098.png | 22.00dB
+23-10-30 03:27:17.673 : ---5--> pollen.spd8.0098.png | 22.68dB
+23-10-30 03:27:17.946 : <epoch:1216, iter:  73,000, Average PSNR : 20.74dB
+
+23-10-30 03:29:04.847 : <epoch:1219, iter:  73,200, lr:1.000e-04> G_loss: 3.598e-02 
+23-10-30 03:30:57.153 : <epoch:1223, iter:  73,400, lr:1.000e-04> G_loss: 3.279e-02 
+23-10-30 03:32:45.591 : <epoch:1226, iter:  73,600, lr:1.000e-04> G_loss: 3.498e-02 
+23-10-30 03:34:35.532 : <epoch:1229, iter:  73,800, lr:1.000e-04> G_loss: 3.234e-02 
+23-10-30 03:36:28.519 : <epoch:1233, iter:  74,000, lr:1.000e-04> G_loss: 3.469e-02 
+23-10-30 03:36:28.568 : Saving the model.
+23-10-30 03:36:29.806 : ---1--> pollen.spd1.0098.png | 18.97dB
+23-10-30 03:36:30.127 : ---2--> pollen.spd2.0098.png | 19.61dB
+23-10-30 03:36:30.461 : ---3--> pollen.spd3.0098.png | 20.40dB
+23-10-30 03:36:30.896 : ---4--> pollen.spd5.0098.png | 21.97dB
+23-10-30 03:36:31.267 : ---5--> pollen.spd8.0098.png | 22.66dB
+23-10-30 03:36:31.557 : <epoch:1233, iter:  74,000, Average PSNR : 20.72dB
+
+23-10-30 03:38:16.983 : <epoch:1236, iter:  74,200, lr:1.000e-04> G_loss: 3.463e-02 
+23-10-30 03:40:06.590 : <epoch:1239, iter:  74,400, lr:1.000e-04> G_loss: 3.447e-02 
+23-10-30 03:41:59.225 : <epoch:1243, iter:  74,600, lr:1.000e-04> G_loss: 3.490e-02 
+23-10-30 03:43:47.578 : <epoch:1246, iter:  74,800, lr:1.000e-04> G_loss: 3.389e-02 
+23-10-30 03:45:36.875 : <epoch:1249, iter:  75,000, lr:1.000e-04> G_loss: 3.492e-02 
+23-10-30 03:45:36.876 : Saving the model.
+23-10-30 03:45:37.134 : ---1--> pollen.spd1.0098.png | 18.90dB
+23-10-30 03:45:37.244 : ---2--> pollen.spd2.0098.png | 19.57dB
+23-10-30 03:45:37.348 : ---3--> pollen.spd3.0098.png | 20.37dB
+23-10-30 03:45:37.442 : ---4--> pollen.spd5.0098.png | 21.94dB
+23-10-30 03:45:37.535 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-30 03:45:37.575 : <epoch:1249, iter:  75,000, Average PSNR : 20.68dB
+
+23-10-30 03:47:30.296 : <epoch:1253, iter:  75,200, lr:1.000e-04> G_loss: 3.579e-02 
+23-10-30 03:49:17.923 : <epoch:1256, iter:  75,400, lr:1.000e-04> G_loss: 3.767e-02 
+23-10-30 03:51:07.253 : <epoch:1259, iter:  75,600, lr:1.000e-04> G_loss: 3.912e-02 
+23-10-30 03:53:00.097 : <epoch:1263, iter:  75,800, lr:1.000e-04> G_loss: 3.462e-02 
+23-10-30 03:54:48.217 : <epoch:1266, iter:  76,000, lr:1.000e-04> G_loss: 3.310e-02 
+23-10-30 03:54:48.231 : Saving the model.
+23-10-30 03:54:49.511 : ---1--> pollen.spd1.0098.png | 18.95dB
+23-10-30 03:54:49.857 : ---2--> pollen.spd2.0098.png | 19.61dB
+23-10-30 03:54:50.197 : ---3--> pollen.spd3.0098.png | 20.42dB
+23-10-30 03:54:50.568 : ---4--> pollen.spd5.0098.png | 22.00dB
+23-10-30 03:54:50.932 : ---5--> pollen.spd8.0098.png | 22.70dB
+23-10-30 03:54:51.210 : <epoch:1266, iter:  76,000, Average PSNR : 20.74dB
+
+23-10-30 03:56:37.944 : <epoch:1269, iter:  76,200, lr:1.000e-04> G_loss: 3.596e-02 
+23-10-30 03:58:30.987 : <epoch:1273, iter:  76,400, lr:1.000e-04> G_loss: 3.637e-02 
+23-10-30 04:00:19.468 : <epoch:1276, iter:  76,600, lr:1.000e-04> G_loss: 3.216e-02 
+23-10-30 04:02:08.678 : <epoch:1279, iter:  76,800, lr:1.000e-04> G_loss: 3.289e-02 
+23-10-30 04:04:02.114 : <epoch:1283, iter:  77,000, lr:1.000e-04> G_loss: 3.449e-02 
+23-10-30 04:04:02.143 : Saving the model.
+23-10-30 04:04:03.463 : ---1--> pollen.spd1.0098.png | 18.92dB
+23-10-30 04:04:03.790 : ---2--> pollen.spd2.0098.png | 19.58dB
+23-10-30 04:04:04.153 : ---3--> pollen.spd3.0098.png | 20.38dB
+23-10-30 04:04:04.540 : ---4--> pollen.spd5.0098.png | 21.95dB
+23-10-30 04:04:04.930 : ---5--> pollen.spd8.0098.png | 22.63dB
+23-10-30 04:04:05.196 : <epoch:1283, iter:  77,000, Average PSNR : 20.69dB
+
+23-10-30 04:05:51.388 : <epoch:1286, iter:  77,200, lr:1.000e-04> G_loss: 3.713e-02 
+23-10-30 04:07:40.483 : <epoch:1289, iter:  77,400, lr:1.000e-04> G_loss: 3.649e-02 
+23-10-30 04:09:33.466 : <epoch:1293, iter:  77,600, lr:1.000e-04> G_loss: 3.139e-02 
+23-10-30 04:11:21.380 : <epoch:1296, iter:  77,800, lr:1.000e-04> G_loss: 3.548e-02 
+23-10-30 04:13:10.825 : <epoch:1299, iter:  78,000, lr:1.000e-04> G_loss: 3.515e-02 
+23-10-30 04:13:10.827 : Saving the model.
+23-10-30 04:13:11.096 : ---1--> pollen.spd1.0098.png | 18.98dB
+23-10-30 04:13:11.209 : ---2--> pollen.spd2.0098.png | 19.64dB
+23-10-30 04:13:11.307 : ---3--> pollen.spd3.0098.png | 20.43dB
+23-10-30 04:13:11.401 : ---4--> pollen.spd5.0098.png | 21.99dB
+23-10-30 04:13:11.495 : ---5--> pollen.spd8.0098.png | 22.68dB
+23-10-30 04:13:11.535 : <epoch:1299, iter:  78,000, Average PSNR : 20.74dB
+
+23-10-30 04:15:04.720 : <epoch:1303, iter:  78,200, lr:1.000e-04> G_loss: 3.636e-02 
+23-10-30 04:16:53.100 : <epoch:1306, iter:  78,400, lr:1.000e-04> G_loss: 3.612e-02 
+23-10-30 04:18:42.333 : <epoch:1309, iter:  78,600, lr:1.000e-04> G_loss: 3.434e-02 
+23-10-30 04:20:35.549 : <epoch:1313, iter:  78,800, lr:1.000e-04> G_loss: 3.143e-02 
+23-10-30 04:22:23.075 : <epoch:1316, iter:  79,000, lr:1.000e-04> G_loss: 3.113e-02 
+23-10-30 04:22:23.124 : Saving the model.
+23-10-30 04:22:24.308 : ---1--> pollen.spd1.0098.png | 18.95dB
+23-10-30 04:22:24.719 : ---2--> pollen.spd2.0098.png | 19.62dB
+23-10-30 04:22:25.021 : ---3--> pollen.spd3.0098.png | 20.41dB
+23-10-30 04:22:25.413 : ---4--> pollen.spd5.0098.png | 21.99dB
+23-10-30 04:22:25.766 : ---5--> pollen.spd8.0098.png | 22.68dB
+23-10-30 04:22:26.062 : <epoch:1316, iter:  79,000, Average PSNR : 20.73dB
+
+23-10-30 04:24:12.890 : <epoch:1319, iter:  79,200, lr:1.000e-04> G_loss: 3.479e-02 
+23-10-30 04:26:05.638 : <epoch:1323, iter:  79,400, lr:1.000e-04> G_loss: 3.653e-02 
+23-10-30 04:27:54.037 : <epoch:1326, iter:  79,600, lr:1.000e-04> G_loss: 3.423e-02 
+23-10-30 04:29:43.228 : <epoch:1329, iter:  79,800, lr:1.000e-04> G_loss: 3.645e-02 
+23-10-30 04:31:36.022 : <epoch:1333, iter:  80,000, lr:1.000e-04> G_loss: 3.343e-02 
+23-10-30 04:31:36.032 : Saving the model.
+23-10-30 04:31:37.290 : ---1--> pollen.spd1.0098.png | 18.97dB
+23-10-30 04:31:37.635 : ---2--> pollen.spd2.0098.png | 19.63dB
+23-10-30 04:31:37.992 : ---3--> pollen.spd3.0098.png | 20.42dB
+23-10-30 04:31:38.343 : ---4--> pollen.spd5.0098.png | 21.99dB
+23-10-30 04:31:38.732 : ---5--> pollen.spd8.0098.png | 22.68dB
+23-10-30 04:31:39.018 : <epoch:1333, iter:  80,000, Average PSNR : 20.74dB
+
+23-10-30 04:33:24.810 : <epoch:1336, iter:  80,200, lr:1.000e-04> G_loss: 3.866e-02 
+23-10-30 04:35:14.639 : <epoch:1339, iter:  80,400, lr:1.000e-04> G_loss: 3.664e-02 
+23-10-30 04:37:07.476 : <epoch:1343, iter:  80,600, lr:1.000e-04> G_loss: 3.352e-02 
+23-10-30 04:38:55.860 : <epoch:1346, iter:  80,800, lr:1.000e-04> G_loss: 3.311e-02 
+23-10-30 04:40:44.907 : <epoch:1349, iter:  81,000, lr:1.000e-04> G_loss: 3.413e-02 
+23-10-30 04:40:44.909 : Saving the model.
+23-10-30 04:40:45.166 : ---1--> pollen.spd1.0098.png | 18.94dB
+23-10-30 04:40:45.279 : ---2--> pollen.spd2.0098.png | 19.61dB
+23-10-30 04:40:45.378 : ---3--> pollen.spd3.0098.png | 20.40dB
+23-10-30 04:40:45.473 : ---4--> pollen.spd5.0098.png | 21.97dB
+23-10-30 04:40:45.568 : ---5--> pollen.spd8.0098.png | 22.65dB
+23-10-30 04:40:45.607 : <epoch:1349, iter:  81,000, Average PSNR : 20.71dB
+
+23-10-30 04:42:38.389 : <epoch:1353, iter:  81,200, lr:1.000e-04> G_loss: 3.283e-02 
+23-10-30 04:44:27.267 : <epoch:1356, iter:  81,400, lr:1.000e-04> G_loss: 3.477e-02 
+23-10-30 04:46:16.456 : <epoch:1359, iter:  81,600, lr:1.000e-04> G_loss: 3.542e-02 
+23-10-30 04:48:09.220 : <epoch:1363, iter:  81,800, lr:1.000e-04> G_loss: 3.527e-02 
+23-10-30 04:49:58.240 : <epoch:1366, iter:  82,000, lr:1.000e-04> G_loss: 3.294e-02 
+23-10-30 04:49:58.257 : Saving the model.
+23-10-30 04:49:59.546 : ---1--> pollen.spd1.0098.png | 19.03dB
+23-10-30 04:49:59.872 : ---2--> pollen.spd2.0098.png | 19.68dB
+23-10-30 04:50:00.178 : ---3--> pollen.spd3.0098.png | 20.46dB
+23-10-30 04:50:00.588 : ---4--> pollen.spd5.0098.png | 22.01dB
+23-10-30 04:50:00.945 : ---5--> pollen.spd8.0098.png | 22.70dB
+23-10-30 04:50:01.229 : <epoch:1366, iter:  82,000, Average PSNR : 20.78dB
+
+23-10-30 04:51:47.311 : <epoch:1369, iter:  82,200, lr:1.000e-04> G_loss: 3.246e-02 
+23-10-30 04:53:40.624 : <epoch:1373, iter:  82,400, lr:1.000e-04> G_loss: 3.346e-02 
+23-10-30 04:55:28.990 : <epoch:1376, iter:  82,600, lr:1.000e-04> G_loss: 3.546e-02 
+23-10-30 04:57:18.263 : <epoch:1379, iter:  82,800, lr:1.000e-04> G_loss: 2.965e-02 
+23-10-30 04:59:11.985 : <epoch:1383, iter:  83,000, lr:1.000e-04> G_loss: 3.285e-02 
+23-10-30 04:59:12.020 : Saving the model.
+23-10-30 04:59:13.327 : ---1--> pollen.spd1.0098.png | 18.93dB
+23-10-30 04:59:13.678 : ---2--> pollen.spd2.0098.png | 19.59dB
+23-10-30 04:59:13.994 : ---3--> pollen.spd3.0098.png | 20.39dB
+23-10-30 04:59:14.361 : ---4--> pollen.spd5.0098.png | 21.96dB
+23-10-30 04:59:14.726 : ---5--> pollen.spd8.0098.png | 22.65dB
+23-10-30 04:59:15.053 : <epoch:1383, iter:  83,000, Average PSNR : 20.70dB
+
+23-10-30 05:01:00.455 : <epoch:1386, iter:  83,200, lr:1.000e-04> G_loss: 3.328e-02 
+23-10-30 05:02:49.704 : <epoch:1389, iter:  83,400, lr:1.000e-04> G_loss: 3.483e-02 
+23-10-30 05:04:43.079 : <epoch:1393, iter:  83,600, lr:1.000e-04> G_loss: 3.552e-02 
+23-10-30 05:06:30.659 : <epoch:1396, iter:  83,800, lr:1.000e-04> G_loss: 3.137e-02 
+23-10-30 05:08:19.812 : <epoch:1399, iter:  84,000, lr:1.000e-04> G_loss: 3.644e-02 
+23-10-30 05:08:19.814 : Saving the model.
+23-10-30 05:08:20.065 : ---1--> pollen.spd1.0098.png | 18.89dB
+23-10-30 05:08:20.195 : ---2--> pollen.spd2.0098.png | 19.55dB
+23-10-30 05:08:20.301 : ---3--> pollen.spd3.0098.png | 20.34dB
+23-10-30 05:08:20.396 : ---4--> pollen.spd5.0098.png | 21.91dB
+23-10-30 05:08:20.489 : ---5--> pollen.spd8.0098.png | 22.59dB
+23-10-30 05:08:20.528 : <epoch:1399, iter:  84,000, Average PSNR : 20.66dB
+
+23-10-30 05:10:13.492 : <epoch:1403, iter:  84,200, lr:1.000e-04> G_loss: 3.482e-02 
+23-10-30 05:12:01.032 : <epoch:1406, iter:  84,400, lr:1.000e-04> G_loss: 3.422e-02 
+23-10-30 05:13:50.175 : <epoch:1409, iter:  84,600, lr:1.000e-04> G_loss: 3.342e-02 
+23-10-30 05:15:42.934 : <epoch:1413, iter:  84,800, lr:1.000e-04> G_loss: 3.361e-02 
+23-10-30 05:17:30.536 : <epoch:1416, iter:  85,000, lr:1.000e-04> G_loss: 3.162e-02 
+23-10-30 05:17:30.546 : Saving the model.
+23-10-30 05:17:31.841 : ---1--> pollen.spd1.0098.png | 18.97dB
+23-10-30 05:17:32.176 : ---2--> pollen.spd2.0098.png | 19.63dB
+23-10-30 05:17:32.553 : ---3--> pollen.spd3.0098.png | 20.42dB
+23-10-30 05:17:32.916 : ---4--> pollen.spd5.0098.png | 21.99dB
+23-10-30 05:17:33.254 : ---5--> pollen.spd8.0098.png | 22.68dB
+23-10-30 05:17:33.535 : <epoch:1416, iter:  85,000, Average PSNR : 20.74dB
+
+23-10-30 05:19:20.708 : <epoch:1419, iter:  85,200, lr:1.000e-04> G_loss: 3.120e-02 
+23-10-30 05:21:13.566 : <epoch:1423, iter:  85,400, lr:1.000e-04> G_loss: 3.445e-02 
+23-10-30 05:23:02.293 : <epoch:1426, iter:  85,600, lr:1.000e-04> G_loss: 3.391e-02 
+23-10-30 05:24:51.673 : <epoch:1429, iter:  85,800, lr:1.000e-04> G_loss: 3.197e-02 
+23-10-30 05:26:44.673 : <epoch:1433, iter:  86,000, lr:1.000e-04> G_loss: 3.251e-02 
+23-10-30 05:26:44.684 : Saving the model.
+23-10-30 05:26:45.946 : ---1--> pollen.spd1.0098.png | 18.94dB
+23-10-30 05:26:46.286 : ---2--> pollen.spd2.0098.png | 19.60dB
+23-10-30 05:26:46.620 : ---3--> pollen.spd3.0098.png | 20.40dB
+23-10-30 05:26:46.994 : ---4--> pollen.spd5.0098.png | 21.98dB
+23-10-30 05:26:47.349 : ---5--> pollen.spd8.0098.png | 22.66dB
+23-10-30 05:26:47.616 : <epoch:1433, iter:  86,000, Average PSNR : 20.72dB
+
+23-10-30 05:28:33.195 : <epoch:1436, iter:  86,200, lr:1.000e-04> G_loss: 3.320e-02 
+23-10-30 05:30:22.118 : <epoch:1439, iter:  86,400, lr:1.000e-04> G_loss: 3.301e-02 
+23-10-30 05:32:15.628 : <epoch:1443, iter:  86,600, lr:1.000e-04> G_loss: 3.538e-02 
+23-10-30 05:34:03.207 : <epoch:1446, iter:  86,800, lr:1.000e-04> G_loss: 3.401e-02 
+23-10-30 05:35:52.324 : <epoch:1449, iter:  87,000, lr:1.000e-04> G_loss: 3.450e-02 
+23-10-30 05:35:52.326 : Saving the model.
+23-10-30 05:35:52.582 : ---1--> pollen.spd1.0098.png | 18.98dB
+23-10-30 05:35:52.692 : ---2--> pollen.spd2.0098.png | 19.65dB
+23-10-30 05:35:52.802 : ---3--> pollen.spd3.0098.png | 20.44dB
+23-10-30 05:35:52.898 : ---4--> pollen.spd5.0098.png | 22.01dB
+23-10-30 05:35:52.994 : ---5--> pollen.spd8.0098.png | 22.70dB
+23-10-30 05:35:53.034 : <epoch:1449, iter:  87,000, Average PSNR : 20.75dB
+
+23-10-30 05:37:45.889 : <epoch:1453, iter:  87,200, lr:1.000e-04> G_loss: 3.603e-02 
+23-10-30 05:39:34.631 : <epoch:1456, iter:  87,400, lr:1.000e-04> G_loss: 3.129e-02 
+23-10-30 05:41:23.328 : <epoch:1459, iter:  87,600, lr:1.000e-04> G_loss: 3.213e-02 
+23-10-30 05:43:16.166 : <epoch:1463, iter:  87,800, lr:1.000e-04> G_loss: 3.564e-02 
+23-10-30 05:45:04.768 : <epoch:1466, iter:  88,000, lr:1.000e-04> G_loss: 3.618e-02 
+23-10-30 05:45:04.797 : Saving the model.
+23-10-30 05:45:06.111 : ---1--> pollen.spd1.0098.png | 18.96dB
+23-10-30 05:45:06.422 : ---2--> pollen.spd2.0098.png | 19.62dB
+23-10-30 05:45:06.730 : ---3--> pollen.spd3.0098.png | 20.41dB
+23-10-30 05:45:07.089 : ---4--> pollen.spd5.0098.png | 21.98dB
+23-10-30 05:45:07.479 : ---5--> pollen.spd8.0098.png | 22.67dB
+23-10-30 05:45:07.766 : <epoch:1466, iter:  88,000, Average PSNR : 20.73dB
+
+23-10-30 05:46:54.867 : <epoch:1469, iter:  88,200, lr:1.000e-04> G_loss: 3.280e-02 
+23-10-30 05:48:47.875 : <epoch:1473, iter:  88,400, lr:1.000e-04> G_loss: 3.906e-02 
+23-10-30 05:50:36.182 : <epoch:1476, iter:  88,600, lr:1.000e-04> G_loss: 3.684e-02 
+23-10-30 05:52:25.382 : <epoch:1479, iter:  88,800, lr:1.000e-04> G_loss: 3.087e-02 
+23-10-30 05:54:18.314 : <epoch:1483, iter:  89,000, lr:1.000e-04> G_loss: 3.028e-02 
+23-10-30 05:54:18.349 : Saving the model.
+23-10-30 05:54:19.611 : ---1--> pollen.spd1.0098.png | 18.99dB
+23-10-30 05:54:19.942 : ---2--> pollen.spd2.0098.png | 19.65dB
+23-10-30 05:54:20.263 : ---3--> pollen.spd3.0098.png | 20.45dB
+23-10-30 05:54:20.712 : ---4--> pollen.spd5.0098.png | 22.03dB
+23-10-30 05:54:21.060 : ---5--> pollen.spd8.0098.png | 22.72dB
+23-10-30 05:54:21.361 : <epoch:1483, iter:  89,000, Average PSNR : 20.77dB
+
+23-10-30 05:56:06.961 : <epoch:1486, iter:  89,200, lr:1.000e-04> G_loss: 3.662e-02 
+23-10-30 05:57:55.954 : <epoch:1489, iter:  89,400, lr:1.000e-04> G_loss: 3.273e-02 
+23-10-30 05:59:48.347 : <epoch:1493, iter:  89,600, lr:1.000e-04> G_loss: 3.005e-02 
+23-10-30 06:01:36.604 : <epoch:1496, iter:  89,800, lr:1.000e-04> G_loss: 3.417e-02 
+23-10-30 06:03:25.508 : <epoch:1499, iter:  90,000, lr:1.000e-04> G_loss: 3.104e-02 
+23-10-30 06:03:25.510 : Saving the model.
+23-10-30 06:03:25.769 : ---1--> pollen.spd1.0098.png | 18.98dB
+23-10-30 06:03:25.873 : ---2--> pollen.spd2.0098.png | 19.65dB
+23-10-30 06:03:25.973 : ---3--> pollen.spd3.0098.png | 20.44dB
+23-10-30 06:03:26.140 : ---4--> pollen.spd5.0098.png | 22.01dB
+23-10-30 06:03:26.234 : ---5--> pollen.spd8.0098.png | 22.70dB
+23-10-30 06:03:26.274 : <epoch:1499, iter:  90,000, Average PSNR : 20.76dB
+
+23-10-30 06:03:26.475 : Saving the final model.
+23-10-30 06:03:26.495 : End of training.

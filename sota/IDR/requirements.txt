@@ -1,3 +1,0 @@
-torch>=1.5
-bm3d
-scipy

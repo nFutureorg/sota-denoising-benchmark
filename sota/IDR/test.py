@@ -106,9 +106,9 @@ def test(args, net, test_data_path_set):
                 if args.save_img:
                     filename = item.split('/')[-1].split('.')[0] + '_%s' % args.ntype
 
-                    cv2.imwrite(os.path.join(save_dir, 'den/%s_%.2f_out.png' % (filename, temp_psnr)), denoised)
-                    cv2.imwrite(os.path.join(save_dir, 'noisy/%s_NOISY.png' % (filename)), noisy)
-                    cv2.imwrite(os.path.join(save_dir, 'gt/%s_GT.png' % (filename)), gt)
+                    cv2.imwrite(os.path.join(save_dir, '%s_%.2f_out.png' % (filename, temp_psnr)), denoised)
+                    cv2.imwrite(os.path.join(save_dir, '%s_NOISY.png' % (filename)), noisy)
+                    cv2.imwrite(os.path.join(save_dir, '%s_GT.png' % (filename)), gt)
 
             print('\r', 'noise lelvel', noise_level, test_data_path.split('/')[-1], len(data_list),
                   ', psnr  %.2f ssim %.3f' % (np.mean(res['psnr']), np.mean(res['ssim'])), args.ntype)

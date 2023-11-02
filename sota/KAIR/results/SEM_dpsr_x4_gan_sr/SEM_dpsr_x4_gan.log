@@ -1,0 +1,22 @@
+22-07-28 13:31:06.584 : Model path: model_zoo/dpsr_x4_gan.pth
+22-07-28 13:31:06.586 : Params number: 3493824
+22-07-28 13:31:06.586 : model_name:dpsr_x4_gan, model sigma:50, image sigma:50
+22-07-28 13:31:06.587 : testsets/SEM
+22-07-28 13:31:07.190 : pollen.spd1.0098.png - PSNR: 14.28 dB; SSIM: 0.0904.
+22-07-28 13:31:07.763 : pollen.spd2.0098.png - PSNR: 15.05 dB; SSIM: 0.0963.
+22-07-28 13:31:08.336 : pollen.spd3.0098.png - PSNR: 15.66 dB; SSIM: 0.1110.
+22-07-28 13:31:08.858 : pollen.spd5.0098.png - PSNR: 16.44 dB; SSIM: 0.1396.
+22-07-28 13:31:09.371 : pollen.spd8.0098.png - PSNR: 16.72 dB; SSIM: 0.1617.
+22-07-28 13:31:09.534 : Average PSNR/SSIM(RGB) - SEM_dpsr_x4_gan - x4 --PSNR: 15.63 dB; SSIM: 0.1198
+22-07-28 13:31:09.535 : Average PSNR/SSIM( Y ) - SEM_dpsr_x4_gan - x4 - PSNR: 16.99 dB; SSIM: 0.1378
+22-07-28 13:32:21.614 : Model path: model_zoo/dpsr_x4_gan.pth
+22-07-28 13:32:21.616 : Params number: 3493824
+22-07-28 13:32:21.616 : model_name:dpsr_x4_gan, model sigma:50, image sigma:50
+22-07-28 13:32:21.617 : testsets/SEM
+22-07-28 13:32:22.115 : pollen.spd1.0098.png - PSNR: 14.28 dB; SSIM: 0.0905.
+22-07-28 13:32:22.669 : pollen.spd2.0098.png - PSNR: 15.05 dB; SSIM: 0.0962.
+22-07-28 13:32:23.216 : pollen.spd3.0098.png - PSNR: 15.65 dB; SSIM: 0.1107.
+22-07-28 13:32:23.761 : pollen.spd5.0098.png - PSNR: 16.43 dB; SSIM: 0.1387.
+22-07-28 13:32:24.308 : pollen.spd8.0098.png - PSNR: 16.70 dB; SSIM: 0.1595.
+22-07-28 13:32:24.478 : Average PSNR/SSIM(RGB) - SEM_dpsr_x4_gan - x4 --PSNR: 15.62 dB; SSIM: 0.1191
+22-07-28 13:32:24.478 : Average PSNR/SSIM( Y ) - SEM_dpsr_x4_gan - x4 - PSNR: 16.99 dB; SSIM: 0.1370

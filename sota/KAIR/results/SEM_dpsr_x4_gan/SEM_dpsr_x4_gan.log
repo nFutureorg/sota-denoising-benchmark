@@ -1,0 +1,11 @@
+22-07-28 13:35:16.265 : Model path: model_zoo/dpsr_x4_gan.pth
+22-07-28 13:35:16.267 : Params number: 3493824
+22-07-28 13:35:16.268 : model_name:dpsr_x4_gan, model sigma:50, image sigma:50
+22-07-28 13:35:16.268 : testsets/SEM
+22-07-28 13:35:16.748 : pollen.spd1.0098.png - PSNR: 14.28 dB; SSIM: 0.0904.
+22-07-28 13:35:17.277 : pollen.spd2.0098.png - PSNR: 15.05 dB; SSIM: 0.0963.
+22-07-28 13:35:17.790 : pollen.spd3.0098.png - PSNR: 15.66 dB; SSIM: 0.1110.
+22-07-28 13:35:18.323 : pollen.spd5.0098.png - PSNR: 16.44 dB; SSIM: 0.1396.
+22-07-28 13:35:18.852 : pollen.spd8.0098.png - PSNR: 16.72 dB; SSIM: 0.1617.
+22-07-28 13:35:19.014 : Average PSNR/SSIM(RGB) - SEM_dpsr_x4_gan - x4 --PSNR: 15.63 dB; SSIM: 0.1198
+22-07-28 13:35:19.015 : Average PSNR/SSIM( Y ) - SEM_dpsr_x4_gan - x4 - PSNR: 16.99 dB; SSIM: 0.1378

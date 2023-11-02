@@ -147,9 +147,9 @@ if __name__ == '__main__':
 
     # set testing datasets
     if 'gray' in args.ntype:
-        test_data_path_set = [args.root + 'SEM']
+        test_data_path_set = [args.root + 'high_quality']
     else:
-        test_data_path_set = [args.root + 'SEM']
+        test_data_path_set = [args.root + 'high_quality']
                               #args.root + 'BSDS300/all', ]
 
     # model

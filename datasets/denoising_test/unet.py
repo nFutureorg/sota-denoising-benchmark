@@ -244,8 +244,8 @@ for gt_img, noisy_img, predicted_img in zip(test_clean, test_noisy, predicted_im
     psnr_original_mean += peak_signal_noise_ratio(gt_img, noisy_img)
     psnr_prediction_mean += peak_signal_noise_ratio(gt_img, predicted_img)
 
-psnr_original_mean/=gt_test_images.shape[0]
-psnr_prediction_mean/=gt_test_images.shape[0]
+psnr_original_mean/=test_clean.shape[0]
+psnr_prediction_mean/=test_clean.shape[0]
 print("Original average gt-noisy PSNR ->", psnr_original_mean)
 print("Predicted average gt-predicted PSNR ->", psnr_prediction_mean)
 
@@ -260,8 +260,8 @@ for gt_img, noisy_img, predicted_img in zip(test_clean, test_noisy, predicted_im
     ssim_original_mean += ssim(gt_img, noisy_img, multichannel=True, data_range=noisy_img.max() - noisy_img.min())
     ssim_prediction_mean += ssim(gt_img, predicted_img, multichannel=True, data_range=predicted_img.max() - predicted_img.min())
 
-ssim_original_mean/=gt_test_images.shape[0]
-ssim_prediction_mean/=gt_test_images.shape[0]
+ssim_original_mean/=test_clean.shape[0]
+ssim_prediction_mean/=test_clean.shape[0]
 print("Original average gt-noisy SSIM ->", ssim_original_mean)
 print("Predicted average gt-predicted SSIM ->", ssim_prediction_mean)
 
